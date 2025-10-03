@@ -2,11 +2,14 @@ from __future__ import annotations
 
 import random
 
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login as auth_login
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.utils import timezone
 from django.db.models import Count, Q
+from django.views.decorators.csrf import csrf_protect
 
 # from django.http import JsonResponse
 
@@ -81,6 +84,19 @@ def dashboard(request):
             "has_deficit": has_deficit,  # ★ 追加
         },
     )
+
+
+@csrf_protect
+def signup(request):
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()  # ← DBにユーザー作成（ORM経由）
+            auth_login(request, user)  # すぐログインさせる場合
+            return redirect("dashboard")  # 適宜あなたのトップ/ダッシュボード名へ
+    else:
+        form = UserCreationForm()
+    return render(request, "registration/signup.html", {"form": form})
 
 
 @login_required
