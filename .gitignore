@@ -4,12 +4,20 @@ __MACOSX/
 
 # Python
 __pycache__/
-*.pyc
+*.py[cod]
 *.pyo
+
+# Virtualenv
+venv/
+.env
+*.env
 
 # Django
 *.sqlite3
 db.sqlite3
+media/
+staticfiles/
 
-# その他
-.env
+# IDE
+.vscode/
+.idea/
