@@ -1,0 +1,252 @@
+[
+  {
+    "chapter": 1,
+    "kind": "single",
+    "stem": "推奨される仮想環境の作成コマンドとして正しいものを1つ選べ。",
+    "choices": [
+      {
+        "text": "python -m venv .venv",
+        "correct": true
+      },
+      {
+        "text": "pip create venv .venv",
+        "correct": false
+      },
+      {
+        "text": "virtualenv install .",
+        "correct": false
+      },
+      {
+        "text": "python --new-venv .",
+        "correct": false
+      }
+    ],
+    "note": "標準ライブラリのvenvモジュールをpython -m venv で呼び出す。",
+    "is_excluded": false
+  },
+  {
+    "chapter": 1,
+    "kind": "single",
+    "stem": "WindowsのPowerShellで、.venvを有効化するコマンドとして正しいものを1つ選べ。",
+    "choices": [
+      {
+        "text": ".venv\\Scripts\\Activate.ps1",
+        "correct": true
+      },
+      {
+        "text": ".venv/bin/activate",
+        "correct": false
+      },
+      {
+        "text": "source .venv/activate.ps1",
+        "correct": false
+      },
+      {
+        "text": "Enable-Venv .venv",
+        "correct": false
+      }
+    ],
+    "note": "PowerShellではScripts\\Activate.ps1。cmd.exeはScripts\\activate.bat、Linux/macOSはbin/activate。",
+    "is_excluded": false
+  },
+  {
+    "chapter": 1,
+    "kind": "single",
+    "stem": "pipでパッケージをプロジェクトにインストールする適切な方法として正しいものを1つ選べ。",
+    "choices": [
+      {
+        "text": "仮想環境を有効化してから pip install パッケージ名",
+        "correct": true
+      },
+      {
+        "text": "管理者権限で pip install --system パッケージ名",
+        "correct": false
+      },
+      {
+        "text": "python setup.py install を常に使う",
+        "correct": false
+      },
+      {
+        "text": "site-packages を手動でコピーする",
+        "correct": false
+      }
+    ],
+    "note": "プロジェクトごとに仮想環境を分離し、その中でpip installするのが基本。",
+    "is_excluded": false
+  },
+  {
+    "chapter": 1,
+    "kind": "single",
+    "stem": "requirements.txt を生成する一般的なコマンドを1つ選べ。",
+    "choices": [
+      {
+        "text": "pip freeze > requirements.txt",
+        "correct": true
+      },
+      {
+        "text": "pip list --save requirements.txt",
+        "correct": false
+      },
+      {
+        "text": "pip export > requirements.txt",
+        "correct": false
+      },
+      {
+        "text": "pip snapshot > requirements.txt",
+        "correct": false
+      }
+    ],
+    "note": "pip freeze は環境にインストールされたバージョンを固定した一覧を出力する。",
+    "is_excluded": false
+  },
+  {
+    "chapter": 1,
+    "kind": "single",
+    "stem": "UNIX系でスクリプトに実行権限を付け、直接実行可能にする方法として正しいものを1つ選べ。",
+    "choices": [
+      {
+        "text": "ファイル先頭に #!/usr/bin/env python3 を書き、chmod +x する",
+        "correct": true
+      },
+      {
+        "text": "ファイル末尾に #!/usr/bin/python を書く",
+        "correct": false
+      },
+      {
+        "text": "python実行ファイルをスクリプトに追記する",
+        "correct": false
+      },
+      {
+        "text": "拡張子を .pyx に変更する",
+        "correct": false
+      }
+    ],
+    "note": "shebangと実行権限で直接実行できる。env経由にするとパスに依存せずpython3が呼ばれる。",
+    "is_excluded": false
+  },
+  {
+    "chapter": 1,
+    "kind": "single",
+    "stem": "pyproject.toml の目的に関して最も適切な説明を1つ選べ。",
+    "choices": [
+      {
+        "text": "ビルドシステムや依存関係などのメタデータを宣言する標準ファイル",
+        "correct": true
+      },
+      {
+        "text": "仮想環境のパスを保持する一時ファイル",
+        "correct": false
+      },
+      {
+        "text": "pytestの設定専用ファイル",
+        "correct": false
+      },
+      {
+        "text": "OSごとのパッケージマネージャー設定",
+        "correct": false
+      }
+    ],
+    "note": "PEP 518/621で定義。プロジェクトのビルドバックエンドやメタデータを記述する。",
+    "is_excluded": false
+  },
+  {
+    "chapter": 1,
+    "kind": "single",
+    "stem": "pipx の用途として正しいものを1つ選べ。",
+    "choices": [
+      {
+        "text": "CLIツールを隔離された環境にインストールして実行する",
+        "correct": true
+      },
+      {
+        "text": "GPU向けにpipを高速化する",
+        "correct": false
+      },
+      {
+        "text": "requirements.txt を自動生成する",
+        "correct": false
+      },
+      {
+        "text": "venvを圧縮して配布する",
+        "correct": false
+      }
+    ],
+    "note": "pipxはグローバルに入れずに、各CLIを隔離実行するためのツール。",
+    "is_excluded": false
+  },
+  {
+    "chapter": 1,
+    "kind": "single",
+    "stem": "次のうち、複数のPythonバージョンを切り替える目的で使われることがあるものを1つ選べ。",
+    "choices": [
+      {
+        "text": "pyenv",
+        "correct": true
+      },
+      {
+        "text": "pip-tools",
+        "correct": false
+      },
+      {
+        "text": "virtualenvwrapper",
+        "correct": false
+      },
+      {
+        "text": "toxiproxy",
+        "correct": false
+      }
+    ],
+    "note": "pyenvはユーザー環境でのPython複数バージョン管理に使われる。",
+    "is_excluded": false
+  },
+  {
+    "chapter": 1,
+    "kind": "single",
+    "stem": "仮想環境を有効化せずに python -m pip を使う意図として適切な説明を1つ選べ。",
+    "choices": [
+      {
+        "text": "現在のpython実行ファイルに紐づくpipを明示的に呼ぶため",
+        "correct": true
+      },
+      {
+        "text": "常にシステム全体にインストールするため",
+        "correct": false
+      },
+      {
+        "text": "pipの速度を上げるため",
+        "correct": false
+      },
+      {
+        "text": "pipのバージョンを固定するため",
+        "correct": false
+      }
+    ],
+    "note": "python -m pip は、実行しているPythonに対応するpipを確実に呼び出す。",
+    "is_excluded": false
+  },
+  {
+    "chapter": 1,
+    "kind": "single",
+    "stem": "pip list と pip freeze の違いとして正しいものを1つ選べ。",
+    "choices": [
+      {
+        "text": "listは人間向け表示、freezeは要件固定向けの正確なバージョンピン出力",
+        "correct": true
+      },
+      {
+        "text": "どちらも同じ出力",
+        "correct": false
+      },
+      {
+        "text": "freezeは未インストールの候補を出す",
+        "correct": false
+      },
+      {
+        "text": "listはrequirements.txtを生成する",
+        "correct": false
+      }
+    ],
+    "note": "pip list は読みやすい一覧、pip freeze は要件ファイル用の厳密な==固定出力。",
+    "is_excluded": false
+  }
+]

@@ -1,0 +1,88 @@
+{% extends "exam/base.html" %}
+{% block title %}Result — exam_preparation{% endblock %}
+{% block content %}
+<section class="panel">
+  <h2>結果</h2>
+
+  <div class="summary">
+    <p>正解数：<strong>{{ score|default:0 }}</strong> / <strong>{{ total|default:0 }}</strong></p>
+    <p>
+      正解率：
+      {% if total %}
+      {% widthratio score total 100 as total_pct %}
+      <strong>{{ total_pct }}%</strong>
+      {% else %}
+      -
+      {% endif %}
+    </p>
+    <div class="progress">
+      <div class="bar" id="total-bar" data-pct="{% if total %}{{ total_pct }}{% else %}0{% endif %}"></div>
+    </div>
+  </div>
+
+  <h3>章別内訳</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Ch</th>
+        <th>正解数</th>
+        <th>正解率</th>
+        <th>ゲージ</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if ch_stat %}
+      {% for ch_num, st in ch_stat.items %}
+      <tr class="row" data-pct="{% if st.n %}{% widthratio st.c st.n 100 %}{% else %}0{% endif %}">
+        <td>{{ ch_num }}</td>
+        <td>{{ st.c|default:0 }}/{{ st.n|default:0 }}</td>
+        <td>
+          {% if st.n %}
+          {% widthratio st.c st.n 100 as pct %}
+          {{ pct }}%
+          {% else %}
+          -
+          {% endif %}
+        </td>
+        <td>
+          <div class="quota-bar">
+            <div class="quota-fill"></div>
+          </div>
+        </td>
+      </tr>
+      {% endfor %}
+      {% else %}
+      <tr>
+        <td colspan="4">データがありません。</td>
+      </tr>
+      {% endif %}
+    </tbody>
+  </table>
+</section>
+
+<script>
+  // 進捗バー描画（総合）
+  (function () {
+    var el = document.getElementById('total-bar');
+    if (!el) return;
+    var raw = (el.getAttribute('data-pct') || '0').toString().replace('%', '');
+    var n = parseFloat(raw);
+    if (isNaN(n) || n < 0) n = 0;
+    if (n > 100) n = 100;
+    el.style.width = Math.round(n) + '%';
+  })();
+
+  // 章別ゲージ描画
+  (function () {
+    var rows = document.querySelectorAll('tr.row');
+    rows.forEach(function (row) {
+      var raw = (row.getAttribute('data-pct') || '0').toString().replace('%', '');
+      var n = parseFloat(raw);
+      if (isNaN(n) || n < 0) n = 0;
+      if (n > 100) n = 100;
+      var fill = row.querySelector('.quota-fill');
+      if (fill) fill.style.width = Math.round(n) + '%';
+    });
+  })();
+</script>
+{% endblock %}

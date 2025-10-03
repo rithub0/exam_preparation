@@ -1,0 +1,527 @@
+[
+    {
+        "chapter": 13,
+        "kind": "single",
+        "stem": "JSON文字列 s をPythonオブジェクトに変換する標準的な関数を1つ選べ。",
+        "choices": [
+            {
+                "text": "json.loads(s)",
+                "correct": true
+            },
+            {
+                "text": "json.load(s)",
+                "correct": false
+            },
+            {
+                "text": "json.reads(s)",
+                "correct": false
+            },
+            {
+                "text": "ast.loads(s)",
+                "correct": false
+            }
+        ],
+        "note": "文字列→オブジェクトは json.loads。json.load はファイルオブジェクトから読み込む。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 13,
+        "kind": "single",
+        "stem": "辞書 obj をJSONとしてUTF-8でファイルへ書き出す正しいコードを1つ選べ。",
+        "choices": [
+            {
+                "text": "with open('out.json', 'w', encoding='utf-8') as f: json.dump(obj, f, ensure_ascii=False)",
+                "correct": true
+            },
+            {
+                "text": "with open('out.json', 'wb') as f: json.dumps(obj, f)",
+                "correct": false
+            },
+            {
+                "text": "with open('out.json', 'w') as f: json.write(obj, f)",
+                "correct": false
+            },
+            {
+                "text": "with open('out.json', 'w') as f: f.write(json.dump(obj))",
+                "correct": false
+            }
+        ],
+        "note": "ファイル書き出しは json.dump。日本語をそのまま出すなら ensure_ascii=False。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 13,
+        "kind": "single",
+        "stem": "JSONでインデント整形して可読性を上げたい。適切な指定を1つ選べ。",
+        "choices": [
+            {
+                "text": "json.dump(obj, f, indent=2)",
+                "correct": true
+            },
+            {
+                "text": "json.dump(obj, f, spacing=2)",
+                "correct": false
+            },
+            {
+                "text": "json.dumps(obj, f, indent=True)",
+                "correct": false
+            },
+            {
+                "text": "json.pretty(obj, f, 2)",
+                "correct": false
+            }
+        ],
+        "note": "indent=数値 で整形。dumps でも同様に indent を指定できる。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 13,
+        "kind": "single",
+        "stem": "JSONの日付型をそのままダンプできない理由として最も適切なものを1つ選べ。",
+        "choices": [
+            {
+                "text": "JSONは日付/時刻の専用スカラー型を持たないため、文字列等に変換が必要",
+                "correct": true
+            },
+            {
+                "text": "json.dump はdatetimeを自動でUNIX時刻に変換するため不要",
+                "correct": false
+            },
+            {
+                "text": "JSONはバイナリ型のみを扱い、文字列は未対応",
+                "correct": false
+            },
+            {
+                "text": "jsonモジュールは辞書を扱えない",
+                "correct": false
+            }
+        ],
+        "note": "datetimeは直接シリアライズ不可。ISO8601文字列などへ変換するカスタムエンコーダが必要。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 13,
+        "kind": "single",
+        "stem": "CSVを1行ずつ辞書形式で読みたい。最も簡潔なAPIを1つ選べ。",
+        "choices": [
+            {
+                "text": "csv.DictReader(f)",
+                "correct": true
+            },
+            {
+                "text": "csv.reader(f, dict=True)",
+                "correct": false
+            },
+            {
+                "text": "json.load(f)",
+                "correct": false
+            },
+            {
+                "text": "csv.DictWriter(f)",
+                "correct": false
+            }
+        ],
+        "note": "DictReader は1行をヘッダ→値の辞書として返す。DictWriterは書き込み用。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 13,
+        "kind": "single",
+        "stem": "CSV書き出し時にExcelでダブルクリック開きを想定する。改行コードとして適切なものを1つ選べ。",
+        "choices": [
+            {
+                "text": "newline=''",
+                "correct": true
+            },
+            {
+                "text": "newline='\\r\\n\\r\\n'",
+                "correct": false
+            },
+            {
+                "text": "encoding='cp932'",
+                "correct": false
+            },
+            {
+                "text": "lineterminator='\\r'",
+                "correct": false
+            }
+        ],
+        "note": "Pythonのcsvはプラットフォーム依存の改行重複を避けるため、open に newline='' を指定するのが推奨。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 13,
+        "kind": "single",
+        "stem": "CSVでカンマを含むフィールドを安全に出力するための正しい方法を1つ選べ。",
+        "choices": [
+            {
+                "text": "csv.writer(f).writerow(['a,b','c'])",
+                "correct": true
+            },
+            {
+                "text": "f.write('a,b,c\\n') でそのまま書く",
+                "correct": false
+            },
+            {
+                "text": "csv.writer(f, quote=False)",
+                "correct": false
+            },
+            {
+                "text": "print(['a,b','c'], file=f)",
+                "correct": false
+            }
+        ],
+        "note": "csv.writer は必要に応じて引用符でエスケープする。手書きは壊れやすい。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 13,
+        "kind": "single",
+        "stem": "独自のCSV方言（区切り:タブ、引用符:なし）を使いたい。適切な指定を1つ選べ。",
+        "choices": [
+            {
+                "text": "csv.writer(f, delimiter='\\t', quoting=csv.QUOTE_NONE, escapechar='\\\\')",
+                "correct": true
+            },
+            {
+                "text": "csv.writer(f, delimiter='\\t', quoting=False)",
+                "correct": false
+            },
+            {
+                "text": "csv.writer(f, sep='\\t', quotechar=None)",
+                "correct": false
+            },
+            {
+                "text": "csv.writer(f, dialect='tsv') で常に動く",
+                "correct": false
+            }
+        ],
+        "note": "QUOTE_NONE の場合はエスケープ文字の指定が必要。汎用の 'tsv' 方言は標準では定義されていない。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 13,
+        "kind": "single",
+        "stem": "Python 3.11以降でTOMLを“読み込み専用”で扱う標準モジュールを1つ選べ。",
+        "choices": [
+            {
+                "text": "tomllib",
+                "correct": true
+            },
+            {
+                "text": "toml",
+                "correct": false
+            },
+            {
+                "text": "tomlkit",
+                "correct": false
+            },
+            {
+                "text": "tomli_w",
+                "correct": false
+            }
+        ],
+        "note": "標準ライブラリ tomllib は読み込み専用（書き込みは非対応）。書き込みはサードパーティが必要。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 13,
+        "kind": "single",
+        "stem": "バイト列 data からTOMLを読み込む正しい使い方を1つ選べ。",
+        "choices": [
+            {
+                "text": "tomllib.loads(data.decode('utf-8'))",
+                "correct": true
+            },
+            {
+                "text": "tomllib.load(data)",
+                "correct": false
+            },
+            {
+                "text": "tomllib.reads(data)",
+                "correct": false
+            },
+            {
+                "text": "tomllib.parse_bytes(data)",
+                "correct": false
+            }
+        ],
+        "note": "tomllib は文字列入力の loads と、ファイルオブジェクトからの load を提供する。bytesはデコードしてから。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 13,
+        "kind": "single",
+        "stem": "macOS/iOS系のplistを読み書きする標準モジュールを1つ選べ。",
+        "choices": [
+            {
+                "text": "plistlib",
+                "correct": true
+            },
+            {
+                "text": "configparser",
+                "correct": false
+            },
+            {
+                "text": "pickle",
+                "correct": false
+            },
+            {
+                "text": "marshal",
+                "correct": false
+            }
+        ],
+        "note": "plistlib はXML/バイナリplistの読み書きに対応。configparser 等は除外対象か用途が異なる。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 13,
+        "kind": "single",
+        "stem": "plistのバイナリ形式で書き出す指定として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "plistlib.dump(obj, f, fmt=plistlib.FMT_BINARY)",
+                "correct": true
+            },
+            {
+                "text": "plistlib.dump(obj, f, binary=True)",
+                "correct": false
+            },
+            {
+                "text": "plistlib.dumps(obj, encoding='binary')",
+                "correct": false
+            },
+            {
+                "text": "plistlib.write(obj, f, format='bin')",
+                "correct": false
+            }
+        ],
+        "note": "fmt=plistlib.FMT_BINARY を指定する。デフォルトはXML。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 13,
+        "kind": "single",
+        "stem": "構造化バイナリのパック/アンパックに使う標準モジュールを1つ選べ。",
+        "choices": [
+            {
+                "text": "struct",
+                "correct": true
+            },
+            {
+                "text": "array",
+                "correct": false
+            },
+            {
+                "text": "pickle",
+                "correct": false
+            },
+            {
+                "text": "tarfile",
+                "correct": false
+            }
+        ],
+        "note": "struct はC言語風の書式指定でbytes↔数値等の相互変換を行う。arrayは配列型。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 13,
+        "kind": "single",
+        "stem": "struct でリトルエンディアンの32bit符号なし整数を1つpackする書式として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "struct.pack('<I', 123)",
+                "correct": true
+            },
+            {
+                "text": "struct.pack('>I', 123)",
+                "correct": false
+            },
+            {
+                "text": "struct.pack('<i', 123)",
+                "correct": false
+            },
+            {
+                "text": "struct.pack('I', 123.0)",
+                "correct": false
+            }
+        ],
+        "note": "< はリトルエンディアン、I はunsigned int。> はビッグエンディアン、i は符号付き。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 13,
+        "kind": "single",
+        "stem": "Base64でバイト列を文字列化したい。適切な変換を1つ選べ。",
+        "choices": [
+            {
+                "text": "base64.b64encode(b'data').decode('ascii')",
+                "correct": true
+            },
+            {
+                "text": "base64.encode('data')",
+                "correct": false
+            },
+            {
+                "text": "b64.encodebytes('data')",
+                "correct": false
+            },
+            {
+                "text": "codecs.base64('data')",
+                "correct": false
+            }
+        ],
+        "note": "b64encode は bytes→bytes。テキストにするには decode。逆は b64decode。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 13,
+        "kind": "single",
+        "stem": "UUIDをランダム生成して文字列として取得する正しい方法を1つ選べ。",
+        "choices": [
+            {
+                "text": "str(uuid.uuid4())",
+                "correct": true
+            },
+            {
+                "text": "uuid.random()",
+                "correct": false
+            },
+            {
+                "text": "uuid.uuid1(random=True)",
+                "correct": false
+            },
+            {
+                "text": "uuid.new()",
+                "correct": false
+            }
+        ],
+        "note": "uuid4 はランダム型。文字列化には str() を使う。uuid1 は時刻+MAC等ベース。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 13,
+        "kind": "single",
+        "stem": "IPアドレスを厳密にパースして正規化表記を得たい。適切なモジュール/関数を1つ選べ。",
+        "choices": [
+            {
+                "text": "ipaddress.ip_address('2001:db8::1')",
+                "correct": true
+            },
+            {
+                "text": "socket.parse_ip('2001:db8::1')",
+                "correct": false
+            },
+            {
+                "text": "re.fullmatch で自作する",
+                "correct": false
+            },
+            {
+                "text": "urllib.parse.ip('2001:db8::1')",
+                "correct": false
+            }
+        ],
+        "note": "ipaddress はIPv4/IPv6の厳密なパースと表記提供を行う。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 13,
+        "kind": "single",
+        "stem": "JSON Lines（1行に1JSON）の読み取りで“巨大ファイル”にも対応しやすい基本パターンを1つ選べ。",
+        "choices": [
+            {
+                "text": "with open('data.jl', 'r', encoding='utf-8') as f:\n    for line in f:\n        rec = json.loads(line)",
+                "correct": true
+            },
+            {
+                "text": "json.load(open('data.jl', 'r', encoding='utf-8'))",
+                "correct": false
+            },
+            {
+                "text": "list(map(json.loads, open('data.jl').read()))",
+                "correct": false
+            },
+            {
+                "text": "jsonlines.load_iter(f)",
+                "correct": false
+            }
+        ],
+        "note": "1行ずつストリーミング処理することでメモリ節約。標準のみで実装可能。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 13,
+        "kind": "single",
+        "stem": "JSONの浮動小数点をDecimalで読みたい。適切な引数指定を1つ選べ。",
+        "choices": [
+            {
+                "text": "json.loads(s, parse_float=decimal.Decimal)",
+                "correct": true
+            },
+            {
+                "text": "json.loads(s, float_hook=decimal.Decimal)",
+                "correct": false
+            },
+            {
+                "text": "json.load(f, use_decimal=True)",
+                "correct": false
+            },
+            {
+                "text": "json.loads(s, number_type='decimal')",
+                "correct": false
+            }
+        ],
+        "note": "parse_float に型/関数を渡すと、数値トークンをその型で生成する。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 13,
+        "kind": "single",
+        "stem": "JSONのキーを常に文字列にしたい。仕様に沿った説明として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "JSONのオブジェクトキーは仕様上文字列のみが許されるため、数値キーは文字列化される",
+                "correct": true
+            },
+            {
+                "text": "Pythonのdictはキーが任意型なのでJSONでも任意型が保存される",
+                "correct": false
+            },
+            {
+                "text": "json.dump はキーを常に数値へ変換する",
+                "correct": false
+            },
+            {
+                "text": "JSON仕様ではキーは未定義で実装依存",
+                "correct": false
+            }
+        ],
+        "note": "JSONはオブジェクトのキーに文字列のみを許容。Pythonのdictとは制約が異なる点に注意。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 13,
+        "kind": "single",
+        "stem": "巨大JSONを安全に反復処理したい。最も健全なアプローチを1つ選べ。",
+        "choices": [
+            {
+                "text": "1レコード＝1行のJSON Lines形式にしてストリーム処理する",
+                "correct": true
+            },
+            {
+                "text": "json.loadで一括読みしてからforで回す",
+                "correct": false
+            },
+            {
+                "text": "ファイルを全部readしてsplit(',')で分割する",
+                "correct": false
+            },
+            {
+                "text": "pickleで保存し直してから読む",
+                "correct": false
+            }
+        ],
+        "note": "JSON全体が巨大だと一括読みはメモリ不足に。JSONLで1行ずつ処理するのが現実的。",
+        "is_excluded": false
+    }
+]

@@ -1,0 +1,777 @@
+[
+    {
+        "chapter": 4,
+        "kind": "single",
+        "stem": "クラス定義の基本として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "class Foo: pass",
+                "correct": true
+            },
+            {
+                "text": "def class Foo(): pass",
+                "correct": false
+            },
+            {
+                "text": "class Foo(): return 1",
+                "correct": false
+            },
+            {
+                "text": "class: Foo pass",
+                "correct": false
+            }
+        ],
+        "note": "最小のクラス定義は `class Foo: pass`。`def` は関数定義に用いる。クラス本文はインデントされたブロックで記述し、空にしたい場合は `pass` を置く。Python 3 では旧式クラスは存在せず、すべて新式クラス。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 4,
+        "kind": "single",
+        "stem": "**init** の役割として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "インスタンス生成後に初期化を行うインスタンスメソッド",
+                "correct": true
+            },
+            {
+                "text": "インスタンスの生成そのものを行う特殊メソッド",
+                "correct": false
+            },
+            {
+                "text": "クラス定義時に1回だけ呼ばれるフック",
+                "correct": false
+            },
+            {
+                "text": "ガベージコレクション直前に呼ばれる解放処理",
+                "correct": false
+            }
+        ],
+        "note": "`__init__(self, ...)` は既に生成されたインスタンスに対して属性の初期化を行う。生成（メモリ確保）は `__new__` が担当。`__init__` は戻り値を返さない（`None` を返すべき）点にも注意。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 4,
+        "kind": "single",
+        "stem": "**new** の説明として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "クラスのインスタンスを作成し、そのインスタンスを返すクラスメソッド（通常は静的に解決）",
+                "correct": true
+            },
+            {
+                "text": "インスタンスの属性を初期化するための通常メソッド",
+                "correct": false
+            },
+            {
+                "text": "常に **init** より後に呼ばれる",
+                "correct": false
+            },
+            {
+                "text": "デストラクタの別名である",
+                "correct": false
+            }
+        ],
+        "note": "`__new__(cls, ...)` はオブジェクトを生成して返す（特に `tuple` など不変型のサブクラス化時に使う）。`__init__` より先に呼ばれる。`super().__new__(cls)` を返すのが典型。返り値がインスタンスでないと `__init__` は呼ばれない。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 4,
+        "kind": "single",
+        "stem": "インスタンス属性とクラス属性の違いとして正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "インスタンス属性は各インスタンスごとに保持され、クラス属性はクラスに共有される",
+                "correct": true
+            },
+            {
+                "text": "どちらも必ず共有される",
+                "correct": false
+            },
+            {
+                "text": "クラス属性は読み取り不可である",
+                "correct": false
+            },
+            {
+                "text": "インスタンス属性は **init** では設定できない",
+                "correct": false
+            }
+        ],
+        "note": "クラス本文で定義した変数はクラス属性であり全インスタンスで共有される。`self.x = ...` のように代入するとそのインスタンスの辞書（`__dict__`）に属性が作られ、他のインスタンスには影響しない。可変オブジェクトをクラス属性に置く際は共有による副作用に注意。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 4,
+        "kind": "single",
+        "stem": "@staticmethod の説明として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "暗黙の第1引数（self / cls）を受け取らない関数をクラスの名前空間にぶら下げる",
+                "correct": true
+            },
+            {
+                "text": "必ずクラスオブジェクトを第1引数に受け取る",
+                "correct": false
+            },
+            {
+                "text": "必ずインスタンスを第1引数に受け取る",
+                "correct": false
+            },
+            {
+                "text": "継承時に自動でオーバーライドされない",
+                "correct": false
+            }
+        ],
+        "note": "`@staticmethod` はユーティリティ関数をクラスに関連付けたい時に使う。呼び出し時に self/cls は渡されない。対して `@classmethod` は `cls` を第1引数に受け取る。どちらも名称でのディスパッチやテスト時のモック容易性に寄与する。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 4,
+        "kind": "single",
+        "stem": "@classmethod の正しい使い所を1つ選べ。",
+        "choices": [
+            {
+                "text": "代替コンストラクタ（from_*）などクラスに紐づく生成ロジックを提供したいとき",
+                "correct": true
+            },
+            {
+                "text": "インスタンスごとに状態を変更したいとき",
+                "correct": false
+            },
+            {
+                "text": "グローバル関数を格納したいとき",
+                "correct": false
+            },
+            {
+                "text": "デコレータを適用できないときの代替",
+                "correct": false
+            }
+        ],
+        "note": "`@classmethod` は `cls` を受け取り、現在のクラス（サブクラスの場合はサブクラス）へ動的にバインドされるため、継承階層で適切なクラスを返すファクトリの実装に向く。例：`@classmethod\ndef from_path(cls, p): return cls(open(p).read())`。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 4,
+        "kind": "single",
+        "stem": "プロパティ（@property）の説明として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "属性アクセスのインターフェイスでゲッター／セッター／デリーターをメソッドで実装できる",
+                "correct": true
+            },
+            {
+                "text": "メソッド呼び出しを高速化するための機能である",
+                "correct": false
+            },
+            {
+                "text": "読み取り専用属性は定義できない",
+                "correct": false
+            },
+            {
+                "text": "クラス属性にのみ適用できる",
+                "correct": false
+            }
+        ],
+        "note": "`@property` でゲッター、`@x.setter` でセッター、`@x.deleter` でデリーターを定義できる。内部表現を隠蔽し、API を安定化させる（後から検証やキャッシュ追加が可能）。ゲッターのみ実装すれば読み取り専用になる。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 4,
+        "kind": "single",
+        "stem": "**repr** と **str** の使い分けとして正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "**repr** は開発者向けの詳細・再現可能な表現、**str** はユーザー向けの可読表現",
+                "correct": true
+            },
+            {
+                "text": "どちらも全く同じ目的であり区別しない",
+                "correct": false
+            },
+            {
+                "text": "**str** は eval 可能な表現でなければならない",
+                "correct": false
+            },
+            {
+                "text": "**repr** は常に空文字を返すべき",
+                "correct": false
+            }
+        ],
+        "note": "`__repr__` はデバッグやログで有用。可能なら `eval(repr(x)) == x` を目指す（実務では難しい場合も多い）。`__str__` が未実装の場合、`print(x)` などは `__repr__` がフォールバックされる。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 4,
+        "kind": "single",
+        "stem": "演算子のオーバーロードに関して正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "**add** や **eq** などの特殊メソッドを実装することで演算子の意味を自分の型に合わせて定義できる",
+                "correct": true
+            },
+            {
+                "text": "演算子のオーバーロードはPythonでは不可能である",
+                "correct": false
+            },
+            {
+                "text": "**eq** は必ずしも対称性を保つ必要はない",
+                "correct": false
+            },
+            {
+                "text": "**hash** を実装しても **eq** とは無関係でよい",
+                "correct": false
+            }
+        ],
+        "note": "二項演算子は `__radd__` など右辺版との整合にも注意。`__eq__` を実装したら等価性の性質（対称性・推移性）を壊さないようにする。`__eq__` を定義した場合 `__hash__` の扱いが変わる（不整合回避のため `__hash__=None` となることがある）点に注意。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 4,
+        "kind": "single",
+        "stem": "**slots** の効果として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "インスタンス辞書を持たず固定スロットのみになり、メモリ削減や属性アクセスの高速化が見込める",
+                "correct": true
+            },
+            {
+                "text": "メソッド解決順序（MRO）を変更する",
+                "correct": false
+            },
+            {
+                "text": "クラス属性を自動的にプロパティに変換する",
+                "correct": false
+            },
+            {
+                "text": "ガーベージコレクションを無効化する",
+                "correct": false
+            }
+        ],
+        "note": "`__slots__ = ('x','y')` のように列挙すると、その属性以外を動的に追加できなくなる（`__dict__` を含めれば例外）。多量の小オブジェクトを扱う場面で有効。多重継承との相性・ピックル可否などの挙動にも注意。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 4,
+        "kind": "single",
+        "stem": "MRO（メソッド解決順序）に関して正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "Python 3 は C3 線形化に基づく順序で基底クラスを探索する",
+                "correct": true
+            },
+            {
+                "text": "深さ優先で常に左から右へ探索し循環も許す",
+                "correct": false
+            },
+            {
+                "text": "多重継承では順序は未定義である",
+                "correct": false
+            },
+            {
+                "text": "super() は常に直接の親クラスだけを指す",
+                "correct": false
+            }
+        ],
+        "note": "MRO は `Class.mro()` または `obj.__class__.mro()` で確認できる。`super()` はこの MRO に従って次のクラスを参照するため、多重継承下でも協調的に動作する（直接の親固定ではない）。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 4,
+        "kind": "single",
+        "stem": "super() の正しい使い方を1つ選べ。",
+        "choices": [
+            {
+                "text": "Python 3 では通常 `super()` と引数なしで呼び、MRO に従って次のメソッドを解決させる",
+                "correct": true
+            },
+            {
+                "text": "常に `super(CurrentClass, self)` と明示しなければならない",
+                "correct": false
+            },
+            {
+                "text": "多重継承では使用不可である",
+                "correct": false
+            },
+            {
+                "text": "静的メソッド内でしか使えない",
+                "correct": false
+            }
+        ],
+        "note": "引数なしの `super()` は現在のクラスとインスタンスをコンパイラが埋め込む。複数の基底が同じメソッドを持つ場合でも、各クラスで `super()` を呼び出す「協調的継承」を行うことで一回ずつ連鎖的に実行される。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 4,
+        "kind": "single",
+        "stem": "データモデルにおけるディスクリプタの定義として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "**get** / **set** / **delete** のいずれかを実装し、属性アクセスの振る舞いをカスタマイズするオブジェクト",
+                "correct": true
+            },
+            {
+                "text": "抽象基底クラスの別名である",
+                "correct": false
+            },
+            {
+                "text": "プロパティを禁止するメカニズム",
+                "correct": false
+            },
+            {
+                "text": "メタクラスのことを指す",
+                "correct": false
+            }
+        ],
+        "note": "プロパティはディスクリプタの高レベル API。データディスクリプタ（`__set__` あり）はインスタンス辞書よりも優先される。キャッシュ、検証、遅延ロードなどで活用できる。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 4,
+        "kind": "single",
+        "stem": "等価性とハッシュの整合性として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "2つのオブジェクトが **eq** で等しいなら、それらの **hash** の値も等しくあるべき",
+                "correct": true
+            },
+            {
+                "text": "**hash** は **eq** と独立でよい",
+                "correct": false
+            },
+            {
+                "text": "イミュータブル型では **eq** を定義してはならない",
+                "correct": false
+            },
+            {
+                "text": "集合や辞書のキーには **eq** が無視される",
+                "correct": false
+            }
+        ],
+        "note": "ハッシュテーブルの不変条件。`__eq__` をオーバーライドすると `__hash__` が無効化される場合がある（`__hash__ = None`）。辞書キーや集合要素に使う型では等価とハッシュの整合性を保つことが重要。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 4,
+        "kind": "single",
+        "stem": "抽象基底クラス（ABC）の用途として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "インターフェイスを定義し、サブクラスに実装を強制する（未実装ならインスタンス化不可）",
+                "correct": true
+            },
+            {
+                "text": "メソッドを自動生成して実装不要にする",
+                "correct": false
+            },
+            {
+                "text": "継承を禁止する",
+                "correct": false
+            },
+            {
+                "text": "メソッド解決順序をランダム化する",
+                "correct": false
+            }
+        ],
+        "note": "`abc.ABC` を継承し、`@abstractmethod` を付けたメソッドが実装されていなければ直接インスタンス化できない。`collections.abc` にはシーケンスやマッピング等の抽象インターフェイスが揃っている。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 4,
+        "kind": "single",
+        "stem": "@dataclass の効果として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "フィールド定義から **init** / **repr** / **eq** 等を自動生成する（デフォルト不変ではない）",
+                "correct": true
+            },
+            {
+                "text": "常に不変データ型を生成する（変更不可）",
+                "correct": false
+            },
+            {
+                "text": "任意のクラスを自動的にシングルトンにする",
+                "correct": false
+            },
+            {
+                "text": "ガーベージコレクション対象外にする",
+                "correct": false
+            }
+        ],
+        "note": "`@dataclass` は BOILERPLATE を削減。`frozen=True` で不変、`order=True` で比較順序メソッド生成。ミュータブルなデフォルト値には `field(default_factory=list)` のようにファクトリを使うのが定石。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 4,
+        "kind": "single",
+        "stem": "**init_subclass** の説明として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "サブクラス定義時に自動的に呼ばれるフックで、共通の検証や登録処理が書ける",
+                "correct": true
+            },
+            {
+                "text": "インスタンス生成時に呼ばれる",
+                "correct": false
+            },
+            {
+                "text": "モジュール読み込み時に1回だけ呼ばれる",
+                "correct": false
+            },
+            {
+                "text": "デコレータのショートハンドである",
+                "correct": false
+            }
+        ],
+        "note": "`class Child(Base): ...` が評価された直後に `Base.__init_subclass__` が呼ばれる。プラグイン登録、抽象メソッド検査、デフォルト属性の付与などに活用できる（`**kwargs` を受けて柔軟に）。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 4,
+        "kind": "single",
+        "stem": "**getattr** と **getattribute** の違いとして正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "**getattr** は見つからない属性に対してのみ呼ばれ、**getattribute** はすべての属性取得で呼ばれる",
+                "correct": true
+            },
+            {
+                "text": "どちらも未定義属性には呼ばれない",
+                "correct": false
+            },
+            {
+                "text": "**getattribute** は辞書型にしか使えない",
+                "correct": false
+            },
+            {
+                "text": "**getattr** はクラス属性にしか作用しない",
+                "correct": false
+            }
+        ],
+        "note": "`__getattribute__` は強力だが無限再帰の危険があるため、内部で `object.__getattribute__(self, name)` を使って委譲するのが基本。`__getattr__` はフォールバック生成（遅延属性など）に便利。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 4,
+        "kind": "single",
+        "stem": "イミュータブルな値オブジェクトをクラスで表現するときの推奨に最も近いものを1つ選べ。",
+        "choices": [
+            {
+                "text": "@dataclass(frozen=True) を用い、**hash** と **eq** の整合を保つ",
+                "correct": true
+            },
+            {
+                "text": "常に **setattr** をオーバーライドして何でも拒否する",
+                "correct": false
+            },
+            {
+                "text": "**eq** を未定義にし、ハッシュは乱数で返す",
+                "correct": false
+            },
+            {
+                "text": "クラス属性に状態を格納して共有する",
+                "correct": false
+            }
+        ],
+        "note": "不変オブジェクトはハッシュ計算や辞書キーに向く。`frozen=True` はフィールドの再代入を禁止し、`__hash__` も自動生成（`eq=True` のとき）される。内部に可変要素を持つと不変性・ハッシュ安定性が壊れる点に注意。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 4,
+        "kind": "single",
+        "stem": "クラス変数とインスタンス変数のシャドーイング挙動として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "同名のインスタンス属性を設定すると、そのインスタンスに限ってクラス属性を隠す",
+                "correct": true
+            },
+            {
+                "text": "インスタンス属性は常にクラス属性を書き換える",
+                "correct": false
+            },
+            {
+                "text": "クラス属性は常にインスタンス属性より優先される",
+                "correct": false
+            },
+            {
+                "text": "両者が同名でも衝突は起こらない（合成される）",
+                "correct": false
+            }
+        ],
+        "note": "属性探索はインスタンス辞書→クラス→基底クラスの順。`self.x = ...` によって同名のクラス属性 `x` はそのインスタンスからは見えなくなるが、他のインスタンスやクラスからは引き続き参照される。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 4,
+        "kind": "single",
+        "stem": "多相性（ポリモーフィズム）に関する説明として最も適切なものを1つ選べ。",
+        "choices": [
+            {
+                "text": "同じインターフェイス（メソッド名）を持つ異なるクラスに対して同一の操作を適用できること",
+                "correct": true
+            },
+            {
+                "text": "型変換を禁止すること",
+                "correct": false
+            },
+            {
+                "text": "単一継承しか使わないこと",
+                "correct": false
+            },
+            {
+                "text": "継承階層を持たないこと",
+                "correct": false
+            }
+        ],
+        "note": "Python はダックタイピングの言語であり、明示的な共通親がなくても “同じメソッドを提供する” ことで多相性を獲得できる。必要なら ABC で形式化し、`isinstance`／`issubclass` と合わせて設計する。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 4,
+        "kind": "single",
+        "stem": "**call** の用途として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "インスタンスを関数のように呼び出せるようにする（呼び出し可能オブジェクト）",
+                "correct": true
+            },
+            {
+                "text": "常にコンストラクタとして呼ばれる",
+                "correct": false
+            },
+            {
+                "text": "属性アクセスを横取りする",
+                "correct": false
+            },
+            {
+                "text": "等価性判定を行う",
+                "correct": false
+            }
+        ],
+        "note": "`obj()` の形で呼び出されたときに `obj.__call__` が実行される。関数オブジェクト、戦略オブジェクト、遅延評価、メトリクスのためのラッパなどに有用。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 4,
+        "kind": "single",
+        "stem": "コンテキストマネージャをクラスで実装する際に必要なメソッドの組を1つ選べ。",
+        "choices": [
+            {
+                "text": "**enter** と **exit**",
+                "correct": true
+            },
+            {
+                "text": "**open** と **close**",
+                "correct": false
+            },
+            {
+                "text": "**begin** と **end**",
+                "correct": false
+            },
+            {
+                "text": "**with** と **leave**",
+                "correct": false
+            }
+        ],
+        "note": "`with obj as x:` で `__enter__` の戻り値が `x` に束縛され、ブロック終了時に `__exit__(exc_type, exc, tb)` が呼ばれる。例外を握りつぶすなら `__exit__` で True を返す（乱用は避ける）。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 4,
+        "kind": "single",
+        "stem": "イテレータをクラスで実装する最低条件として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "**iter** と **next** を実装する（**iter** は self を返すのが一般的）",
+                "correct": true
+            },
+            {
+                "text": "**len** と **getitem** を実装する",
+                "correct": false
+            },
+            {
+                "text": "**iter** のみ実装する",
+                "correct": false
+            },
+            {
+                "text": "**next** のみ実装する",
+                "correct": false
+            }
+        ],
+        "note": "イテレータプロトコルは `iter(obj)` → `obj.__iter__()`、`next(it)` → `it.__next__()`。コンテナは `__len__` と `__getitem__` だけでも “イテラブル” になりうるが、これはシーケンス風イテレーションでありイテレータそのものではない。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 4,
+        "kind": "single",
+        "stem": "コンテナのメンバーシップテスト `x in obj` をクラスでカスタマイズするには何を実装すべきか。",
+        "choices": [
+            {
+                "text": "**contains**",
+                "correct": true
+            },
+            {
+                "text": "**has**",
+                "correct": false
+            },
+            {
+                "text": "**find**",
+                "correct": false
+            },
+            {
+                "text": "**include**",
+                "correct": false
+            }
+        ],
+        "note": "`in` はまず `__contains__` を参照し、未実装ならイテレーションで線形探索を行う。集合・辞書ではハッシュにより高速な包含判定が可能。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 4,
+        "kind": "single",
+        "stem": "メタクラスの説明として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "クラスの生成過程をカスタマイズするための“クラスのクラス”で、type を基底として作られる",
+                "correct": true
+            },
+            {
+                "text": "インスタンスの生成を高速化するためのキャッシュである",
+                "correct": false
+            },
+            {
+                "text": "デコレータのシンタックスシュガーに過ぎない",
+                "correct": false
+            },
+            {
+                "text": "関数の別名である",
+                "correct": false
+            }
+        ],
+        "note": "通常はデコレータや `__init_subclass__` で十分だが、属性自動付与・検証・登録などをクラス定義段階で強制したい場合にメタクラスが有効。指定は `class C(metaclass=Meta): ...` のように行う。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 4,
+        "kind": "single",
+        "stem": "クラスデコレータ（関数でクラスを受け取りクラスを返す）の用途として適切なものを1つ選べ。",
+        "choices": [
+            {
+                "text": "クラス定義後に属性の追加やラップを行い横断的関心事（登録・検証）を付与する",
+                "correct": true
+            },
+            {
+                "text": "関数をメソッドへ自動変換するためだけに使う",
+                "correct": false
+            },
+            {
+                "text": "インスタンス生成を禁止する",
+                "correct": false
+            },
+            {
+                "text": "MRO を変更する",
+                "correct": false
+            }
+        ],
+        "note": "クラスデコレータはメタクラスより軽量に挙動を変更できる。例えばレジストリへ自動登録、`__repr__` の注入、プロパティ一括生成など。副作用のスコープは意図的に限定することが重要。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 4,
+        "kind": "single",
+        "stem": "コンポジション（合成）と継承の選択指針として最も適切なものを1つ選べ。",
+        "choices": [
+            {
+                "text": "“〜は…である（is-a）” 関係なら継承、“〜は…を持つ（has-a）” 関係なら合成を優先する",
+                "correct": true
+            },
+            {
+                "text": "常に継承を使うべきで、合成は避ける",
+                "correct": false
+            },
+            {
+                "text": "常に合成を使うべきで、継承は避ける",
+                "correct": false
+            },
+            {
+                "text": "選択はランダムで問題ない",
+                "correct": false
+            }
+        ],
+        "note": "継承は密結合を生みやすく、設計の柔軟性を損なうことがある。ふるまいの差し替えが主目的なら委譲／合成を検討。Python ではプロトコル中心設計（ダックタイピング）も強力。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 4,
+        "kind": "single",
+        "stem": "**del**（デストラクタ）について正しい記述を1つ選べ。",
+        "choices": [
+            {
+                "text": "予期しないタイミングで呼ばれる可能性があり、リソース解放の信頼できる手段としては用いるべきでない",
+                "correct": true
+            },
+            {
+                "text": "必ずガーベージコレクタ終了時に同期的に呼ばれる",
+                "correct": false
+            },
+            {
+                "text": "ファイルやロックの解放は **del** に集約すべき",
+                "correct": false
+            },
+            {
+                "text": "**enter** と対で必ず実装する必要がある",
+                "correct": false
+            }
+        ],
+        "note": "循環参照や終了順序問題により `__del__` は実行されないことがある。確実な解放はコンテキストマネージャ（`with`）や明示的 close を推奨。`__del__` では例外を発生させないこと（無視されうる）。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 4,
+        "kind": "single",
+        "stem": "イミュータブル組込み型（tuple など）を継承する場合に `__new__` が重要な理由として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "インスタンス生成時に値を確定させる必要があり、`__init__` では後から内部状態を変更できないため",
+                "correct": true
+            },
+            {
+                "text": "不変型は `__init__` が呼ばれない仕様のため",
+                "correct": false
+            },
+            {
+                "text": "`__new__` はデストラクタだから",
+                "correct": false
+            },
+            {
+                "text": "ハッシュ値を無視できるから",
+                "correct": false
+            }
+        ],
+        "note": "不変型の内容は生成時に決定される。サブクラスでフィールドを追加したい場合は `__new__` で `super().__new__(cls, 値...)` を返し、そこに付随情報を保持する（別属性やキャッシュなど）。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 4,
+        "kind": "single",
+        "stem": "リッチ比較メソッドの実装方針として適切なものを1つ選べ。",
+        "choices": [
+            {
+                "text": "合成デコレータ `functools.total_ordering` を使うと、**eq** と1つの順序比較を実装するだけで他を補完できる",
+                "correct": true
+            },
+            {
+                "text": "すべての比較演算子を自動で実装する仕組みは存在しない",
+                "correct": false
+            },
+            {
+                "text": "**lt** だけを実装すれば **eq** は不要",
+                "correct": false
+            },
+            {
+                "text": "比較演算子は **cmp** で一括して定義する",
+                "correct": false
+            }
+        ],
+        "note": "`total_ordering` は `__eq__` と `__lt__`（または他の1つ）から残りの `<, <=, >, >=` を生成。`__cmp__` は Python 3 では廃止。比較の安定性（反射律・反対称性・推移性）を満たすように設計すること。",
+        "is_excluded": false
+    }
+]

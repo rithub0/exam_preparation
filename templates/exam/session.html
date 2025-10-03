@@ -1,0 +1,100 @@
+{% extends "exam/base.html" %}
+{% block title %}Mock — exam_preparation{% endblock %}
+{% block content %}
+<section class="panel">
+  <header class="flex">
+    <div class="timer">
+      <span id="time-left" data-remaining="{{ remaining_sec|default:0 }}">{{ remaining_sec|default:0 }}</span>
+    </div>
+    <div>問 {{ progress.now }} / {{ progress.total }}</div>
+    <div class="progress">
+      <!-- 幅は data-pct から JS で設定（未定義/Noneや"23%"にも耐性） -->
+      <div class="bar" id="progbar"
+        data-pct="{{ progress.percent|default_if_none:0|floatformat:0|stringformat:'s'|cut:'%' }}"></div>
+    </div>
+  </header>
+
+  <article class="q">
+    <pre class="stem">{{ question.stem }}</pre>
+
+    <form id="qform" method="post">
+      {% csrf_token %}
+      {% for c in choices|default:question.choices.all %}
+      <label class="choice">
+        <input type="radio" name="choice" value="{{ c.id }}"
+          {% if chosen_id and chosen_id|stringformat:"s" == c.id|stringformat:"s" %}checked{% endif %}>
+        {{ c.text }}
+      </label><br>
+      {% endfor %}
+
+      {% if not judged %}
+      <button type="submit" class="btn">解答</button>
+      {% else %}
+      <button type="submit" name="next" value="1" class="btn">次へ</button>
+      <p class="judge {% if was_correct %}ok{% else %}ng{% endif %}">
+        {% if was_correct %}正解{% else %}不正解{% endif %}
+      </p>
+      <!-- 正解の選択肢を表示（single/multi/judge いずれも対応） -->
+      <section class="answer-key">
+        <h4>正解</h4>
+        <ul>
+          {% for opt in question.choices.all %}
+          {% if opt.is_correct %}
+          <li>{{ opt.text }}</li>
+          {% endif %}
+          {% empty %}
+          <li>(正解選択肢が未設定)</li>
+          {% endfor %}
+        </ul>
+      </section>
+      <section class="explain">
+        <h4>解説</h4>
+        <pre>{{ question.note }}</pre>
+      </section>
+      
+      {% endif %}
+    </form>
+  </article>
+</section>
+
+<script>
+  // ---- 進捗バー幅設定（未定義/不正値に強い） ----
+  (function () {
+    var el = document.getElementById('progbar');
+    if (!el) return;
+    var raw = (el.getAttribute('data-pct') || '0').toString().replace('%', '');
+    var n = parseFloat(raw);
+    if (isNaN(n) || n < 0) n = 0;
+    if (n > 100) n = 100;
+    el.style.width = Math.round(n) + '%';
+  })();
+
+  // ---- 残り時間のカウントダウン表示（純JS・最小実装） ----
+  (function () {
+    var el = document.getElementById('time-left');
+    if (!el) return;
+    var remain = parseInt(el.getAttribute('data-remaining'), 10);
+    if (isNaN(remain) || remain < 0) remain = 0;
+
+    function fmt(sec) {
+      var m = Math.floor(sec / 60);
+      var s = sec % 60;
+      return (m < 10 ? '0' + m : m) + ':' + (s < 10 ? '0' + s : s);
+    }
+
+    function tick() {
+      if (remain <= 0) {
+        // 時間切れ：結果画面へ移動
+        window.location.href = "{% url 'mock_result' %}";
+        return;
+      }
+      el.textContent = fmt(remain);
+      remain -= 1;
+      setTimeout(tick, 1000);
+    }
+    // 初回描画
+    el.textContent = fmt(remain);
+    setTimeout(tick, 1000);
+  })();
+</script>
+{% endblock %}

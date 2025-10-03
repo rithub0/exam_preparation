@@ -1,0 +1,1927 @@
+[
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "リストに要素を末尾追加する最も基本的なメソッドを1つ選べ。",
+        "choices": [
+            {
+                "text": "list.append(x)",
+                "correct": true
+            },
+            {
+                "text": "list.add(x)",
+                "correct": false
+            },
+            {
+                "text": "list.push(x)",
+                "correct": false
+            },
+            {
+                "text": "list.extend_one(x)",
+                "correct": false
+            }
+        ],
+        "note": "リスト末尾への単一要素追加は append。extend はイテラブルを展開して複数追加。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "タプルの性質として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "不変(immutable)である",
+                "correct": true
+            },
+            {
+                "text": "要素の追加・削除が可能",
+                "correct": false
+            },
+            {
+                "text": "ハッシュ不可能で辞書キーにできない",
+                "correct": false
+            },
+            {
+                "text": "順序を持たない",
+                "correct": false
+            }
+        ],
+        "note": "タプルは不変で順序を持つ。要素がすべてハッシュ可能であれば辞書キーにできる。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "`list.extend(iterable)` の説明として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "iterable を走査し、その要素を順に末尾へ追加する",
+                "correct": true
+            },
+            {
+                "text": "iterable を1要素として末尾へ追加する",
+                "correct": false
+            },
+            {
+                "text": "先頭に要素を追加する",
+                "correct": false
+            },
+            {
+                "text": "同一要素を重複なく統合する",
+                "correct": false
+            }
+        ],
+        "note": "extend はイテラブルを展開して複数要素を追加する。単一要素追加は append。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "集合(set)に関する説明として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "要素は一意で重複しない",
+                "correct": true
+            },
+            {
+                "text": "順序が保証される",
+                "correct": false
+            },
+            {
+                "text": "インデックスでアクセスできる",
+                "correct": false
+            },
+            {
+                "text": "ミュータブルではない",
+                "correct": false
+            }
+        ],
+        "note": "set は重複を持たず順序は保証されない。ミュータブルでインデックスアクセス不可。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "辞書 `d` にキー `k` が存在しない場合、既定値を返しつつ取得する方法として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "d.get(k, default)",
+                "correct": true
+            },
+            {
+                "text": "d[k] or default",
+                "correct": false
+            },
+            {
+                "text": "d.fetch(k, default)",
+                "correct": false
+            },
+            {
+                "text": "d.read(k, default)",
+                "correct": false
+            }
+        ],
+        "note": "get はキーが無いときに例外を出さず既定値を返す。`d[k]` は KeyError を発生させる。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "`dict.setdefault(key, default)` の動作として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "キーが無ければ default を挿入し、その値を返す",
+                "correct": true
+            },
+            {
+                "text": "常に default に置き換える",
+                "correct": false
+            },
+            {
+                "text": "キーが無ければエラーにする",
+                "correct": false
+            },
+            {
+                "text": "キーが有れば None を返す",
+                "correct": false
+            }
+        ],
+        "note": "setdefault は存在しない場合に挿入してその値を返す。既にある場合は元の値を返すだけ。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "`collections.Counter` で最頻出要素を上位 N 個取得するメソッドを1つ選べ。",
+        "choices": [
+            {
+                "text": "most_common(N)",
+                "correct": true
+            },
+            {
+                "text": "top(N)",
+                "correct": false
+            },
+            {
+                "text": "head(N)",
+                "correct": false
+            },
+            {
+                "text": "rank(N)",
+                "correct": false
+            }
+        ],
+        "note": "Counter.most_common(N) は (要素, カウント) のタプルを降順で返す。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "`collections.defaultdict(list)` の主な利点として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "未登録キー参照時に自動で空リストが生成される",
+                "correct": true
+            },
+            {
+                "text": "参照時に KeyError を必ず送出する",
+                "correct": false
+            },
+            {
+                "text": "既存キーの値が自動でソートされる",
+                "correct": false
+            },
+            {
+                "text": "辞書のメモリ使用量を必ず減らす",
+                "correct": false
+            }
+        ],
+        "note": "defaultdict は欠損キーに対してデフォルトファクトリで値を自動生成する。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "`collections.deque` の特長として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "両端での追加・削除が高速",
+                "correct": true
+            },
+            {
+                "text": "任意位置の挿入が O(1)",
+                "correct": false
+            },
+            {
+                "text": "スレッドセーフではない",
+                "correct": false
+            },
+            {
+                "text": "反復できない",
+                "correct": false
+            }
+        ],
+        "note": "deque は両端操作が効率的。任意位置操作はリストと同様に高コストになり得る。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "ソートに関する説明として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "Python の sort は安定ソートである",
+                "correct": true
+            },
+            {
+                "text": "sort は必ず新しいリストを返す",
+                "correct": false
+            },
+            {
+                "text": "sorted は安定ではない",
+                "correct": false
+            },
+            {
+                "text": "key と reverse を同時指定できない",
+                "correct": false
+            }
+        ],
+        "note": "list.sort は就地(in-place)で安定。sorted は新しいリストを返し、どちらも key と reverse を併用可能。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "`sorted(items, key=len)` の意味として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "要素の長さに基づいて昇順に並べ替える",
+                "correct": true
+            },
+            {
+                "text": "要素の辞書順で常に降順に並べ替える",
+                "correct": false
+            },
+            {
+                "text": "要素の型に応じてカスタム比較を行う",
+                "correct": false
+            },
+            {
+                "text": "並べ替えずに複製だけを行う",
+                "correct": false
+            }
+        ],
+        "note": "key 関数で比較キーを指定できる。len を指定すると長さ基準で昇順整列。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "`heapq` の用途として最も適切なものを1つ選べ。",
+        "choices": [
+            {
+                "text": "最小値(または最大値)を効率よく取り出す優先度付きキュー",
+                "correct": true
+            },
+            {
+                "text": "固定長の循環キューを提供する",
+                "correct": false
+            },
+            {
+                "text": "安定ソートを代替する全順序比較器",
+                "correct": false
+            },
+            {
+                "text": "ハッシュマップの衝突解決を行う",
+                "correct": false
+            }
+        ],
+        "note": "heapq は最小ヒープを提供し、最小要素の取り出しや挿入が効率的。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "リスト内包表記に関する説明として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "for と if を組み合わせて新しいリストを構築できる",
+                "correct": true
+            },
+            {
+                "text": "既存リストを就地で変更する",
+                "correct": false
+            },
+            {
+                "text": "辞書や集合では使用できない",
+                "correct": false
+            },
+            {
+                "text": "ジェネレータ式と同義である",
+                "correct": false
+            }
+        ],
+        "note": "内包表記は新しいコレクションを返す。辞書内包・集合内包も存在する。ジェネレータ式はイテレータを返す点が異なる。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "辞書ビュー `d.items()` の性質として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "辞書が変化するとビューの内容も動的に反映される",
+                "correct": true
+            },
+            {
+                "text": "タプルのリストを新規生成して返す",
+                "correct": false
+            },
+            {
+                "text": "反復できない",
+                "correct": false
+            },
+            {
+                "text": "ハッシュ可能で集合の要素にできる",
+                "correct": false
+            }
+        ],
+        "note": "items は動的ビューを返す。ハッシュ可能ではなく集合要素には直接できない。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "`itertools.accumulate(iterable)` の既定動作として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "部分和を順に生成する",
+                "correct": true
+            },
+            {
+                "text": "累積積を生成する",
+                "correct": false
+            },
+            {
+                "text": "最大値のみを生成する",
+                "correct": false
+            },
+            {
+                "text": "平均値を生成する",
+                "correct": false
+            }
+        ],
+        "note": "accumulate は既定で加算の累積結果を生成。func を渡して他の演算に変えられる。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "`itertools.groupby` の前提として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "グルーピングキーで事前にソートされている必要がある",
+                "correct": true
+            },
+            {
+                "text": "入力の順序は完全に無関係",
+                "correct": false
+            },
+            {
+                "text": "常に辞書を返す",
+                "correct": false
+            },
+            {
+                "text": "重複要素を自動で削除する",
+                "correct": false
+            }
+        ],
+        "note": "groupby は隣接する同一キーをまとめるため、通常はキーで事前ソートする。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "集合演算で A ∩ B に相当するメソッドを1つ選べ。",
+        "choices": [
+            {
+                "text": "A.intersection(B)",
+                "correct": true
+            },
+            {
+                "text": "A.union(B)",
+                "correct": false
+            },
+            {
+                "text": "A.symmetric_difference(B)",
+                "correct": false
+            },
+            {
+                "text": "A.difference_update(B)",
+                "correct": false
+            }
+        ],
+        "note": "intersection は共通部分。union は和、difference は差、symmetric_difference は排他的和集合。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "辞書のキー存在確認として最も明示的で推奨される文を1つ選べ。",
+        "choices": [
+            {
+                "text": "if key in d:",
+                "correct": true
+            },
+            {
+                "text": "if d.get(key):",
+                "correct": false
+            },
+            {
+                "text": "if d[key]:",
+                "correct": false
+            },
+            {
+                "text": "if key is d:",
+                "correct": false
+            }
+        ],
+        "note": "存在確認は `in` が明確。get は偽値が入る場合に誤判定になり得る。`d[key]` は存在しないと例外。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "リストから要素を値で1回だけ削除するメソッドを1つ選べ。",
+        "choices": [
+            {
+                "text": "list.remove(x)",
+                "correct": true
+            },
+            {
+                "text": "list.pop(x)",
+                "correct": false
+            },
+            {
+                "text": "list.delete(x)",
+                "correct": false
+            },
+            {
+                "text": "list.discard(x)",
+                "correct": false
+            }
+        ],
+        "note": "remove は最初に見つかった値 x を削除。pop はインデックス指定(既定は末尾)で要素を取り出す。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "リストのシャローコピーとして正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "new = old[:]",
+                "correct": true
+            },
+            {
+                "text": "new = old",
+                "correct": false
+            },
+            {
+                "text": "new = copy.deepcopy(old)",
+                "correct": false
+            },
+            {
+                "text": "new = list; new(old)",
+                "correct": false
+            }
+        ],
+        "note": "スライス全体、list(old)、copy.copy(old) などは浅いコピー。代入は同一オブジェクト参照。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "`max(items, key=func)` の説明として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "func の返す値に基づいて最大要素を選ぶ",
+                "correct": true
+            },
+            {
+                "text": "func は比較のたびに2引数を取る必要がある",
+                "correct": false
+            },
+            {
+                "text": "常に辞書順の最大を返す",
+                "correct": false
+            },
+            {
+                "text": "イテラブルの長さを返す",
+                "correct": false
+            }
+        ],
+        "note": "key には単項関数を渡し、比較キーを指定する。min でも同様に利用可。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "タプルのアンパックで swap する正しい例を1つ選べ。",
+        "choices": [
+            {
+                "text": "a, b = b, a",
+                "correct": true
+            },
+            {
+                "text": "a = b; b = a",
+                "correct": false
+            },
+            {
+                "text": "swap(a, b)",
+                "correct": false
+            },
+            {
+                "text": "a <-> b",
+                "correct": false
+            }
+        ],
+        "note": "Python ではタプルの並行代入で簡潔に値を交換できる。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "`enumerate(iterable, start=1)` の効果として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "要素とカウンタ(開始値指定可)のペアを生成する",
+                "correct": true
+            },
+            {
+                "text": "要素数を事前に数える",
+                "correct": false
+            },
+            {
+                "text": "インデックスを末尾に付与して新リストを返す",
+                "correct": false
+            },
+            {
+                "text": "常に 0 始まりで固定",
+                "correct": false
+            }
+        ],
+        "note": "enumerate は惰性的なイテレータを返し、開始値を指定できる。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "集合のメソッドで、要素があれば削除し、無ければ何もしないものを1つ選べ。",
+        "choices": [
+            {
+                "text": "set.discard(x)",
+                "correct": true
+            },
+            {
+                "text": "set.remove(x)",
+                "correct": false
+            },
+            {
+                "text": "set.pop(x)",
+                "correct": false
+            },
+            {
+                "text": "set.delete(x)",
+                "correct": false
+            }
+        ],
+        "note": "remove は存在しないと KeyError、discard は安全に無視する。pop は任意の要素を1つ取り出す。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "リスト結合の計算量の観点で効率がよいのはどれか。多数回連結する場合を想定する。",
+        "choices": [
+            {
+                "text": "append で要素ごとに追加する",
+                "correct": true
+            },
+            {
+                "text": "毎回 `a = a + b` で連結する",
+                "correct": false
+            },
+            {
+                "text": "毎回 `a = [*a, *b]` を使う",
+                "correct": false
+            },
+            {
+                "text": "毎回 `a += b` より常に速い方法はない",
+                "correct": false
+            }
+        ],
+        "note": "`a = a + b` は新リストを毎回生成して高コスト。反復追加や `extend` が一般に効率的。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "`any(iterable)` の返り値として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "真と評価される要素が1つでもあれば True",
+                "correct": true
+            },
+            {
+                "text": "すべての要素が真なら True",
+                "correct": false
+            },
+            {
+                "text": "要素数を返す",
+                "correct": false
+            },
+            {
+                "text": "常に最初の要素を返す",
+                "correct": false
+            }
+        ],
+        "note": "any は論理和、all は論理積の振る舞いをする。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "`zip(a, b)` の基本的な性質として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "最短のイテラブルの長さで打ち切られる",
+                "correct": true
+            },
+            {
+                "text": "常に長い方に合わせて None を埋める",
+                "correct": false
+            },
+            {
+                "text": "リストを返す",
+                "correct": false
+            },
+            {
+                "text": "順序は無関係である",
+                "correct": false
+            }
+        ],
+        "note": "zip はイテレータを返し、最短長で停止する。長さを揃えるには itertools.zip_longest。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "辞書の結合として推奨される表記を1つ選べ。(Python 3.9+)",
+        "choices": [
+            {
+                "text": "d3 = d1 | d2",
+                "correct": true
+            },
+            {
+                "text": "d3 = dict(d1, **d2)",
+                "correct": false
+            },
+            {
+                "text": "d3 = d1 + d2",
+                "correct": false
+            },
+            {
+                "text": "d3 = d1.extend(d2)",
+                "correct": false
+            }
+        ],
+        "note": "3.9 以降は辞書の和演算子 `|`、就地更新は `|=` が使える。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "同じキーに対して複数値を集約したい。最も簡潔に書けるのはどれか。",
+        "choices": [
+            {
+                "text": "dd = defaultdict(list); dd[k].append(v)",
+                "correct": true
+            },
+            {
+                "text": "d = {}; (d[k] if k in d else []).append(v)",
+                "correct": false
+            },
+            {
+                "text": "d = {}; d[k].push(v)",
+                "correct": false
+            },
+            {
+                "text": "d = dict.of_lists(); d[k].add(v)",
+                "correct": false
+            }
+        ],
+        "note": "defaultdict(list) によって存在しないキーでも append がそのまま書ける。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "`itertools.product('ab', 'xy')` の出力として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "[('a','x'), ('a','y'), ('b','x'), ('b','y')]",
+                "correct": true
+            },
+            {
+                "text": "[('a','x'), ('b','y')]",
+                "correct": false
+            },
+            {
+                "text": "[('ax'), ('by')]",
+                "correct": false
+            },
+            {
+                "text": "[('a','b','x','y')]",
+                "correct": false
+            }
+        ],
+        "note": "直積は全ての組み合わせを生成する。返り値はイテレータ(ここではリスト例示)。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "最小 N 要素を効率よく取得したい。適切な関数を1つ選べ。",
+        "choices": [
+            {
+                "text": "heapq.nsmallest(N, iterable)",
+                "correct": true
+            },
+            {
+                "text": "sorted(iterable)[:N] のみが選択肢",
+                "correct": false
+            },
+            {
+                "text": "min(iterable, N)",
+                "correct": false
+            },
+            {
+                "text": "topN(iterable, N)",
+                "correct": false
+            }
+        ],
+        "note": "heapq.nsmallest/nlargest は全体ソートよりも効率的な場合がある。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "辞書内包表記の正しい例を1つ選べ。",
+        "choices": [
+            {
+                "text": "{x: x*x for x in range(3)}",
+                "correct": true
+            },
+            {
+                "text": "{x, x*x for x in range(3)}",
+                "correct": false
+            },
+            {
+                "text": "[x: x*x for x in range(3)]",
+                "correct": false
+            },
+            {
+                "text": "(x: x*x for x in range(3))",
+                "correct": false
+            }
+        ],
+        "note": "辞書内包表記は {key: value for ...} の形を取る。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "`set` における部分集合判定として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "A.issubset(B)",
+                "correct": true
+            },
+            {
+                "text": "A.isinside(B)",
+                "correct": false
+            },
+            {
+                "text": "A ⊂ B は Python 演算子として使える",
+                "correct": false
+            },
+            {
+                "text": "A.sub(B)",
+                "correct": false
+            }
+        ],
+        "note": "issubset / issuperset で包含関係を判定できる。演算子は提供されない(比較演算の `<` は可能だが記号入力は不可)。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "イテレータを一度だけ消費して合計・件数・平均を求めたい。最も適切なアプローチを1つ選べ。",
+        "choices": [
+            {
+                "text": "sum1 = 0; n = 0; \nfor x in it: sum1 += x; n += 1; avg = sum1 / n",
+                "correct": true
+            },
+            {
+                "text": "list(it) を2回作って合計と件数を別々に取る",
+                "correct": false
+            },
+            {
+                "text": "len(it) で件数が直接取れる",
+                "correct": false
+            },
+            {
+                "text": "statistics.mean(it) は必ず it を複製しない",
+                "correct": false
+            }
+        ],
+        "note": "イテレータは一度きりなので1パスで集計する。mean はイテラブルにより内部で複製する可能性がある。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "複数のイテラブルを連結して一つのシーケンスとして反復したい。適切な関数を1つ選べ。",
+        "choices": [
+            {
+                "text": "itertools.chain(a, b, c)",
+                "correct": true
+            },
+            {
+                "text": "sum([a, b, c])",
+                "correct": false
+            },
+            {
+                "text": "a.extend(b, c)",
+                "correct": false
+            },
+            {
+                "text": "merge(a, b, c)",
+                "correct": false
+            }
+        ],
+        "note": "chain は遅延的に複数イテラブルを連結するイテレータを返す。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "`range(5)` の性質として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "メモリ効率の良い不変シーケンスである",
+                "correct": true
+            },
+            {
+                "text": "リストを内部に保持している",
+                "correct": false
+            },
+            {
+                "text": "反復ごとにリストを再生成する",
+                "correct": false
+            },
+            {
+                "text": "スライスできない",
+                "correct": false
+            }
+        ],
+        "note": "range は不変シーケンスでスライスや in 演算が効率的に動作する。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "辞書のキー反復順序に関する説明で正しいものを1つ選べ。(Python 3.7+)",
+        "choices": [
+            {
+                "text": "挿入順が保持される",
+                "correct": true
+            },
+            {
+                "text": "ハッシュ値の昇順になる",
+                "correct": false
+            },
+            {
+                "text": "毎回ランダムになる",
+                "correct": false
+            },
+            {
+                "text": "キーの型ごとにグルーピングされる",
+                "correct": false
+            }
+        ],
+        "note": "Python 3.7 以降、言語仕様として辞書は挿入順を保持する。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "`sorted(d.items(), key=lambda kv: kv[1], reverse=True)` が行うこととして正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "値で降順ソートした (キー, 値) のリストを返す",
+                "correct": true
+            },
+            {
+                "text": "キーで昇順ソートした辞書を返す",
+                "correct": false
+            },
+            {
+                "text": "就地で辞書を並べ替える",
+                "correct": false
+            },
+            {
+                "text": "ビューを変更して反映する",
+                "correct": false
+            }
+        ],
+        "note": "sorted は新しいリストを返す。辞書自体の順序は変わらない(3.7+ で挿入順保持)。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "多重ループの直積を簡潔に表現したい。適切な関数を1つ選べ。",
+        "choices": [
+            {
+                "text": "itertools.product",
+                "correct": true
+            },
+            {
+                "text": "itertools.accumulate",
+                "correct": false
+            },
+            {
+                "text": "itertools.groupby",
+                "correct": false
+            },
+            {
+                "text": "itertools.repeat",
+                "correct": false
+            }
+        ],
+        "note": "product はネストされた for の直積を生成する。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "要素の頻度カウントを最も簡潔に行う方法を1つ選べ。",
+        "choices": [
+            {
+                "text": "collections.Counter(iterable)",
+                "correct": true
+            },
+            {
+                "text": "{x: iterable.count(x) for x in iterable}",
+                "correct": false
+            },
+            {
+                "text": "defaultdict(int) を使い1件ずつ集計",
+                "correct": false
+            },
+            {
+                "text": "statistics.count(iterable)",
+                "correct": false
+            }
+        ],
+        "note": "Counter は頻度集計に特化しており簡潔で高速。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "`tuple` と `namedtuple` の違いとして正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "namedtuple は属性名でアクセスでき、可読性が高い",
+                "correct": true
+            },
+            {
+                "text": "namedtuple はミュータブルである",
+                "correct": false
+            },
+            {
+                "text": "namedtuple は反復できない",
+                "correct": false
+            },
+            {
+                "text": "namedtuple はメモリ消費が極端に大きい",
+                "correct": false
+            }
+        ],
+        "note": "namedtuple は不変でタプル互換に加え、属性名アクセスが可能。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "`array.array('f')` の特徴として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "同種の数値を緻密に格納する可変長配列",
+                "correct": true
+            },
+            {
+                "text": "任意のPythonオブジェクトを格納できる",
+                "correct": false
+            },
+            {
+                "text": "固定長でサイズ変更不可",
+                "correct": false
+            },
+            {
+                "text": "イミュータブルである",
+                "correct": false
+            }
+        ],
+        "note": "array は型コードに応じた連続メモリを持ち、リストよりメモリ効率が良い(同種データ)。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "列挙を表現する標準ライブラリとして正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "enum.Enum",
+                "correct": true
+            },
+            {
+                "text": "types.Enum",
+                "correct": false
+            },
+            {
+                "text": "collections.Enum",
+                "correct": false
+            },
+            {
+                "text": "enum.Flag 以外は標準に無い",
+                "correct": false
+            }
+        ],
+        "note": "列挙型は enum モジュールで提供される。Flag はビット演算向けの列挙。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "安定なマージ(マージソートの部分操作)を行いたい。二つの昇順リストを効率よく一つにする関数を1つ選べ。",
+        "choices": [
+            {
+                "text": "heapq.merge(a, b)",
+                "correct": true
+            },
+            {
+                "text": "sorted(a + b)",
+                "correct": false
+            },
+            {
+                "text": "itertools.chain(sorted(a), sorted(b))",
+                "correct": false
+            },
+            {
+                "text": "a.extend(b); a.sort()",
+                "correct": false
+            }
+        ],
+        "note": "heapq.merge はすでにソート済みの複数イテラブルを昇順マージする遅延イテレータ。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "複製せずにイテラブルを n 回繰り返し反復したい。適切な関数を1つ選べ。",
+        "choices": [
+            {
+                "text": "itertools.repeat(x, n)",
+                "correct": true
+            },
+            {
+                "text": "itertools.multiply(x, n)",
+                "correct": false
+            },
+            {
+                "text": "x * n (イテラブルに対する乗算)",
+                "correct": false
+            },
+            {
+                "text": "collections.replicate(x, n)",
+                "correct": false
+            }
+        ],
+        "note": "repeat は同一オブジェクト参照を n 回生成するイテレータ。シーケンスの `* n` は複製を生成する。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "`itertools.combinations(iterable, r)` の性質として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "順序を無視した r 要素の組合せを生成する",
+                "correct": true
+            },
+            {
+                "text": "順序を考慮した順列を生成する",
+                "correct": false
+            },
+            {
+                "text": "重複を許す組合せを生成する",
+                "correct": false
+            },
+            {
+                "text": "常に元と同じ長さの列を返す",
+                "correct": false
+            }
+        ],
+        "note": "順列は permutations、重複組合せは combinations_with_replacement を用いる。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "キーが存在しないときのみ代入したい。辞書で適切な表記を1つ選べ。(3.8+)",
+        "choices": [
+            {
+                "text": "d.setdefault(k, v)",
+                "correct": true
+            },
+            {
+                "text": "d[k] ?= v",
+                "correct": false
+            },
+            {
+                "text": "d.put_if_absent(k, v)",
+                "correct": false
+            },
+            {
+                "text": "d.ensure(k, v)",
+                "correct": false
+            }
+        ],
+        "note": "Python には ?= は無い。setdefault が「無ければ代入」を1行で表現できる。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "ソートキーを複数指定したい。最も簡潔な方法を1つ選べ。",
+        "choices": [
+            {
+                "text": "key=lambda x: (x.score, x.name)",
+                "correct": true
+            },
+            {
+                "text": "cmp=lambda a,b: ... を渡す",
+                "correct": false
+            },
+            {
+                "text": "keys=['score','name'] を渡す",
+                "correct": false
+            },
+            {
+                "text": "複数回 sort を呼ぶ必要がある",
+                "correct": false
+            }
+        ],
+        "note": "タプルキーを返す関数を key に渡す。cmp は Python 3 では非推奨/未サポート。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "最大ヒープを実現したい。`heapq` を使う場合の一般的な方法を1つ選べ。",
+        "choices": [
+            {
+                "text": "値にマイナスを掛けて格納する",
+                "correct": true
+            },
+            {
+                "text": "heapq を max=True で初期化する",
+                "correct": false
+            },
+            {
+                "text": "heapqmax モジュールを使う",
+                "correct": false
+            },
+            {
+                "text": "ヒープに対して reverse=True を指定する",
+                "correct": false
+            }
+        ],
+        "note": "heapq は最小ヒープのみ。最大ヒープは -value で代替するのが定石(または (key, item) タプル)。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "`collections.ChainMap` の用途として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "複数のマッピングを重ねて一つの辞書風に見せる",
+                "correct": true
+            },
+            {
+                "text": "キーの順序を固定する",
+                "correct": false
+            },
+            {
+                "text": "値を自動でマージして新辞書を作る",
+                "correct": false
+            },
+            {
+                "text": "キーの型を検査して正規化する",
+                "correct": false
+            }
+        ],
+        "note": "ChainMap はビューの合成であり、実体のコピーを作らない。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "スライス `a[::-1]` の意味として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "シーケンスを逆順にしたシャローコピー",
+                "correct": true
+            },
+            {
+                "text": "就地で逆順に並べ替える",
+                "correct": false
+            },
+            {
+                "text": "反復オブジェクトを返すだけで実体は無い",
+                "correct": false
+            },
+            {
+                "text": "常に同一オブジェクトを返す",
+                "correct": false
+            }
+        ],
+        "note": "負のステップで逆順の新しいシーケンスを作る。就地反転は list.reverse()。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "`sorted(iterable, key=str.lower)` の効果として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "大文字小文字を無視した辞書順で整列する",
+                "correct": true
+            },
+            {
+                "text": "元の大文字小文字を変更して保存する",
+                "correct": false
+            },
+            {
+                "text": "非文字は自動で除去される",
+                "correct": false
+            },
+            {
+                "text": "数値は常に末尾に移動する",
+                "correct": false
+            }
+        ],
+        "note": "key 関数は比較キーのみを変換するため、元データは変わらない。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "二分探索木やヒープのように、挿入・最小値取得が対数時間となる構造はどれか。",
+        "choices": [
+            {
+                "text": "ヒープ(優先度付きキュー)",
+                "correct": true
+            },
+            {
+                "text": "リスト",
+                "correct": false
+            },
+            {
+                "text": "集合(set)",
+                "correct": false
+            },
+            {
+                "text": "辞書(dict)",
+                "correct": false
+            }
+        ],
+        "note": "heapq の挿入・取り出しは O(log n)。set/dict の平均探索はハッシュで O(1)。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "二つの辞書で、キーが重なる場合は右側を優先してマージしたい。最も簡潔な書き方はどれか。(3.9+)",
+        "choices": [
+            {
+                "text": "merged = d1 | d2",
+                "correct": true
+            },
+            {
+                "text": "merged = {**d2, **d1}",
+                "correct": false
+            },
+            {
+                "text": "merged = dict.union(d1, d2, prefer='right')",
+                "correct": false
+            },
+            {
+                "text": "merged = d1.update(d2) または d2.update(d1) を同時に使う",
+                "correct": false
+            }
+        ],
+        "note": "`|` は右側優先で新辞書を返す。`{**d1, **d2}` でも右側優先だが 3.9+ の演算子が簡潔。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "反復可能オブジェクトを一度だけ先読みして最初の要素と残りに分けたい。適切な関数を1つ選べ。",
+        "choices": [
+            {
+                "text": "itertools.tee は不適切で、next と chain を組み合わせる",
+                "correct": true
+            },
+            {
+                "text": "list(it) にしてから分割するのが唯一の方法",
+                "correct": false
+            },
+            {
+                "text": "itertools.split を使う",
+                "correct": false
+            },
+            {
+                "text": "first, rest = it[0], it[1:]",
+                "correct": false
+            }
+        ],
+        "note": "tee は独立イテレータを複製するがメモリに溜まり得る。`first = next(it); rest = it` が簡潔。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "`dict.fromkeys(['a','b'], 0)` の結果で正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "{'a': 0, 'b': 0}",
+                "correct": true
+            },
+            {
+                "text": "{'a': [0], 'b': [0]}",
+                "correct": false
+            },
+            {
+                "text": "{'a': None, 'b': None}",
+                "correct": false
+            },
+            {
+                "text": "{'a': 0}",
+                "correct": false
+            }
+        ],
+        "note": "第二引数が省略されると None、指定した場合は全キーにその同一オブジェクトが割当てられる点に注意(ミュータブルは避ける)。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "大規模なテキストのユニーク単語集合を得る最も簡潔な方法を1つ選べ。",
+        "choices": [
+            {
+                "text": "set(text.split())",
+                "correct": true
+            },
+            {
+                "text": "list(dict.fromkeys(text.split()))",
+                "correct": false
+            },
+            {
+                "text": "unique(text)",
+                "correct": false
+            },
+            {
+                "text": "Counter(text).keys()",
+                "correct": false
+            }
+        ],
+        "note": "単純なユニーク化は set が簡潔。順序保持したユニークは dict.fromkeys などを使う。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "可変デフォルト引数にリストを使うときの推奨手法として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "引数既定値は None にし、関数内で新規リストを作る",
+                "correct": true
+            },
+            {
+                "text": "気にせず [] を使う",
+                "correct": false
+            },
+            {
+                "text": "毎回 deepcopy する",
+                "correct": false
+            },
+            {
+                "text": "tuple を使って後で変換する",
+                "correct": false
+            }
+        ],
+        "note": "ミュータブル既定値は関数定義時に1度だけ生成され共有されるためバグの元。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "キーが存在する場合のみ削除して値を取得する辞書操作を1つ選べ。",
+        "choices": [
+            {
+                "text": "d.pop(k, default)",
+                "correct": true
+            },
+            {
+                "text": "del d[k] or default",
+                "correct": false
+            },
+            {
+                "text": "d.remove(k, default)",
+                "correct": false
+            },
+            {
+                "text": "d.extract(k, default)",
+                "correct": false
+            }
+        ],
+        "note": "pop は削除と取得を同時に行い、第二引数で既定値も指定できる。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "複数の条件でフィルタしてからマップしたい。効率の観点で適切な順序を1つ選べ。",
+        "choices": [
+            {
+                "text": "先に filter、次に map",
+                "correct": true
+            },
+            {
+                "text": "先に map、次に filter",
+                "correct": false
+            },
+            {
+                "text": "順序は常に無関係",
+                "correct": false
+            },
+            {
+                "text": "リスト化してから両方行う",
+                "correct": false
+            }
+        ],
+        "note": "要素数を減らしてから変換する方が一般に効率的。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "平均値や中央値などの統計を少メモリで逐次計算したい。適切なアプローチを1つ選べ。",
+        "choices": [
+            {
+                "text": "1パスで集計するオンラインアルゴリズムを実装する",
+                "correct": true
+            },
+            {
+                "text": "全データをソートしてから計算する",
+                "correct": false
+            },
+            {
+                "text": "毎回リストを複製して append する",
+                "correct": false
+            },
+            {
+                "text": "zip_longest で穴埋めしてから計算する",
+                "correct": false
+            }
+        ],
+        "note": "ストリーム処理では一度に保持するデータを最小化するのが要点。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "キー関数をキャッシュして高速化したいときのテクニックとして正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "functools.lru_cache を key 関数に適用する",
+                "correct": true
+            },
+            {
+                "text": "random.seed を固定する",
+                "correct": false
+            },
+            {
+                "text": "gc.disable() を呼ぶ",
+                "correct": false
+            },
+            {
+                "text": "sort の安定性を無効化する",
+                "correct": false
+            }
+        ],
+        "note": "高価な key 計算で同じ要素を繰り返し評価する場合に効果があることがある。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "辞書で値の初期化と加算を一行で行いたい。最も簡潔な書き方はどれか。",
+        "choices": [
+            {
+                "text": "d[k] = d.get(k, 0) + 1",
+                "correct": true
+            },
+            {
+                "text": "d[k] += 1  # 未定義でも安全",
+                "correct": false
+            },
+            {
+                "text": "d.inc(k)",
+                "correct": false
+            },
+            {
+                "text": "d[k] = d.setdefault(k, 0)++",
+                "correct": false
+            }
+        ],
+        "note": "存在しないキーに対しては get で既定値を用いる。`++` 演算子は Python には無い。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "部分列の走査でウィンドウ幅を固定して滑らせたい。最も適切な実装の方針を1つ選べ。",
+        "choices": [
+            {
+                "text": "deque(maxlen=n) を用いて新要素を append しながら処理",
+                "correct": true
+            },
+            {
+                "text": "毎回スライスで新リストを作る",
+                "correct": false
+            },
+            {
+                "text": "itertools.product を使う",
+                "correct": false
+            },
+            {
+                "text": "list.reverse() を毎回呼ぶ",
+                "correct": false
+            }
+        ],
+        "note": "固定長の移動窓は deque(maxlen) が簡潔で効率的。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "大きな JSON 行ストリームのうち、条件に合う最初の1件だけ欲しい。適切な記述を1つ選べ。",
+        "choices": [
+            {
+                "text": "for rec in stream: \n    if pred(rec):\n        found = rec; break",
+                "correct": true
+            },
+            {
+                "text": "records = list(stream); found = next(filter(pred, records))",
+                "correct": false
+            },
+            {
+                "text": "found = stream[0]",
+                "correct": false
+            },
+            {
+                "text": "sorted(stream)[0]",
+                "correct": false
+            }
+        ],
+        "note": "ストリームは惰性的に処理し、見つかったら break するのがメモリ効率良い。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "`itertools.islice(it, 5, 10)` の意味として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "インデックス 5 以上 10 未満の要素を惰性的に取り出す",
+                "correct": true
+            },
+            {
+                "text": "最初の5要素をスキップし、10個取り出す",
+                "correct": false
+            },
+            {
+                "text": "5個飛ばしで10個取り出す",
+                "correct": false
+            },
+            {
+                "text": "常にリストを返す",
+                "correct": false
+            }
+        ],
+        "note": "islice は開始・停止・ステップでイテレータから部分列を生成する。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "辞書の値がリストの場合、全要素を平坦化した1本のリストが欲しい。最も簡潔な記述を1つ選べ。",
+        "choices": [
+            {
+                "text": "[x for xs in d.values() for x in xs]",
+                "correct": true
+            },
+            {
+                "text": "sum(d.values())",
+                "correct": false
+            },
+            {
+                "text": "list(chain(d.values()))",
+                "correct": false
+            },
+            {
+                "text": "flatten(d.values())",
+                "correct": false
+            }
+        ],
+        "note": "二重内包表記が分かりやすい。chain.from_iterable(d.values()) も有力。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "既知サイズのトップK最大値を逐次的にキープする最も効率的な方法を1つ選べ。",
+        "choices": [
+            {
+                "text": "最小ヒープに要素を入れ、サイズが K を超えたら最小を捨てる",
+                "correct": true
+            },
+            {
+                "text": "毎回全体をソートし直す",
+                "correct": false
+            },
+            {
+                "text": "set に入れてから max を取る",
+                "correct": false
+            },
+            {
+                "text": "deque に入れて左右から比較する",
+                "correct": false
+            }
+        ],
+        "note": "サイズ K の最小ヒープで上位 K を保つのが典型解法。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "辞書の値に対して一括変換を行い、新しい辞書を得たい。適切な書き方を1つ選べ。",
+        "choices": [
+            {
+                "text": "{k: f(v) for k, v in d.items()}",
+                "correct": true
+            },
+            {
+                "text": "dict(map(f, d))",
+                "correct": false
+            },
+            {
+                "text": "d.map_values(f)",
+                "correct": false
+            },
+            {
+                "text": "transform(d, f)",
+                "correct": false
+            }
+        ],
+        "note": "辞書内包表記が簡潔で明瞭。map はキーのみを走査するため不適切。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "`sorted(seq, key=lambda s: (len(s), s))` の効果として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "長さで昇順、同長なら辞書順で昇順に並べる",
+                "correct": true
+            },
+            {
+                "text": "辞書順のみでソートする",
+                "correct": false
+            },
+            {
+                "text": "長さで降順、辞書順で降順",
+                "correct": false
+            },
+            {
+                "text": "ソートの安定性が失われる",
+                "correct": false
+            }
+        ],
+        "note": "タプルキーで第1・第2キーの優先度を簡潔に指定できる。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "巨大なCSVの各行を逐次処理しつつ、条件一致の件数だけを数えたい。推奨される方法を1つ選べ。",
+        "choices": [
+            {
+                "text": "sum(1 for row in rows if cond(row))",
+                "correct": true
+            },
+            {
+                "text": "len([row for row in rows if cond(row)])",
+                "correct": false
+            },
+            {
+                "text": "rows = list(rows); rows.count(cond)",
+                "correct": false
+            },
+            {
+                "text": "statistics.count_cond(rows)",
+                "correct": false
+            }
+        ],
+        "note": "内包表記でリスト化せず、ジェネレータ式で件数を集計するとメモリ効率が良い。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "辞書 `d` のすべての値が 0 以下か判定する最も簡潔な式を1つ選べ。",
+        "choices": [
+            {
+                "text": "all(v <= 0 for v in d.values())",
+                "correct": true
+            },
+            {
+                "text": "sum(v <= 0 for v in d.values()) == len(d)",
+                "correct": false
+            },
+            {
+                "text": "min(d.values()) < 0",
+                "correct": false
+            },
+            {
+                "text": "sorted(d.values())[0] <= 0",
+                "correct": false
+            }
+        ],
+        "note": "all と内包表記/ジェネレータ式の組み合わせが簡潔で高速。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "集合の対称差 A △ B に対応するメソッド/演算子を1つ選べ。",
+        "choices": [
+            {
+                "text": "A ^ B または A.symmetric_difference(B)",
+                "correct": true
+            },
+            {
+                "text": "A & B",
+                "correct": false
+            },
+            {
+                "text": "A | B",
+                "correct": false
+            },
+            {
+                "text": "A - B",
+                "correct": false
+            }
+        ],
+        "note": "対称差はどちらか一方にのみある要素の集合。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "辞書のキー・値を入れ替えた新辞書を得たい。値が重複し得る場合の安全な方法を1つ選べ。",
+        "choices": [
+            {
+                "text": "defaultdict(list) で値にキーを append する",
+                "correct": true
+            },
+            {
+                "text": "{v: k for k, v in d.items()}",
+                "correct": false
+            },
+            {
+                "text": "dict(reversed(d.items()))",
+                "correct": false
+            },
+            {
+                "text": "d.invert()",
+                "correct": false
+            }
+        ],
+        "note": "値が重複するなら多値マップ化が必要。defaultdict(list) が有効。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "二つのソート済みリストから共通要素を線形時間で抽出したい。適切な方針を1つ選べ。",
+        "choices": [
+            {
+                "text": "両リストのポインタを進める2本指法(two-pointer)を使う",
+                "correct": true
+            },
+            {
+                "text": "両方を結合してからソートする",
+                "correct": false
+            },
+            {
+                "text": "set にしてから & を取る(常に線形時間)",
+                "correct": false
+            },
+            {
+                "text": "itertools.product で全組合せから一致を探す",
+                "correct": false
+            }
+        ],
+        "note": "二本指法は O(n+m)。set 演算は平均 O(n+m) だが順序情報は失われる。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "`collections.OrderedDict` の説明として正しいものを1つ選べ。(3.7+ の辞書仕様を踏まえて)",
+        "choices": [
+            {
+                "text": "挿入順保持や一部の追加APIが必要なときに互換目的で使う",
+                "correct": true
+            },
+            {
+                "text": "通常の dict より必ず高速",
+                "correct": false
+            },
+            {
+                "text": "キーの順序をソート順に保つ",
+                "correct": false
+            },
+            {
+                "text": "不可変辞書である",
+                "correct": false
+            }
+        ],
+        "note": "3.7+ では通常の dict も挿入順保持。OrderedDict は move_to_end 等の追加機能が必要な場合に選択。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 9,
+        "kind": "single",
+        "stem": "重複のない順序付きユニーク化(出現順を保持)の簡潔な方法を1つ選べ。(3.7+)",
+        "choices": [
+            {
+                "text": "list(dict.fromkeys(seq))",
+                "correct": true
+            },
+            {
+                "text": "list(set(seq))",
+                "correct": false
+            },
+            {
+                "text": "sorted(set(seq))",
+                "correct": false
+            },
+            {
+                "text": "[*set(seq)][::-1]",
+                "correct": false
+            }
+        ],
+        "note": "fromkeys は挿入順を利用して順序付きユニークを実現できる。",
+        "is_excluded": false
+    }
+]

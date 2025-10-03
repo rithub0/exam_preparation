@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}exam_preparation{% endblock %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'exam/style.css' %}">
+</head>
+
+<body>
+  <header class="site-header">
+    <h1 class="site-title"><a class="btn" href="{% url 'dashboard' %}">Python3実践試験対策</a></h1>
+  </header>
+  <main class="site-main">
+    {% block content %}{% endblock %}
+  </main>
+  <footer class="site-footer">
+    <nav class="site-nav">
+      {% if user.is_authenticated %}
+        <form method="post" action="{% url 'logout' %}" class="logout-form">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-logout">ログアウト</button>
+        </form>
+      {% endif %}
+    </nav>
+    <small>© tanaka</small>
+  </footer>
+</body>
+
+</html>

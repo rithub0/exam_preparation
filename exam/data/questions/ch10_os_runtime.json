@@ -1,0 +1,527 @@
+[
+    {
+        "chapter": 10,
+        "kind": "single",
+        "stem": "現在の作業ディレクトリを取得する標準的な関数を1つ選べ。",
+        "choices": [
+            {
+                "text": "os.getcwd()",
+                "correct": true
+            },
+            {
+                "text": "os.getcwdb()",
+                "correct": false
+            },
+            {
+                "text": "pathlib.Path.home()",
+                "correct": false
+            },
+            {
+                "text": "sys.getcwd()",
+                "correct": false
+            }
+        ],
+        "note": "文字列でCWDを得るのは os.getcwd()。os.getcwdb() は bytes を返す。Path.home() はホームディレクトリ。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 10,
+        "kind": "single",
+        "stem": "環境変数FOOを安全に取得し、未設定なら'NA'を返す方法として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "os.environ.get('FOO', 'NA')",
+                "correct": true
+            },
+            {
+                "text": "os.environ['FOO'] or 'NA'",
+                "correct": false
+            },
+            {
+                "text": "sys.environ.get('FOO', 'NA')",
+                "correct": false
+            },
+            {
+                "text": "os.getenv('NA', 'FOO')",
+                "correct": false
+            }
+        ],
+        "note": "環境変数は os.environ または os.getenv で扱う。KeyErrorを避けるには get を使う。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 10,
+        "kind": "single",
+        "stem": "サブプロセスの実行において、非0終了コードで例外を投げさせたい場合の指定として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "subprocess.run(cmd, check=True)",
+                "correct": true
+            },
+            {
+                "text": "subprocess.call(cmd, raise_on_error=True)",
+                "correct": false
+            },
+            {
+                "text": "subprocess.Popen(cmd, check=True)",
+                "correct": false
+            },
+            {
+                "text": "os.system(cmd, check=True)",
+                "correct": false
+            }
+        ],
+        "note": "run(..., check=True) は非0コードで CalledProcessError を送出する。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 10,
+        "kind": "single",
+        "stem": "subprocess.runで標準出力を文字列として同時取得する最も簡潔な指定を1つ選べ。",
+        "choices": [
+            {
+                "text": "subprocess.run(cmd, capture_output=True, text=True)",
+                "correct": true
+            },
+            {
+                "text": "subprocess.run(cmd, stdout=subprocess.PIPE, binary=True)",
+                "correct": false
+            },
+            {
+                "text": "subprocess.run(cmd, universal_newlines=False)",
+                "correct": false
+            },
+            {
+                "text": "subprocess.run(cmd, output='str')",
+                "correct": false
+            }
+        ],
+        "note": "capture_output=True と text=True（または encoding=...）で CompletedProcess.stdout に文字列が入る。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 10,
+        "kind": "single",
+        "stem": "sys.exit(1) を呼ぶと何が起こるか。最も適切な説明を1つ選べ。",
+        "choices": [
+            {
+                "text": "SystemExit例外が送出され、未捕捉ならプロセスが終了する",
+                "correct": true
+            },
+            {
+                "text": "即時にプロセスが強制終了し、finallyは実行されない",
+                "correct": false
+            },
+            {
+                "text": "例外ではなくreturnでメイン関数を抜けるだけ",
+                "correct": false
+            },
+            {
+                "text": "OSのシグナルSIGTERMを自分自身に送る",
+                "correct": false
+            }
+        ],
+        "note": "sys.exit は SystemExit を送出する。未捕捉なら終了。finally句は実行される点に注意。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 10,
+        "kind": "single",
+        "stem": "環境変数PATHに依存して実行可能ファイルのフルパスを探索する関数を1つ選べ。",
+        "choices": [
+            {
+                "text": "shutil.which('python')",
+                "correct": true
+            },
+            {
+                "text": "os.path.which('python')",
+                "correct": false
+            },
+            {
+                "text": "sys.which('python')",
+                "correct": false
+            },
+            {
+                "text": "subprocess.which('python')",
+                "correct": false
+            }
+        ],
+        "note": "実行可能ファイル検索は shutil.which。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 10,
+        "kind": "single",
+        "stem": "カレントプロセスのPIDを取得する関数として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "os.getpid()",
+                "correct": true
+            },
+            {
+                "text": "sys.getpid()",
+                "correct": false
+            },
+            {
+                "text": "platform.getpid()",
+                "correct": false
+            },
+            {
+                "text": "subprocess.getpid()",
+                "correct": false
+            }
+        ],
+        "note": "PIDは os.getpid() で取得する。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 10,
+        "kind": "single",
+        "stem": "一時ディレクトリを作成し、withブロック終了時に自動削除させたい。適切な選択を1つ選べ。",
+        "choices": [
+            {
+                "text": "tempfile.TemporaryDirectory()",
+                "correct": true
+            },
+            {
+                "text": "tempfile.NamedTemporaryFile(delete=False)",
+                "correct": false
+            },
+            {
+                "text": "os.mkdir('tmp') とatexitで削除",
+                "correct": false
+            },
+            {
+                "text": "pathlib.Path.mkdtemp()",
+                "correct": false
+            }
+        ],
+        "note": "TemporaryDirectory はコンテキストマネージャで自動クリーンアップする。mkdtemp は tempfile.mkdtemp。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 10,
+        "kind": "single",
+        "stem": "subprocess.runでシェルの機能（パイプやリダイレクト）を使いたい場合の設定として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "shell=True を指定し、コマンドを文字列で渡す",
+                "correct": true
+            },
+            {
+                "text": "shell=False のままリストで渡す",
+                "correct": false
+            },
+            {
+                "text": "Popen(..., pipes=True)",
+                "correct": false
+            },
+            {
+                "text": "os.systemlist([...]) を使う",
+                "correct": false
+            }
+        ],
+        "note": "シェル機能を使う場合は shell=True。セキュリティ上、外部入力を決して直結しないこと。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 10,
+        "kind": "single",
+        "stem": "プラットフォーム識別で\"Windows\"かどうかを最も移植性高く判定する方法を1つ選べ。",
+        "choices": [
+            {
+                "text": "platform.system() == 'Windows'",
+                "correct": true
+            },
+            {
+                "text": "sys.platform == 'win'",
+                "correct": false
+            },
+            {
+                "text": "os.name == 'posix'",
+                "correct": false
+            },
+            {
+                "text": "platform.platform().startswith('win')",
+                "correct": false
+            }
+        ],
+        "note": "高レベルには platform.system() を使う。sys.platform は 'win32' などとなり等価判定がやや煩雑。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 10,
+        "kind": "single",
+        "stem": "カレントディレクトリを変更する標準関数として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "os.chdir(path)",
+                "correct": true
+            },
+            {
+                "text": "pathlib.Path.chdir(path)",
+                "correct": false
+            },
+            {
+                "text": "sys.chdir(path)",
+                "correct": false
+            },
+            {
+                "text": "shutil.chdir(path)",
+                "correct": false
+            }
+        ],
+        "note": "CWDの変更は os.chdir。pathlib に chdir はない（Path.cwd() は取得のみ）。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 10,
+        "kind": "single",
+        "stem": "subprocessで標準入力にデータを渡したい。正しい指定を1つ選べ。",
+        "choices": [
+            {
+                "text": "subprocess.run(cmd, input=b'data', stdout=subprocess.PIPE)",
+                "correct": true
+            },
+            {
+                "text": "subprocess.run(cmd, stdin=b'data')",
+                "correct": false
+            },
+            {
+                "text": "subprocess.Popen(cmd, data='in')",
+                "correct": false
+            },
+            {
+                "text": "subprocess.call(cmd, write='data')",
+                "correct": false
+            }
+        ],
+        "note": "run(..., input=...) でstdinに渡せる。text=True なら文字列、デフォルトはbytes。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 10,
+        "kind": "single",
+        "stem": "PATHなどの環境を変更した状態でサブプロセスを起動したい。適切な方法を1つ選べ。",
+        "choices": [
+            {
+                "text": "env = {**os.environ, 'PATH': '/opt/bin:' + os.environ['PATH']}; subprocess.run(cmd, env=env)",
+                "correct": true
+            },
+            {
+                "text": "os.environ = {'PATH': '/opt/bin'}; subprocess.run(cmd)",
+                "correct": false
+            },
+            {
+                "text": "subprocess.run(cmd, PATH='/opt/bin')",
+                "correct": false
+            },
+            {
+                "text": "sys.setenv('PATH', '/opt/bin'); subprocess.run(cmd)",
+                "correct": false
+            }
+        ],
+        "note": "サブプロセス専用の環境辞書を作り env 引数に渡す。親プロセスの環境を書き換えないのが安全。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 10,
+        "kind": "single",
+        "stem": "os.execv を呼ぶと何が起こるか。最も正しい説明を1つ選べ。",
+        "choices": [
+            {
+                "text": "現在のプロセス画像を置換し、戻ってこない",
+                "correct": true
+            },
+            {
+                "text": "新しい子プロセスを生成し、親は継続する",
+                "correct": false
+            },
+            {
+                "text": "スレッドだけ再起動される",
+                "correct": false
+            },
+            {
+                "text": "一時的に別バイナリを実行し、終了後に復帰する",
+                "correct": false
+            }
+        ],
+        "note": "exec系はプロセス置換であり、forkのように子を作らない。戻り値はない（例外時のみ戻る）。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 10,
+        "kind": "single",
+        "stem": "Unix系限定のAPIを1つ選べ。",
+        "choices": [
+            {
+                "text": "os.fork()",
+                "correct": true
+            },
+            {
+                "text": "os.getpid()",
+                "correct": false
+            },
+            {
+                "text": "subprocess.run()",
+                "correct": false
+            },
+            {
+                "text": "tempfile.TemporaryDirectory()",
+                "correct": false
+            }
+        ],
+        "note": "os.fork はPOSIX限定。Windowsには存在しない。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 10,
+        "kind": "single",
+        "stem": "ディスク使用量（total, used, free）を取得する関数として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "shutil.disk_usage(path)",
+                "correct": true
+            },
+            {
+                "text": "os.disk_usage(path)",
+                "correct": false
+            },
+            {
+                "text": "sys.diskinfo(path)",
+                "correct": false
+            },
+            {
+                "text": "pathlib.Path(path).disk()",
+                "correct": false
+            }
+        ],
+        "note": "shutil.disk_usage は (total, used, free) のタプルを返す。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 10,
+        "kind": "single",
+        "stem": "umaskの説明として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "新規作成ファイルの許可ビットから差し引かれるマスク値",
+                "correct": true
+            },
+            {
+                "text": "既存ファイルの権限を即時変更する値",
+                "correct": false
+            },
+            {
+                "text": "所有者とグループIDを切り替えるフラグ",
+                "correct": false
+            },
+            {
+                "text": "ACLを無効化するカーネル設定",
+                "correct": false
+            }
+        ],
+        "note": "os.umask は作成時パーミッションに影響する。既存ファイルには影響しない。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 10,
+        "kind": "single",
+        "stem": "signalモジュールの注意点として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "Pythonのsignalハンドラ登録はメインスレッドでのみ行える",
+                "correct": true
+            },
+            {
+                "text": "WindowsではSIGINTが存在しない",
+                "correct": false
+            },
+            {
+                "text": "signal.signalは非同期I/O専用のAPI",
+                "correct": false
+            },
+            {
+                "text": "SIGKILLはキャッチして無視できる",
+                "correct": false
+            }
+        ],
+        "note": "signal.signalはメインスレッドで使う。SIGKILL/STOPは捕捉不可。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 10,
+        "kind": "single",
+        "stem": "sys.pathを操作するとどうなるか。正しい説明を1つ選べ。",
+        "choices": [
+            {
+                "text": "現在プロセスのモジュール探索パスが変わるだけで、他プロセスには影響しない",
+                "correct": true
+            },
+            {
+                "text": "OSのPATH環境変数が更新される",
+                "correct": false
+            },
+            {
+                "text": "site-packagesの内容が書き換わる",
+                "correct": false
+            },
+            {
+                "text": "仮想環境の有効化が解除される",
+                "correct": false
+            }
+        ],
+        "note": "sys.path はインポート解決に用いるリストで、プロセスローカルの変更に留まる。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 10,
+        "kind": "single",
+        "stem": "pathlib.Path と os.path の対応として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "Path.cwd() は os.getcwd() と同等にCWDを表す",
+                "correct": true
+            },
+            {
+                "text": "Path.exists は関数であり呼び出しは exists(path)",
+                "correct": false
+            },
+            {
+                "text": "Path.resolve は相対パスを必ずエラーにする",
+                "correct": false
+            },
+            {
+                "text": "Path.join は os.join と同等",
+                "correct": false
+            }
+        ],
+        "note": "Path.cwd() はCWD取得。existsはメソッド。joinは / 演算子や joinpath を使う。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 10,
+        "kind": "single",
+        "stem": "subprocess.runでタイムアウトを設定し、時間超過時に例外を発生させたい。正しい指定を1つ選べ。",
+        "choices": [
+            {
+                "text": "subprocess.run(cmd, timeout=5)",
+                "correct": true
+            },
+            {
+                "text": "subprocess.run(cmd, kill_after=5)",
+                "correct": false
+            },
+            {
+                "text": "subprocess.call(cmd, timeout='5s')",
+                "correct": false
+            },
+            {
+                "text": "subprocess.run(cmd); subprocess.alarm(5)",
+                "correct": false
+            }
+        ],
+        "note": "timeout秒を超えると TimeoutExpired が送出される。",
+        "is_excluded": false
+    }
+]

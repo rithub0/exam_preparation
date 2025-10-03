@@ -1,0 +1,527 @@
+[
+    {
+        "chapter": 8,
+        "kind": "single",
+        "stem": "協定世界時(UTC)の\"aware\"な現在時刻を得る正しいコードを1つ選べ。",
+        "choices": [
+            {
+                "text": "from datetime import datetime, timezone; datetime.now(timezone.utc)",
+                "correct": true
+            },
+            {
+                "text": "from datetime import datetime; datetime.utcnow()",
+                "correct": false
+            },
+            {
+                "text": "from datetime import datetime; datetime.now()",
+                "correct": false
+            },
+            {
+                "text": "import time; datetime.fromtimestamp(time.time())",
+                "correct": false
+            }
+        ],
+        "note": "UTCのawareな現在時刻は datetime.now(timezone.utc)。datetime.utcnow() や datetime.now() はtzinfoが付かずnaiveになる。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 8,
+        "kind": "single",
+        "stem": "Asia/Tokyoの現在時刻(aware)を得る正しいコードを1つ選べ。",
+        "choices": [
+            {
+                "text": "from datetime import datetime; from zoneinfo import ZoneInfo; datetime.now(ZoneInfo('Asia/Tokyo'))",
+                "correct": true
+            },
+            {
+                "text": "from datetime import datetime; datetime.now(tz='Asia/Tokyo')",
+                "correct": false
+            },
+            {
+                "text": "from datetime import datetime; datetime.today().astimezone('Asia/Tokyo')",
+                "correct": false
+            },
+            {
+                "text": "from datetime import datetime, timezone; datetime.now(timezone('Asia/Tokyo'))",
+                "correct": false
+            }
+        ],
+        "note": "標準ライブラリではzoneinfo.ZoneInfoを用いる。文字列をそのままtz引数に渡すことはできない。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 8,
+        "kind": "single",
+        "stem": "ローカルタイムゾーンのawareな日時dtをUTCに変換する正しい方法を1つ選べ。",
+        "choices": [
+            {
+                "text": "from datetime import timezone; dt.astimezone(timezone.utc)",
+                "correct": true
+            },
+            {
+                "text": "dt.replace(tzinfo=timezone.utc)",
+                "correct": false
+            },
+            {
+                "text": "dt.tzinfo = timezone.utc",
+                "correct": false
+            },
+            {
+                "text": "dt = dt + timedelta(hours=9)",
+                "correct": false
+            }
+        ],
+        "note": "タイムゾーン間の変換は astimezone を使う。replaceはタイムゾーン情報の付け替えであり時刻の変換は行わない。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 8,
+        "kind": "single",
+        "stem": "ISO 8601形式 '2025-09-28T12:34:56+09:00' をdatetimeに確実に変換する標準手段を1つ選べ。",
+        "choices": [
+            {
+                "text": "from datetime import datetime; datetime.fromisoformat('2025-09-28T12:34:56+09:00')",
+                "correct": true
+            },
+            {
+                "text": "from datetime import datetime; datetime.strptime('2025-09-28T12:34:56+09:00', '%Y-%m-%dT%H:%M:%S')",
+                "correct": false
+            },
+            {
+                "text": "from datetime import datetime; datetime.parse('2025-09-28T12:34:56+09:00')",
+                "correct": false
+            },
+            {
+                "text": "from time import strptime; strptime('2025-09-28T12:34:56+09:00')",
+                "correct": false
+            }
+        ],
+        "note": "datetime.fromisoformat はISO 8601の一般的な形式をサポートし、オフセット(+09:00)も解釈してawareなdatetimeを返す。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 8,
+        "kind": "single",
+        "stem": "2つの日付dateオブジェクトd1, d2の差を日数で得る正しい方法を1つ選べ。",
+        "choices": [
+            {
+                "text": "(d2 - d1).days",
+                "correct": true
+            },
+            {
+                "text": "timedelta.days(d2 - d1)",
+                "correct": false
+            },
+            {
+                "text": "abs(d2, d1).days",
+                "correct": false
+            },
+            {
+                "text": "date.diff(d2, d1).days",
+                "correct": false
+            }
+        ],
+        "note": "date同士の減算はtimedeltaを返す。日数はそのdays属性で取得する。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 8,
+        "kind": "single",
+        "stem": "ベンチマークにおける経過時間測定に最も適した関数を1つ選べ。",
+        "choices": [
+            {
+                "text": "time.perf_counter()",
+                "correct": true
+            },
+            {
+                "text": "time.time()",
+                "correct": false
+            },
+            {
+                "text": "time.process_time_ns()",
+                "correct": false
+            },
+            {
+                "text": "datetime.now()",
+                "correct": false
+            }
+        ],
+        "note": "perf_counterは高分解能・モノトニックな壁時計。time.timeはNTP補正等で後退し得る。process_timeはCPU時間のためsleepを含む計測に不向き。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 8,
+        "kind": "single",
+        "stem": "UNIXエポック秒(浮動小数)を現在時刻から得る最も単純な方法を1つ選べ。",
+        "choices": [
+            {
+                "text": "import time; time.time()",
+                "correct": true
+            },
+            {
+                "text": "from datetime import datetime; datetime.now().timestamp()",
+                "correct": false
+            },
+            {
+                "text": "from datetime import datetime, timezone; datetime.utcnow().timestamp()",
+                "correct": false
+            },
+            {
+                "text": "from time import ctime; ctime()",
+                "correct": false
+            }
+        ],
+        "note": "単純に現在のエポック秒を得るなら time.time()。datetime.now().timestamp() はローカルタイムゾーンの影響で誤りやすいケースがあるため注意。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 8,
+        "kind": "single",
+        "stem": "エポック秒tsからUTCのawareなdatetimeを得る正しいコードを1つ選べ。",
+        "choices": [
+            {
+                "text": "from datetime import datetime, timezone; datetime.fromtimestamp(ts, tz=timezone.utc)",
+                "correct": true
+            },
+            {
+                "text": "from datetime import datetime; datetime.utcfromtimestamp(ts)",
+                "correct": false
+            },
+            {
+                "text": "from datetime import datetime; datetime.fromtimestamp(ts)",
+                "correct": false
+            },
+            {
+                "text": "from datetime import datetime, timezone; datetime.utcfromtimestamp(ts).replace(tzinfo=timezone.utc)",
+                "correct": false
+            }
+        ],
+        "note": "fromtimestampにtzを渡すのが最も明確。utcfromtimestampはnaive(UTC想定)を返すため、そのままではawareではない。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 8,
+        "kind": "single",
+        "stem": "datetimeオブジェクトdtを 'YYYY-MM-DD' 形式の文字列にする正しい書き方を1つ選べ。",
+        "choices": [
+            {
+                "text": "dt.strftime('%Y-%m-%d')",
+                "correct": true
+            },
+            {
+                "text": "format(dt, 'YYYY-MM-DD')",
+                "correct": false
+            },
+            {
+                "text": "str(dt, '%Y-%m-%d')",
+                "correct": false
+            },
+            {
+                "text": "dt.to_string('%Y-%m-%d')",
+                "correct": false
+            }
+        ],
+        "note": "strftimeで書式指定する。%Yは年(4桁)、%mは月(ゼロ埋め2桁)、%dは日(ゼロ埋め2桁)。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 8,
+        "kind": "single",
+        "stem": "日時dtの「その日の0時」に切り詰める正しいコードを1つ選べ。",
+        "choices": [
+            {
+                "text": "dt.replace(hour=0, minute=0, second=0, microsecond=0)",
+                "correct": true
+            },
+            {
+                "text": "dt.truncate('D')",
+                "correct": false
+            },
+            {
+                "text": "dt.floor('day')",
+                "correct": false
+            },
+            {
+                "text": "dt.reset_time()",
+                "correct": false
+            }
+        ],
+        "note": "標準のdatetimeにはtruncate等はない。replaceで時分秒マイクロ秒を0にする。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 8,
+        "kind": "single",
+        "stem": "タイムゾーン変換とtzinfoの付け替えに関する正しい記述を1つ選べ。",
+        "choices": [
+            {
+                "text": "別のタイムゾーンへ時刻を変換するには astimezone を用いるべきで、replace(tzinfo=...) は変換ではない。",
+                "correct": true
+            },
+            {
+                "text": "replace(tzinfo=...) はタイムゾーン変換と同義であり、夏時間も考慮される。",
+                "correct": false
+            },
+            {
+                "text": "astimezone はnaiveなdatetimeにも安全に使える。",
+                "correct": false
+            },
+            {
+                "text": "awareなdatetimeはreplaceでは変更できない。",
+                "correct": false
+            }
+        ],
+        "note": "replaceはtzinfoを差し替えるだけで、実際の壁時計時刻は変化しない。変換は常にastimezoneで行う。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 8,
+        "kind": "single",
+        "stem": "月曜=0の曜日番号を返すメソッドを1つ選べ。",
+        "choices": [
+            {
+                "text": "datetime.weekday()",
+                "correct": true
+            },
+            {
+                "text": "datetime.isoweekday()",
+                "correct": false
+            },
+            {
+                "text": "datetime.isocalendar()",
+                "correct": false
+            },
+            {
+                "text": "calendar.weekday()",
+                "correct": false
+            }
+        ],
+        "note": "datetime.weekday()は月曜=0, 日曜=6。isoweekday()は月曜=1, 日曜=7。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 8,
+        "kind": "single",
+        "stem": "日付の範囲[開始日, 終了日]を1日ずつ反復する最もシンプルな方法を1つ選べ。",
+        "choices": [
+            {
+                "text": "while d <= end: ...; d += timedelta(days=1)",
+                "correct": true
+            },
+            {
+                "text": "for d in range(start, end): pass",
+                "correct": false
+            },
+            {
+                "text": "for d in daterange(start, end): pass  # 標準にはない",
+                "correct": false
+            },
+            {
+                "text": "calendar.iterdays(start, end)",
+                "correct": false
+            }
+        ],
+        "note": "標準に日付イテレータは用意されていないため、timedelta(days=1)で進めるのが基本。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 8,
+        "kind": "single",
+        "stem": "夏時間切替で同一ローカル時刻が2回現れる曖昧時刻への対処に関する正しい説明を1つ選べ。",
+        "choices": [
+            {
+                "text": "datetimeにはfold属性(0/1)があり、曖昧時刻の後者側をfold=1で表現できる。",
+                "correct": true
+            },
+            {
+                "text": "曖昧時刻は必ず例外になるため、処理は不要である。",
+                "correct": false
+            },
+            {
+                "text": "zoneinfoでは曖昧時刻は自動で常に早い方に解決される。",
+                "correct": false
+            },
+            {
+                "text": "foldはdate型にも存在し、日付の重複を示す。",
+                "correct": false
+            }
+        ],
+        "note": "Python 3.6+のPEP 495でfoldが導入。zoneinfoもfoldを参照して曖昧さを解決する。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 8,
+        "kind": "single",
+        "stem": "標準ライブラリのタイムゾーンサポートに関する正しい記述を1つ選べ。",
+        "choices": [
+            {
+                "text": "Python 3.9+ では zoneinfo.ZoneInfo でIANAタイムゾーンが扱える。",
+                "correct": true
+            },
+            {
+                "text": "標準では固定オフセットtimezone.utcのみが使える。",
+                "correct": false
+            },
+            {
+                "text": "システムにDBがなくても datetime は常に全世界のタイムゾーンを自動解決する。",
+                "correct": false
+            },
+            {
+                "text": "タイムゾーンはすべてサードパーティ(dateutil)が必要である。",
+                "correct": false
+            }
+        ],
+        "note": "zoneinfoはIANA TZデータベースを利用する。環境によってはタイムゾーンデータの提供が必要になる。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 8,
+        "kind": "single",
+        "stem": "ローカル時刻の整形でtimeモジュールを使う正しい例を1つ選べ。",
+        "choices": [
+            {
+                "text": "import time; time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())",
+                "correct": true
+            },
+            {
+                "text": "import time; time.strftime('%Y-%m-%d %H:%M:%S', time.gmtime(9))",
+                "correct": false
+            },
+            {
+                "text": "import time; time.strftime(time.localtime(), '%c')",
+                "correct": false
+            },
+            {
+                "text": "import time; time.format('%c', time.localtime())",
+                "correct": false
+            }
+        ],
+        "note": "time.strftime(format, struct_time)。ローカル時刻はtime.localtime()で得る。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 8,
+        "kind": "single",
+        "stem": "タイムゾーンオフセット付き文字列 '2025-09-28 12:34:56 +0900' をdatetimeにする正しい方法を1つ選べ。",
+        "choices": [
+            {
+                "text": "from datetime import datetime; datetime.strptime('2025-09-28 12:34:56 +0900', '%Y-%m-%d %H:%M:%S %z')",
+                "correct": true
+            },
+            {
+                "text": "from datetime import datetime; datetime.strptime('2025-09-28 12:34:56 +0900', '%Y-%m-%d %H:%M:%S %Z')",
+                "correct": false
+            },
+            {
+                "text": "from datetime import datetime; datetime.fromtimestamp('2025-09-28 12:34:56 +0900')",
+                "correct": false
+            },
+            {
+                "text": "from datetime import datetime; datetime.parse_tz('2025-09-28 12:34:56 +0900')",
+                "correct": false
+            }
+        ],
+        "note": "%zは+HHMM形式の数値オフセットを解釈する。%Zはタイムゾーン名(例:'UTC','JST')に依存し移植性が低い。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 8,
+        "kind": "single",
+        "stem": "naiveなdatetimeとawareなdatetimeの大小比較に関する正しい説明を1つ選べ。",
+        "choices": [
+            {
+                "text": "両者の比較はTypeErrorとなるため、同じnaive/awareに揃える必要がある。",
+                "correct": true
+            },
+            {
+                "text": "Pythonは自動でローカルタイムゾーンに合わせて比較する。",
+                "correct": false
+            },
+            {
+                "text": "aware同士でも比較は常に不可能である。",
+                "correct": false
+            },
+            {
+                "text": "naiveは常にawareより小さいとみなされる。",
+                "correct": false
+            }
+        ],
+        "note": "PEP 495以降でも、naiveとawareの比較は未定義でTypeError。比較前に統一すること。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 8,
+        "kind": "single",
+        "stem": "ISOカレンダー(ISO年・週・曜日)を得る標準APIの正しい説明を1つ選べ。",
+        "choices": [
+            {
+                "text": "dt.isocalendar() は (iso_year, iso_week, iso_weekday) のnamedtupleを返す。",
+                "correct": true
+            },
+            {
+                "text": "dt.isocalendar() は 'YYYY-Www-D' 形式の文字列を返す。",
+                "correct": false
+            },
+            {
+                "text": "dt.isoformat() がISO週番号も含めて返す。",
+                "correct": false
+            },
+            {
+                "text": "calendar.isocalendar(dt) を使う。",
+                "correct": false
+            }
+        ],
+        "note": "Python 3.9+ではnamedtupleライクなオブジェクト(属性名: year, week, weekday)が返る。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 8,
+        "kind": "single",
+        "stem": "ISO 8601の文字列を生成する簡便な方法として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "dt.isoformat()",
+                "correct": true
+            },
+            {
+                "text": "dt.strftime('%ISO')",
+                "correct": false
+            },
+            {
+                "text": "format(dt, 'iso')",
+                "correct": false
+            },
+            {
+                "text": "dt.toiso()",
+                "correct": false
+            }
+        ],
+        "note": "datetime.isoformat() は日付・時刻・オフセットを含むISO 8601に準じた文字列を返す。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 8,
+        "kind": "single",
+        "stem": "sleep中も含めた経過時間の計測に不適切な関数を1つ選べ。",
+        "choices": [
+            {
+                "text": "time.process_time()",
+                "correct": true
+            },
+            {
+                "text": "time.perf_counter()",
+                "correct": false
+            },
+            {
+                "text": "time.monotonic()",
+                "correct": false
+            },
+            {
+                "text": "time.perf_counter_ns()",
+                "correct": false
+            }
+        ],
+        "note": "process_timeはCPU時間のみを測るため、sleepや待機を含む実時間計測には不適切。",
+        "is_excluded": false
+    }
+]

@@ -1,0 +1,252 @@
+[
+    {
+        "chapter": 18,
+        "kind": "single",
+        "stem": "暗号学的ハッシュを計算する標準ライブラリとして最も適切なものを1つ選べ。",
+        "choices": [
+            {
+                "text": "hashlib",
+                "correct": true
+            },
+            {
+                "text": "random",
+                "correct": false
+            },
+            {
+                "text": "zlib",
+                "correct": false
+            },
+            {
+                "text": "marshal",
+                "correct": false
+            }
+        ],
+        "note": "hashlib は SHA-2/3、BLAKE2 などのハッシュ関数を提供する。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 18,
+        "kind": "single",
+        "stem": "セキュアなトークンを生成するために推奨されるモジュールを1つ選べ。",
+        "choices": [
+            {
+                "text": "secrets",
+                "correct": true
+            },
+            {
+                "text": "random",
+                "correct": false
+            },
+            {
+                "text": "uuid",
+                "correct": false
+            },
+            {
+                "text": "itertools",
+                "correct": false
+            }
+        ],
+        "note": "secrets は暗号学的に安全な乱数源を用いてトークンを生成する。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 18,
+        "kind": "single",
+        "stem": "メッセージ認証コード(MAC)を標準ライブラリで計算する正しい選択を1つ選べ。",
+        "choices": [
+            {
+                "text": "hmac.new(key, msg, hashlib.sha256).hexdigest()",
+                "correct": true
+            },
+            {
+                "text": "hashlib.sha256(key + msg).hexdigest()",
+                "correct": false
+            },
+            {
+                "text": "secrets.token_hex(len(msg))",
+                "correct": false
+            },
+            {
+                "text": "base64.b64encode(msg)",
+                "correct": false
+            }
+        ],
+        "note": "HMAC は鍵付きハッシュ。ハッシュ関数を直接鍵付きとして使わない。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 18,
+        "kind": "single",
+        "stem": "パスワードのキーストレッチングに標準ライブラリで用いる関数の正しい呼び出し例を1つ選べ。",
+        "choices": [
+            {
+                "text": "hashlib.pbkdf2_hmac('sha256', password=b'pw', salt=b's', iterations=100_000)",
+                "correct": true
+            },
+            {
+                "text": "hashlib.pbkdf2('sha256', b'pw', b's', 100_000)",
+                "correct": false
+            },
+            {
+                "text": "hmac.derive('sha256', b'pw', b's', 100_000)",
+                "correct": false
+            },
+            {
+                "text": "secrets.pbkdf2(b'pw', b's', 100_000)",
+                "correct": false
+            }
+        ],
+        "note": "pbkdf2_hmac(hash_name, password, salt, iterations[, dklen]) を使う。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 18,
+        "kind": "single",
+        "stem": "パスワード由来の鍵生成に scrypt を使う正しい最小例を1つ選べ。",
+        "choices": [
+            {
+                "text": "hashlib.scrypt(password=b'pw', salt=b's', n=2**14, r=8, p=1)",
+                "correct": true
+            },
+            {
+                "text": "hashlib.scrypt(b'pw', b's')",
+                "correct": false
+            },
+            {
+                "text": "hmac.scrypt(b'pw', b's', 100_000)",
+                "correct": false
+            },
+            {
+                "text": "secrets.scrypt('pw')",
+                "correct": false
+            }
+        ],
+        "note": "scrypt は N,r,p を指定する。PBKDF2 より強いメモリ依存性を持つ。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 18,
+        "kind": "single",
+        "stem": "タイミング攻撃に強い比較を行うための関数として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "hmac.compare_digest(a, b)",
+                "correct": true
+            },
+            {
+                "text": "a == b",
+                "correct": false
+            },
+            {
+                "text": "hashlib.sha256(a).hexdigest() == hashlib.sha256(b).hexdigest()",
+                "correct": false
+            },
+            {
+                "text": "secrets.compare(a, b)",
+                "correct": false
+            }
+        ],
+        "note": "compare_digest は時間一定比較を提供し、タイミング漏洩を緩和する。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 18,
+        "kind": "single",
+        "stem": "高速な鍵付きハッシュ(MAC)として BLAKE2 を使う正しい例を1つ選べ。",
+        "choices": [
+            {
+                "text": "hashlib.blake2b(b'msg', key=b'k').hexdigest()",
+                "correct": true
+            },
+            {
+                "text": "hashlib.blake2b(b'k'+b'msg').hexdigest()",
+                "correct": false
+            },
+            {
+                "text": "hmac.new(b'k', b'msg', hashlib.blake2b()).hexdigest()",
+                "correct": false
+            },
+            {
+                "text": "secrets.blake2(b'msg', key=b'k')",
+                "correct": false
+            }
+        ],
+        "note": "BLAKE2 は key 引数で MAC として利用可能（blake2b/blake2s）。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 18,
+        "kind": "single",
+        "stem": "次のうち“暗号化”ではなく“エンコード”であるものを1つ選べ。",
+        "choices": [
+            {
+                "text": "base64.b64encode",
+                "correct": true
+            },
+            {
+                "text": "hashlib.sha256",
+                "correct": false
+            },
+            {
+                "text": "hmac.new(...)",
+                "correct": false
+            },
+            {
+                "text": "hashlib.pbkdf2_hmac",
+                "correct": false
+            }
+        ],
+        "note": "Base64 は可逆な表現変換であり暗号化ではない。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 18,
+        "kind": "single",
+        "stem": "URL 等に埋め込めるセキュアな文字列表現の乱数トークンを生成する正しい例を1つ選べ。",
+        "choices": [
+            {
+                "text": "secrets.token_urlsafe(32)",
+                "correct": true
+            },
+            {
+                "text": "random.token(32)",
+                "correct": false
+            },
+            {
+                "text": "uuid.uuid4().hex[:32]",
+                "correct": false
+            },
+            {
+                "text": "os.urandom(32).decode()",
+                "correct": false
+            }
+        ],
+        "note": "token_urlsafe は URL 安全な Base64 文字列を返す。uuid4 は一部用途で十分だがセキュリティ用途には不適。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 18,
+        "kind": "single",
+        "stem": "暗号学的衝突が既知でありパスワード保存用途に不適切なハッシュ関数を1つ選べ。",
+        "choices": [
+            {
+                "text": "MD5",
+                "correct": true
+            },
+            {
+                "text": "SHA-256",
+                "correct": false
+            },
+            {
+                "text": "SHA3-256",
+                "correct": false
+            },
+            {
+                "text": "BLAKE2b",
+                "correct": false
+            }
+        ],
+        "note": "MD5（および SHA-1）は衝突攻撃が実用化されており避けるべき。",
+        "is_excluded": false
+    }
+]

@@ -1,0 +1,527 @@
+[
+    {
+        "chapter": 5,
+        "kind": "single",
+        "stem": "型ヒントの目的として最も適切な説明を1つ選べ。",
+        "choices": [
+            {
+                "text": "静的解析や補完・ドキュメント性向上のための注釈であり、実行時の挙動は基本的に変わらない",
+                "correct": true
+            },
+            {
+                "text": "実行時に必ず厳格な型チェックが行われる",
+                "correct": false
+            },
+            {
+                "text": "型ヒントを付けると高速化される",
+                "correct": false
+            },
+            {
+                "text": "C拡張に自動変換される",
+                "correct": false
+            }
+        ],
+        "note": "型ヒントは型チェッカやIDEのためのメタ情報。Python本体は原則として実行時に強制しない。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 5,
+        "kind": "single",
+        "stem": "Optional[int] の意味として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "int または None を許す（Union[int, None] の別名）",
+                "correct": true
+            },
+            {
+                "text": "int かつ None を同時に満たす",
+                "correct": false
+            },
+            {
+                "text": "None のみを許す",
+                "correct": false
+            },
+            {
+                "text": "int のサブクラスのみ許す",
+                "correct": false
+            }
+        ],
+        "note": "Optional[T] は T ∪ {None} を表す。None を取りうるときに使う。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 5,
+        "kind": "single",
+        "stem": "PEP 604 の Union 構文として正しい例を1つ選べ。",
+        "choices": [
+            {
+                "text": "int | str",
+                "correct": true
+            },
+            {
+                "text": "Union[int]",
+                "correct": false
+            },
+            {
+                "text": "int || str",
+                "correct": false
+            },
+            {
+                "text": "int or str",
+                "correct": false
+            }
+        ],
+        "note": "Python 3.10+ では X | Y で Union を表現できる。従来の typing.Union[X, Y] と同義。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 5,
+        "kind": "single",
+        "stem": "Any と object の違いとして最も適切な説明を1つ選べ。",
+        "choices": [
+            {
+                "text": "Any は“何でもあり”として型検査を通すが、object は“何でも受け取れるが何も分からない”として扱われる",
+                "correct": true
+            },
+            {
+                "text": "どちらも完全に同じ意味",
+                "correct": false
+            },
+            {
+                "text": "object は数値だけを表す",
+                "correct": false
+            },
+            {
+                "text": "Any は使用禁止の予約語",
+                "correct": false
+            }
+        ],
+        "note": "Any は安全網だが型安全性を弱める。object は最上位型で、使用側でダウンキャストが必要。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 5,
+        "kind": "single",
+        "stem": "Callable の正しい注釈を1つ選べ（戻り値は int）。",
+        "choices": [
+            {
+                "text": "Callable[[str, int], int]",
+                "correct": true
+            },
+            {
+                "text": "Callable(str, int) -> int",
+                "correct": false
+            },
+            {
+                "text": "Callable[int](str, int)",
+                "correct": false
+            },
+            {
+                "text": "Callable[[str, int]]",
+                "correct": false
+            }
+        ],
+        "note": "Callable[[Arg1, Arg2, ...], Ret] の形式で書く。引数の型列と戻り値の型を指定する。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 5,
+        "kind": "single",
+        "stem": "TypeVar の主目的として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "ジェネリック関数／クラスで“同じ型であること”の関係を表現するための型パラメータ",
+                "correct": true
+            },
+            {
+                "text": "列挙型を作るための仕組み",
+                "correct": false
+            },
+            {
+                "text": "ランタイムの変数束縛を高速化する",
+                "correct": false
+            },
+            {
+                "text": "例外型を生成する",
+                "correct": false
+            }
+        ],
+        "note": "TypeVar('T') で型パラメータを定義。T を通じて入力と出力の型の関係を記述できる。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 5,
+        "kind": "single",
+        "stem": "Generic を使う場面として最も適切なものを1つ選べ。",
+        "choices": [
+            {
+                "text": "クラスが型パラメータを取り、要素型などを伝播させたい",
+                "correct": true
+            },
+            {
+                "text": "関数を同期から非同期に変換したい",
+                "correct": false
+            },
+            {
+                "text": "属性アクセスを禁止したい",
+                "correct": false
+            },
+            {
+                "text": "ガーベジコレクションを無効化したい",
+                "correct": false
+            }
+        ],
+        "note": "class Box(Generic[T]) のように定義し、Box[int] や Box[str] の具体化を表現できる。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 5,
+        "kind": "single",
+        "stem": "Literal の正しい説明を1つ選べ。",
+        "choices": [
+            {
+                "text": "指定したリテラル値の集合のみを許す型を表す",
+                "correct": true
+            },
+            {
+                "text": "整数リテラルだけに使える",
+                "correct": false
+            },
+            {
+                "text": "実行時に値を自動変換する",
+                "correct": false
+            },
+            {
+                "text": "文字列正規表現を表す",
+                "correct": false
+            }
+        ],
+        "note": "例えば Literal['red', 'green']。列挙に近い“値の制約”を型で表現できる。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 5,
+        "kind": "single",
+        "stem": "Final の意味として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "再代入やオーバーライドを意図しない“最終”を示す注釈",
+                "correct": true
+            },
+            {
+                "text": "定数畳み込みを強制する実行時機能",
+                "correct": false
+            },
+            {
+                "text": "C拡張としてコンパイルする指示",
+                "correct": false
+            },
+            {
+                "text": "ガーベージコレクション対象外にする",
+                "correct": false
+            }
+        ],
+        "note": "from typing import Final。変数や属性、メソッドにも用いられる。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 5,
+        "kind": "single",
+        "stem": "TypedDict の目的として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "辞書の各キーに対応する値の型を静的に記述する",
+                "correct": true
+            },
+            {
+                "text": "辞書をイミュータブル化する",
+                "correct": false
+            },
+            {
+                "text": "辞書を自動的にJSONへ変換する",
+                "correct": false
+            },
+            {
+                "text": "辞書に順序保証を付与する",
+                "correct": false
+            }
+        ],
+        "note": "構造的型付けで dict の“形”を示す。必須/任意キーの指定も可能。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 5,
+        "kind": "single",
+        "stem": "Protocol の説明として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "メソッド集合に基づく構造的サブタイプ（ダックタイピング）を型として表す",
+                "correct": true
+            },
+            {
+                "text": "継承関係がある型にしか適用できない",
+                "correct": false
+            },
+            {
+                "text": "実装を強制する実行時ミキシン",
+                "correct": false
+            },
+            {
+                "text": "抽象基底クラスのみの別名",
+                "correct": false
+            }
+        ],
+        "note": "Protocol は“このメソッド群を持てばよい”を表す。明示的継承がなくても適合し得る。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 5,
+        "kind": "single",
+        "stem": "Annotated の用途として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "型に追加メタデータ（制約や説明）を付加する",
+                "correct": true
+            },
+            {
+                "text": "型を実行時に最適化する",
+                "correct": false
+            },
+            {
+                "text": "複数の型を同時に持たせる",
+                "correct": false
+            },
+            {
+                "text": "型チェックを無効化する",
+                "correct": false
+            }
+        ],
+        "note": "from typing import Annotated。サードパーティやバリデータ向けメタ情報を格納する。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 5,
+        "kind": "single",
+        "stem": "NewType の正しい説明を1つ選べ。",
+        "choices": [
+            {
+                "text": "同じ実体でも“別名の新しい型”として区別するための薄い型付けを提供する",
+                "correct": true
+            },
+            {
+                "text": "実行時に新しいクラスを動的生成する",
+                "correct": false
+            },
+            {
+                "text": "値を暗号化して保持する",
+                "correct": false
+            },
+            {
+                "text": "必ずランタイムで性能向上が得られる",
+                "correct": false
+            }
+        ],
+        "note": "UserId = NewType('UserId', int) のように使用。実行時は元の型だが、型検査上は別型として扱われる。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 5,
+        "kind": "single",
+        "stem": "NoReturn / Never の説明として適切なものを1つ選べ。",
+        "choices": [
+            {
+                "text": "正常には“戻らない”関数（例外送出、sys.exit）を表す",
+                "correct": true
+            },
+            {
+                "text": "戻り値が None の関数を表す",
+                "correct": false
+            },
+            {
+                "text": "サスペンド関数を表す",
+                "correct": false
+            },
+            {
+                "text": "末尾再帰を表す",
+                "correct": false
+            }
+        ],
+        "note": "from typing import NoReturn（3.11+ では Never も）。制御が呼び出し元へ返らないことを示す。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 5,
+        "kind": "single",
+        "stem": "Union と Optional の使い分けとして正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "None を含む場合だけ Optional[T] を使い、それ以外の複数型は Union を使う",
+                "correct": true
+            },
+            {
+                "text": "全て Optional で表せるため Union は不要",
+                "correct": false
+            },
+            {
+                "text": "全て Union で表し Optional は不要",
+                "correct": false
+            },
+            {
+                "text": "両者はランタイムで同一視されるため任意",
+                "correct": false
+            }
+        ],
+        "note": "Optional[T] は Union[T, None] の短縮形。None を含まない場合は Union を使う。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 5,
+        "kind": "single",
+        "stem": "cast の正しい説明を1つ選べ。",
+        "choices": [
+            {
+                "text": "型チェッカへ“ここではこの型として扱う”と伝えるヒントで、実行時の変換は行わない",
+                "correct": true
+            },
+            {
+                "text": "実行時にダウンキャストを強制する",
+                "correct": false
+            },
+            {
+                "text": "型チェックをコンパイル時に無効化する",
+                "correct": false
+            },
+            {
+                "text": "値をディープコピーする",
+                "correct": false
+            }
+        ],
+        "note": "from typing import cast。ランタイムは単なる恒等関数で副作用はない。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 5,
+        "kind": "single",
+        "stem": "get_type_hints の説明として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "関数やクラスの __annotations__ を評価して実際の型を辞書で返すユーティリティ",
+                "correct": true
+            },
+            {
+                "text": "型を実行時に最適化する JIT",
+                "correct": false
+            },
+            {
+                "text": "注釈を文字列へ変換するだけの関数",
+                "correct": false
+            },
+            {
+                "text": "IDE 専用の内部API",
+                "correct": false
+            }
+        ],
+        "note": "前方参照や文字列注釈を解決する。必要に応じてグローバル名前空間を渡す。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 5,
+        "kind": "single",
+        "stem": "前方参照（未定義名を注釈に使う）への対処として適切なものを1つ選べ。",
+        "choices": [
+            {
+                "text": "注釈を文字列で書く、または `from __future__ import annotations` を利用する",
+                "correct": true
+            },
+            {
+                "text": "常に NewType を使う",
+                "correct": false
+            },
+            {
+                "text": "必ず Protocol を使う",
+                "correct": false
+            },
+            {
+                "text": "対処法は存在しない",
+                "correct": false
+            }
+        ],
+        "note": "評価時点で未定義な型名は文字列で記述できる。将来の評価に備えるための一般手法。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 5,
+        "kind": "single",
+        "stem": "ParamSpec の用途として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "高階関数で“引数の形”そのものを別関数へ伝播させる",
+                "correct": true
+            },
+            {
+                "text": "戻り値型だけを伝播させる",
+                "correct": false
+            },
+            {
+                "text": "例外型の集合を表す",
+                "correct": false
+            },
+            {
+                "text": "ジェネレータの要素型を表す",
+                "correct": false
+            }
+        ],
+        "note": "デコレータなどで Callable の *args/**kwargs の型を保ったまま別シグネチャへ渡すのに使う。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 5,
+        "kind": "single",
+        "stem": "overload デコレータの正しい説明を1つ選べ。",
+        "choices": [
+            {
+                "text": "静的型チェッカ向けに複数シグネチャを宣言し、実装は1つだけ提供する",
+                "correct": true
+            },
+            {
+                "text": "実行時に複数実装を自動切替する",
+                "correct": false
+            },
+            {
+                "text": "JIT最適化のためのヒント",
+                "correct": false
+            },
+            {
+                "text": "例外の型を自動推論する",
+                "correct": false
+            }
+        ],
+        "note": "typing.overload で複数の宣言を並べ、最後に単一の実装関数を書く。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 5,
+        "kind": "single",
+        "stem": "型ヒントと実行時検証の関係として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "型ヒントは実行時に強制されないため、必要なら pydantic/attrs/自前のバリデーション等で補う",
+                "correct": true
+            },
+            {
+                "text": "型ヒントだけで常にランタイム検証される",
+                "correct": false
+            },
+            {
+                "text": "型ヒントはテストを不要にする",
+                "correct": false
+            },
+            {
+                "text": "型ヒントは例外処理を不要にする",
+                "correct": false
+            }
+        ],
+        "note": "ヒントは仕様上“非強制”。入力検証や例外処理は別途設計する。",
+        "is_excluded": false
+    }
+]

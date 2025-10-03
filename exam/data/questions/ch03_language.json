@@ -1,0 +1,1752 @@
+[
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "次のコードの出力を選べ。\nprint(type(True) is bool, isinstance(True, int))",
+        "choices": [
+            {
+                "text": "True True",
+                "correct": true
+            },
+            {
+                "text": "True False",
+                "correct": false
+            },
+            {
+                "text": "False True",
+                "correct": false
+            },
+            {
+                "text": "False False",
+                "correct": false
+            }
+        ],
+        "note": "bool は int のサブクラス。type(True) is bool は True、isinstance(True, int) も True。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "次のコードの出力を選べ。\na = []\nprint(bool(a), len(a)==0)",
+        "choices": [
+            {
+                "text": "False True",
+                "correct": true
+            },
+            {
+                "text": "True True",
+                "correct": false
+            },
+            {
+                "text": "False False",
+                "correct": false
+            },
+            {
+                "text": "True False",
+                "correct": false
+            }
+        ],
+        "note": "空のシーケンスは偽。len(a)==0 は True。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "次のコードの出力を選べ。\ns = 'abcd'\nprint(s[1:3])",
+        "choices": [
+            {
+                "text": "bc",
+                "correct": true
+            },
+            {
+                "text": "ab",
+                "correct": false
+            },
+            {
+                "text": "cd",
+                "correct": false
+            },
+            {
+                "text": "abc",
+                "correct": false
+            }
+        ],
+        "note": "スライスは開始含み、終了非包含。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "アンパック代入に関して正しいものを1つ選べ。\na, *b = [1,2,3,4] の結果は？",
+        "choices": [
+            {
+                "text": "a==1, b==[2,3,4]",
+                "correct": true
+            },
+            {
+                "text": "a==[1,2,3], b==4",
+                "correct": false
+            },
+            {
+                "text": "a==1, b==2",
+                "correct": false
+            },
+            {
+                "text": "a==[1], b==[2,3,4]",
+                "correct": false
+            }
+        ],
+        "note": "スター付きターゲットは残りをリストとして受け取る。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "次のコードの出力を選べ。\nprint([i*i for i in range(3)])",
+        "choices": [
+            {
+                "text": "[0, 1, 4]",
+                "correct": true
+            },
+            {
+                "text": "[1, 4, 9]",
+                "correct": false
+            },
+            {
+                "text": "[0, 1, 2]",
+                "correct": false
+            },
+            {
+                "text": "[2, 4, 6]",
+                "correct": false
+            }
+        ],
+        "note": "内包表記の基本。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "次のうち、ラムダ式に関する説明として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "式しか書けず、文は書けない",
+                "correct": true
+            },
+            {
+                "text": "複数行の本体を書ける",
+                "correct": false
+            },
+            {
+                "text": "return を必ず書く",
+                "correct": false
+            },
+            {
+                "text": "デコレータとしてしか使えない",
+                "correct": false
+            }
+        ],
+        "note": "lambda は式であり、式1つのみ。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "短絡評価に関して正しいものを1つ選べ。\n次の式で右辺が評価されないのはどれか。",
+        "choices": [
+            {
+                "text": "False and func()",
+                "correct": true
+            },
+            {
+                "text": "True or func()",
+                "correct": false
+            },
+            {
+                "text": "True and func()",
+                "correct": false
+            },
+            {
+                "text": "False or func()",
+                "correct": false
+            }
+        ],
+        "note": "and は左が False、or は左が True なら右を評価しない。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "次のコードの出力を選べ。\na = [1]*3\na[0] = 9\nprint(a)",
+        "choices": [
+            {
+                "text": "[9, 1, 1]",
+                "correct": true
+            },
+            {
+                "text": "[1, 9, 1]",
+                "correct": false
+            },
+            {
+                "text": "[1, 1, 9]",
+                "correct": false
+            },
+            {
+                "text": "[9, 9, 9]",
+                "correct": false
+            }
+        ],
+        "note": "[1]*3 は独立な int の繰り返し。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "次のコードの出力を選べ。\na = [[0]]*3\na[0][0] = 1\nprint(a)",
+        "choices": [
+            {
+                "text": "[[1], [1], [1]]",
+                "correct": true
+            },
+            {
+                "text": "[[1], [0], [0]]",
+                "correct": false
+            },
+            {
+                "text": "[[0], [1], [0]]",
+                "correct": false
+            },
+            {
+                "text": "[[0], [0], [1]]",
+                "correct": false
+            }
+        ],
+        "note": "内側リスト参照が共有される。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "dict のキーに関する説明として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "ハッシュ可能（不変）なオブジェクトのみキーにできる",
+                "correct": true
+            },
+            {
+                "text": "任意のオブジェクトをキーにできる",
+                "correct": false
+            },
+            {
+                "text": "list だけキーにできる",
+                "correct": false
+            },
+            {
+                "text": "キーの型は統一必須",
+                "correct": false
+            }
+        ],
+        "note": "キーは hashable である必要。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "次のコードの出力を選べ。\nd = {'a':1}\nprint(d.get('b', 5))",
+        "choices": [
+            {
+                "text": "5",
+                "correct": true
+            },
+            {
+                "text": "1",
+                "correct": false
+            },
+            {
+                "text": "None",
+                "correct": false
+            },
+            {
+                "text": "KeyError",
+                "correct": false
+            }
+        ],
+        "note": "get は見つからなければデフォルト。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "次のコードの出力を選べ。\ns = {1,2,2,3}\nprint(len(s))",
+        "choices": [
+            {
+                "text": "3",
+                "correct": true
+            },
+            {
+                "text": "4",
+                "correct": false
+            },
+            {
+                "text": "2",
+                "correct": false
+            },
+            {
+                "text": "1",
+                "correct": false
+            }
+        ],
+        "note": "set は重複を持たない。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "イテレータに関する説明として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "__iter__ と __next__ を実装し、消費されると再利用できないことが多い",
+                "correct": true
+            },
+            {
+                "text": "必ずリセットできる",
+                "correct": false
+            },
+            {
+                "text": "len() が常に使える",
+                "correct": false
+            },
+            {
+                "text": "スレッドセーフである",
+                "correct": false
+            }
+        ],
+        "note": "イテレータは一方向に消費。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "range(5) に関する正しい説明を1つ選べ。",
+        "choices": [
+            {
+                "text": "イテラブルであり、全要素を保持しない",
+                "correct": true
+            },
+            {
+                "text": "リストである",
+                "correct": false
+            },
+            {
+                "text": "生成時に全値を保持",
+                "correct": false
+            },
+            {
+                "text": "len() は使えない",
+                "correct": false
+            }
+        ],
+        "note": "遅延評価されるシーケンス。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "リストのソートに関して正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "sorted(x) は新しいリスト、x.sort() は破壊的",
+                "correct": true
+            },
+            {
+                "text": "どちらも新しいリストを返す",
+                "correct": false
+            },
+            {
+                "text": "どちらも None を返す",
+                "correct": false
+            },
+            {
+                "text": "安定ソートではない",
+                "correct": false
+            }
+        ],
+        "note": "Timsort は安定。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "次のコードの出力を選べ。\nprint(''.join(['a','b','c']))",
+        "choices": [
+            {
+                "text": "abc",
+                "correct": true
+            },
+            {
+                "text": "['a', 'b', 'c']",
+                "correct": false
+            },
+            {
+                "text": "a b c",
+                "correct": false
+            },
+            {
+                "text": "エラー",
+                "correct": false
+            }
+        ],
+        "note": "join は要素を連結。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "スライスに関して正しいものを1つ選べ。\ns='abcdef'; s[::-1] の結果は？",
+        "choices": [
+            {
+                "text": "'fedcba'",
+                "correct": true
+            },
+            {
+                "text": "'abcdef'",
+                "correct": false
+            },
+            {
+                "text": "'abc'",
+                "correct": false
+            },
+            {
+                "text": "エラー",
+                "correct": false
+            }
+        ],
+        "note": "ステップ -1 で逆順。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "次のコードの出力を選べ。\nprint({i:i*i for i in range(3)}[2])",
+        "choices": [
+            {
+                "text": "4",
+                "correct": true
+            },
+            {
+                "text": "2",
+                "correct": false
+            },
+            {
+                "text": "None",
+                "correct": false
+            },
+            {
+                "text": "KeyError",
+                "correct": false
+            }
+        ],
+        "note": "辞書内包表記の基本。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "例外処理について正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "except Exception as e: は広いので慎重に使う",
+                "correct": true
+            },
+            {
+                "text": "except は常に裸でよい",
+                "correct": false
+            },
+            {
+                "text": "except BaseException 推奨",
+                "correct": false
+            },
+            {
+                "text": "try は複数書けない",
+                "correct": false
+            }
+        ],
+        "note": "必要最小限の例外を捕捉。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "with 文の目的として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "資源の獲得と解放を安全に行う",
+                "correct": true
+            },
+            {
+                "text": "GC を停止する",
+                "correct": false
+            },
+            {
+                "text": "ロックを無効化する",
+                "correct": false
+            },
+            {
+                "text": "デコレータを定義する",
+                "correct": false
+            }
+        ],
+        "note": "__enter__/__exit__ による資源管理。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "次のコードの出力を選べ。\nprint(bool('0'), bool(0))",
+        "choices": [
+            {
+                "text": "True False",
+                "correct": true
+            },
+            {
+                "text": "False False",
+                "correct": false
+            },
+            {
+                "text": "True True",
+                "correct": false
+            },
+            {
+                "text": "False True",
+                "correct": false
+            }
+        ],
+        "note": "非空文字列は True、0 は False。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "リスト内包表記のループ変数リーク（Py3）について正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "外側に漏れない",
+                "correct": true
+            },
+            {
+                "text": "外側に残る",
+                "correct": false
+            },
+            {
+                "text": "実装依存",
+                "correct": false
+            },
+            {
+                "text": "生成式のみ漏れない",
+                "correct": false
+            }
+        ],
+        "note": "Py3 の内包表記は独自スコープ。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "次のコードの出力を選べ。\nprint({1,2} | {2,3})",
+        "choices": [
+            {
+                "text": "{1, 2, 3}",
+                "correct": true
+            },
+            {
+                "text": "{2}",
+                "correct": false
+            },
+            {
+                "text": "{1, 2}",
+                "correct": false
+            },
+            {
+                "text": "{3}",
+                "correct": false
+            }
+        ],
+        "note": "和集合。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "シーケンスのアンパックでプレースホルダとしてよく使われる名前はどれか。",
+        "choices": [
+            {
+                "text": "_（アンダースコア）",
+                "correct": true
+            },
+            {
+                "text": "placeholder",
+                "correct": false
+            },
+            {
+                "text": "ignore",
+                "correct": false
+            },
+            {
+                "text": "none",
+                "correct": false
+            }
+        ],
+        "note": "慣習的表記。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "次のコードの出力を選べ。\nprint('py' * 3)",
+        "choices": [
+            {
+                "text": "pypypy",
+                "correct": true
+            },
+            {
+                "text": "py3",
+                "correct": false
+            },
+            {
+                "text": "py py py",
+                "correct": false
+            },
+            {
+                "text": "エラー",
+                "correct": false
+            }
+        ],
+        "note": "文字列の乗算。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "float('nan') に関して正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "NaN は自分自身と等しくない",
+                "correct": true
+            },
+            {
+                "text": "NaN は自分自身と等しい",
+                "correct": false
+            },
+            {
+                "text": "bool(NaN) は False",
+                "correct": false
+            },
+            {
+                "text": "常に例外",
+                "correct": false
+            }
+        ],
+        "note": "NaN != NaN。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "次のコードの出力を選べ。\nprint(list(zip([1,2,3],[10,20])))",
+        "choices": [
+            {
+                "text": "[(1, 10), (2, 20)]",
+                "correct": true
+            },
+            {
+                "text": "[(1,10),(2,20),(3, None)]",
+                "correct": false
+            },
+            {
+                "text": "[(1,10),(2,20),(None, None)]",
+                "correct": false
+            },
+            {
+                "text": "エラー",
+                "correct": false
+            }
+        ],
+        "note": "zip は最短に揃う。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "enumerate に関する正しい説明を1つ選べ。",
+        "choices": [
+            {
+                "text": "start 引数で開始番号を指定できる",
+                "correct": true
+            },
+            {
+                "text": "0固定",
+                "correct": false
+            },
+            {
+                "text": "辞書専用",
+                "correct": false
+            },
+            {
+                "text": "反復を破壊する",
+                "correct": false
+            }
+        ],
+        "note": "enumerate(seq, start=1)。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "タプルに関する正しい説明を1つ選べ。",
+        "choices": [
+            {
+                "text": "タプルは不変だが可変要素を含みうる",
+                "correct": true
+            },
+            {
+                "text": "タプルは可変",
+                "correct": false
+            },
+            {
+                "text": "常にハッシュ不可能",
+                "correct": false
+            },
+            {
+                "text": "空タプルは作れない",
+                "correct": false
+            }
+        ],
+        "note": "不変容器。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "次のコードの出力を選べ。\nd = {'x':1}\nd['y'] = d.get('y',0) + 2\nprint(d['y'])",
+        "choices": [
+            {
+                "text": "2",
+                "correct": true
+            },
+            {
+                "text": "0",
+                "correct": false
+            },
+            {
+                "text": "None",
+                "correct": false
+            },
+            {
+                "text": "KeyError",
+                "correct": false
+            }
+        ],
+        "note": "デフォルト0に2を加算。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "文字列オブジェクトの性質として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "不変（immutable）である",
+                "correct": true
+            },
+            {
+                "text": "可変である",
+                "correct": false
+            },
+            {
+                "text": "数値である",
+                "correct": false
+            },
+            {
+                "text": "常に intern される",
+                "correct": false
+            }
+        ],
+        "note": "str は不変。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "in 演算子に関して正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "シーケンスでは要素、dict ではキーの包含を判定",
+                "correct": true
+            },
+            {
+                "text": "常に値の包含",
+                "correct": false
+            },
+            {
+                "text": "dict では値の包含",
+                "correct": false
+            },
+            {
+                "text": "set では使えない",
+                "correct": false
+            }
+        ],
+        "note": "dict の in はキー判定。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "次のコードの出力を選べ。\nprint((1,2)+(3,))",
+        "choices": [
+            {
+                "text": "(1, 2, 3)",
+                "correct": true
+            },
+            {
+                "text": "(1, 2)",
+                "correct": false
+            },
+            {
+                "text": "(3,)",
+                "correct": false
+            },
+            {
+                "text": "エラー",
+                "correct": false
+            }
+        ],
+        "note": "タプル連結。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "次のコードの出力を選べ。\nprint([i for i in range(5) if i%2==0])",
+        "choices": [
+            {
+                "text": "[0, 2, 4]",
+                "correct": true
+            },
+            {
+                "text": "[1, 3, 5]",
+                "correct": false
+            },
+            {
+                "text": "[2, 4]",
+                "correct": false
+            },
+            {
+                "text": "[0, 1, 2, 3, 4]",
+                "correct": false
+            }
+        ],
+        "note": "条件付き内包表記。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "is と == の違いとして正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "is は同一性、== は等価性",
+                "correct": true
+            },
+            {
+                "text": "どちらも等価性",
+                "correct": false
+            },
+            {
+                "text": "どちらも同一性",
+                "correct": false
+            },
+            {
+                "text": "数値では常に同じ",
+                "correct": false
+            }
+        ],
+        "note": "役割が異なる。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "次のコードの出力を選べ。\na = 1\nb = 1\nprint(a == b, a is b)",
+        "choices": [
+            {
+                "text": "True True となる可能性がある",
+                "correct": true
+            },
+            {
+                "text": "True False に必ずなる",
+                "correct": false
+            },
+            {
+                "text": "False True になる",
+                "correct": false
+            },
+            {
+                "text": "False False になる",
+                "correct": false
+            }
+        ],
+        "note": "小整数のインターンにより is が True の可能性。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "内包表記で if-else を値側に使う正しい例を1つ選べ。",
+        "choices": [
+            {
+                "text": "[x if x%2==0 else -x for x in xs]",
+                "correct": true
+            },
+            {
+                "text": "[x for x in xs if else x]",
+                "correct": false
+            },
+            {
+                "text": "[if x in xs for x]",
+                "correct": false
+            },
+            {
+                "text": "[x for if x in xs]",
+                "correct": false
+            }
+        ],
+        "note": "条件演算子は式内部。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "次のコードの出力を選べ。\ntry:\n    1/0\nexcept ZeroDivisionError:\n    print('A')\nelse:\n    print('B')\nfinally:\n    print('C')",
+        "choices": [
+            {
+                "text": "A\nC",
+                "correct": true
+            },
+            {
+                "text": "B\nC",
+                "correct": false
+            },
+            {
+                "text": "A\nB\nC",
+                "correct": false
+            },
+            {
+                "text": "C",
+                "correct": false
+            }
+        ],
+        "note": "except と finally が実行。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "複数代入 a = b = [] の注意点として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "a と b は同じリストを参照",
+                "correct": true
+            },
+            {
+                "text": "異なるリストになる",
+                "correct": false
+            },
+            {
+                "text": "SyntaxError",
+                "correct": false
+            },
+            {
+                "text": "タプルが作られる",
+                "correct": false
+            }
+        ],
+        "note": "同一参照。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "次のコードの出力を選べ。\nprint({x for x in 'abca'})",
+        "choices": [
+            {
+                "text": "{'a', 'b', 'c'}",
+                "correct": true
+            },
+            {
+                "text": "{'a', 'a', 'b', 'c'}",
+                "correct": false
+            },
+            {
+                "text": "['a','b','c']",
+                "correct": false
+            },
+            {
+                "text": "順序付きの{'a','b','c'}",
+                "correct": false
+            }
+        ],
+        "note": "集合で重複なし。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "global 宣言に関して正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "関数内からモジュール変数を代入更新する際に必要",
+                "correct": true
+            },
+            {
+                "text": "読み取りにも必須",
+                "correct": false
+            },
+            {
+                "text": "クラス属性にも必要",
+                "correct": false
+            },
+            {
+                "text": "ファイル間共有を自動化",
+                "correct": false
+            }
+        ],
+        "note": "代入でローカルと見なされるため。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "nonlocal 宣言に関して正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "一つ外側のスコープ変数を再束縛",
+                "correct": true
+            },
+            {
+                "text": "グローバルへアクセス",
+                "correct": false
+            },
+            {
+                "text": "読み取り専用化",
+                "correct": false
+            },
+            {
+                "text": "GC 抑制",
+                "correct": false
+            }
+        ],
+        "note": "ネスト関数で利用。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "次のコードの出力を選べ。\nprint({i for i in range(3)} <= {0,1,2,3})",
+        "choices": [
+            {
+                "text": "True",
+                "correct": true
+            },
+            {
+                "text": "False",
+                "correct": false
+            },
+            {
+                "text": "TypeError",
+                "correct": false
+            },
+            {
+                "text": "エラー",
+                "correct": false
+            }
+        ],
+        "note": "部分集合判定。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "sorted に key を与える使い方の正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "sorted(words, key=len)",
+                "correct": true
+            },
+            {
+                "text": "sorted(words, cmp=len)",
+                "correct": false
+            },
+            {
+                "text": "sorted(words, key=len())",
+                "correct": false
+            },
+            {
+                "text": "sorted(key=len, words)",
+                "correct": false
+            }
+        ],
+        "note": "cmp は廃止。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "文字列の replace の性質として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "新しい文字列を返す（元は不変）",
+                "correct": true
+            },
+            {
+                "text": "インプレース置換",
+                "correct": false
+            },
+            {
+                "text": "必ず1回だけ置換",
+                "correct": false
+            },
+            {
+                "text": "常に例外",
+                "correct": false
+            }
+        ],
+        "note": "str は不変。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "次のコードの出力を選べ。\nprint((0 or 5) and 7)",
+        "choices": [
+            {
+                "text": "7",
+                "correct": true
+            },
+            {
+                "text": "0",
+                "correct": false
+            },
+            {
+                "text": "5",
+                "correct": false
+            },
+            {
+                "text": "True",
+                "correct": false
+            }
+        ],
+        "note": "論理演算子は最後に評価したオペランドを返す。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "f文字列に関して正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "f\"{1+2}\" は '3' を生成",
+                "correct": true
+            },
+            {
+                "text": "f は format と無関係",
+                "correct": false
+            },
+            {
+                "text": "式は使えない",
+                "correct": false
+            },
+            {
+                "text": "Python 3.5 から導入",
+                "correct": false
+            }
+        ],
+        "note": "導入は 3.6。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "ウォルラス演算子（:=）に関して正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "式の中で代入が可能（3.8+）",
+                "correct": true
+            },
+            {
+                "text": "代入文の完全な代替",
+                "correct": false
+            },
+            {
+                "text": "関数定義のみ",
+                "correct": false
+            },
+            {
+                "text": "ジェネレータ内は不可",
+                "correct": false
+            }
+        ],
+        "note": "条件式などで利用可。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "match 文に関して正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "Python 3.10 で導入",
+                "correct": true
+            },
+            {
+                "text": "Python 3.6 で導入",
+                "correct": false
+            },
+            {
+                "text": "常に例外",
+                "correct": false
+            },
+            {
+                "text": "辞書には使えない",
+                "correct": false
+            }
+        ],
+        "note": "PEP 634–636。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "次のコードの出力を選べ。\nprint((1,2,3)[-1])",
+        "choices": [
+            {
+                "text": "3",
+                "correct": true
+            },
+            {
+                "text": "1",
+                "correct": false
+            },
+            {
+                "text": "2",
+                "correct": false
+            },
+            {
+                "text": "IndexError",
+                "correct": false
+            }
+        ],
+        "note": "負のインデックス。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "次のコードの出力を選べ。\na = {'x':1}\nprint('x' in a, 1 in a)",
+        "choices": [
+            {
+                "text": "True False",
+                "correct": true
+            },
+            {
+                "text": "False True",
+                "correct": false
+            },
+            {
+                "text": "True True",
+                "correct": false
+            },
+            {
+                "text": "False False",
+                "correct": false
+            }
+        ],
+        "note": "dict の in はキー判定。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "リストのコピーとして正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "b = a[:] で浅いコピー",
+                "correct": true
+            },
+            {
+                "text": "b = listref は深いコピー",
+                "correct": false
+            },
+            {
+                "text": "deepcopy と同じ",
+                "correct": false
+            },
+            {
+                "text": "コピー不可",
+                "correct": false
+            }
+        ],
+        "note": "浅いコピー。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "次のコードの出力を選べ。\na = {'a':1}\nprint(a.setdefault('b', 10), a['b'])",
+        "choices": [
+            {
+                "text": "10 10",
+                "correct": true
+            },
+            {
+                "text": "None 10",
+                "correct": false
+            },
+            {
+                "text": "10 None",
+                "correct": false
+            },
+            {
+                "text": "KeyError KeyError",
+                "correct": false
+            }
+        ],
+        "note": "setdefault は挿入して返す。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "次のコードの出力を選べ。\nprint(list(map(lambda x:x+1, [1,2,3])))",
+        "choices": [
+            {
+                "text": "[2, 3, 4]",
+                "correct": true
+            },
+            {
+                "text": "[1, 2, 3]",
+                "correct": false
+            },
+            {
+                "text": "[1, 3, 5]",
+                "correct": false
+            },
+            {
+                "text": "エラー",
+                "correct": false
+            }
+        ],
+        "note": "map はイテレータ。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "次のコードの出力を選べ。\nfrom math import sqrt\nprint(round(sqrt(2), 0))",
+        "choices": [
+            {
+                "text": "1.0",
+                "correct": true
+            },
+            {
+                "text": "1",
+                "correct": false
+            },
+            {
+                "text": "1.41",
+                "correct": false
+            },
+            {
+                "text": "2",
+                "correct": false
+            }
+        ],
+        "note": "round(…,0) は float を返しうる。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "bytes と str の関係として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "明示的なエンコード/デコードが必要",
+                "correct": true
+            },
+            {
+                "text": "自動相互変換",
+                "correct": false
+            },
+            {
+                "text": "== は使えない",
+                "correct": false
+            },
+            {
+                "text": "bytes は可変",
+                "correct": false
+            }
+        ],
+        "note": "bytearray が可変。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "次のコードの出力を選べ。\nprint(any([]), all([]))",
+        "choices": [
+            {
+                "text": "False True",
+                "correct": true
+            },
+            {
+                "text": "True False",
+                "correct": false
+            },
+            {
+                "text": "False False",
+                "correct": false
+            },
+            {
+                "text": "True True",
+                "correct": false
+            }
+        ],
+        "note": "空の all は真（真空真）。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "リストとタプルの使い分けで適切なものを1つ選べ。",
+        "choices": [
+            {
+                "text": "変更不要ならタプルが意図明示",
+                "correct": true
+            },
+            {
+                "text": "常にリスト",
+                "correct": false
+            },
+            {
+                "text": "タプルは遅い",
+                "correct": false
+            },
+            {
+                "text": "タプルはイテラブルでない",
+                "correct": false
+            }
+        ],
+        "note": "不変の表現。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "次のコードの出力を選べ。\nprint({}.get('x') is None)",
+        "choices": [
+            {
+                "text": "True",
+                "correct": true
+            },
+            {
+                "text": "False",
+                "correct": false
+            },
+            {
+                "text": "KeyError",
+                "correct": false
+            },
+            {
+                "text": "エラー",
+                "correct": false
+            }
+        ],
+        "note": "get の既定値。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "内包表記の順序として正しいものを1つ選べ。\n[x+y for x in [1,2] for y in [10,20]] の先頭は？",
+        "choices": [
+            {
+                "text": "11",
+                "correct": true
+            },
+            {
+                "text": "21",
+                "correct": false
+            },
+            {
+                "text": "12",
+                "correct": false
+            },
+            {
+                "text": "22",
+                "correct": false
+            }
+        ],
+        "note": "x=1, y=10。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "次のコードの出力を選べ。\nprint(tuple(range(0,5,2)))",
+        "choices": [
+            {
+                "text": "(0, 2, 4)",
+                "correct": true
+            },
+            {
+                "text": "(0, 1, 2, 3, 4)",
+                "correct": false
+            },
+            {
+                "text": "(2, 4)",
+                "correct": false
+            },
+            {
+                "text": "(0, 3)",
+                "correct": false
+            }
+        ],
+        "note": "step=2。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "dict の順序性に関する正しい説明を1つ選べ。",
+        "choices": [
+            {
+                "text": "3.7+ では挿入順保持が仕様",
+                "correct": true
+            },
+            {
+                "text": "常に未定義",
+                "correct": false
+            },
+            {
+                "text": "CPython だけの実装詳細",
+                "correct": false
+            },
+            {
+                "text": "OrderedDict だけが順序持ち",
+                "correct": false
+            }
+        ],
+        "note": "仕様として保持。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "in はどのメソッドで包含判定するか正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "__contains__ があればそれを使う",
+                "correct": true
+            },
+            {
+                "text": "常に線形走査",
+                "correct": false
+            },
+            {
+                "text": "ハッシュは使わない",
+                "correct": false
+            },
+            {
+                "text": "__eq__ のみ",
+                "correct": false
+            }
+        ],
+        "note": "set/dict はハッシュで高速。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "次のコードの出力を選べ。\nprint(''.join(map(str, [1,2,3])))",
+        "choices": [
+            {
+                "text": "123",
+                "correct": true
+            },
+            {
+                "text": "1 2 3",
+                "correct": false
+            },
+            {
+                "text": "[1, 2, 3]",
+                "correct": false
+            },
+            {
+                "text": "エラー",
+                "correct": false
+            }
+        ],
+        "note": "join は文字列の列。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "イテラブルのアンパックに関して正しいものを1つ選べ。\n*a = (1,2,3) の挙動は？",
+        "choices": [
+            {
+                "text": "SyntaxError（左辺先頭の * は単独不可）",
+                "correct": true
+            },
+            {
+                "text": "a は (1,2,3)",
+                "correct": false
+            },
+            {
+                "text": "a は [1,2,3]",
+                "correct": false
+            },
+            {
+                "text": "a は 1",
+                "correct": false
+            }
+        ],
+        "note": "少なくとも他のターゲットが必要。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "次のコードの出力を選べ。\nprint({True: 'T', 1: 'one'}[1])",
+        "choices": [
+            {
+                "text": "'one'",
+                "correct": true
+            },
+            {
+                "text": "'T'",
+                "correct": false
+            },
+            {
+                "text": "KeyError",
+                "correct": false
+            },
+            {
+                "text": "未定義",
+                "correct": false
+            }
+        ],
+        "note": "True と 1 は等価でハッシュも同じ。後挿入が残る。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "生成式に関する正しい説明を1つ選べ。",
+        "choices": [
+            {
+                "text": "遅延評価で必要時に生成",
+                "correct": true
+            },
+            {
+                "text": "常にリストを返す",
+                "correct": false
+            },
+            {
+                "text": "len() が使える",
+                "correct": false
+            },
+            {
+                "text": "要素は複製される",
+                "correct": false
+            }
+        ],
+        "note": "ジェネレータは1要素ずつ。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "次のコードの出力を選べ。\nprint(sum([[]], []))",
+        "choices": [
+            {
+                "text": "[]",
+                "correct": true
+            },
+            {
+                "text": "[[]]",
+                "correct": false
+            },
+            {
+                "text": "TypeError",
+                "correct": false
+            },
+            {
+                "text": "0",
+                "correct": false
+            }
+        ],
+        "note": "開始値 [] に対して空リストを足すと空。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "スライス代入に関して正しいものを1つ選べ。\na=[1,2,3]; a[1:2]=[9,8]; a は？",
+        "choices": [
+            {
+                "text": "[1, 9, 8, 3]",
+                "correct": true
+            },
+            {
+                "text": "[1, [9,8], 3]",
+                "correct": false
+            },
+            {
+                "text": "[1, 9, 3]",
+                "correct": false
+            },
+            {
+                "text": "[1, 8, 9, 3]",
+                "correct": false
+            }
+        ],
+        "note": "1要素と置換しつつ2要素挿入で長くなる。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 3,
+        "kind": "single",
+        "stem": "次のコードの出力を選べ。\nprint((x := 5) if (x := 0) else 10)",
+        "choices": [
+            {
+                "text": "10",
+                "correct": true
+            },
+            {
+                "text": "5",
+                "correct": false
+            },
+            {
+                "text": "0",
+                "correct": false
+            },
+            {
+                "text": "エラー",
+                "correct": false
+            }
+        ],
+        "note": "先に (x := 0) が False になり 10。",
+        "is_excluded": false
+    }
+]

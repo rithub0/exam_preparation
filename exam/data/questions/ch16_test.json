@@ -1,0 +1,927 @@
+[
+    {
+        "chapter": 16,
+        "kind": "single",
+        "stem": "標準ライブラリで単体テストを記述するための基本フレームワークとして最も適切なものを1つ選べ。",
+        "choices": [
+            {
+                "text": "unittest",
+                "correct": true
+            },
+            {
+                "text": "doctest2",
+                "correct": false
+            },
+            {
+                "text": "pycheck",
+                "correct": false
+            },
+            {
+                "text": "inspecttest",
+                "correct": false
+            }
+        ],
+        "note": "標準ライブラリのテストフレームワークは unittest と doctest。ここでは一般的なxUnitスタイルの unittest を指す。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 16,
+        "kind": "single",
+        "stem": "unittest.TestCase でテストメソッドとして認識される関数名の規則として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "名前が test で始まるメソッド",
+                "correct": true
+            },
+            {
+                "text": "アノテーション @test を付けたメソッド",
+                "correct": false
+            },
+            {
+                "text": "末尾が _spec のメソッド",
+                "correct": false
+            },
+            {
+                "text": "クラス変数に列挙したメソッドのみ",
+                "correct": false
+            }
+        ],
+        "note": "デフォルトのテストランナはメソッド名が test で始まるものを検出する。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 16,
+        "kind": "single",
+        "stem": "unittest のフィクスチャメソッドとしてクラス全体で1回だけ実行されるものを1つ選べ。",
+        "choices": [
+            {
+                "text": "@classmethod を付けた setUpClass",
+                "correct": true
+            },
+            {
+                "text": "setUp",
+                "correct": false
+            },
+            {
+                "text": "tearDown",
+                "correct": false
+            },
+            {
+                "text": "tearDownModule",
+                "correct": false
+            }
+        ],
+        "note": "setUpClass/tearDownClass はクラス単位、setUp/tearDown はテストメソッド単位。tearDownModule はモジュール全体で1回（関数ベース時）。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 16,
+        "kind": "single",
+        "stem": "unittest で例外発生を検証する正しい使い方を1つ選べ。",
+        "choices": [
+            {
+                "text": "with self.assertRaises(ValueError): func()",
+                "correct": true
+            },
+            {
+                "text": "self.assertTrue(raises(ValueError, func))",
+                "correct": false
+            },
+            {
+                "text": "self.assertRaises == ValueError(func())",
+                "correct": false
+            },
+            {
+                "text": "self.assertEqual(func(), ValueError)",
+                "correct": false
+            }
+        ],
+        "note": "コンテキストマネージャとして assertRaises を用いるのが簡潔で安全。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 16,
+        "kind": "single",
+        "stem": "unittest のテストランナーを対話的に起動する一般的なエントリポイントとして正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "if __name__ == \"__main__\": unittest.main()",
+                "correct": true
+            },
+            {
+                "text": "if __name__ == \"__main__\": unittest.run()",
+                "correct": false
+            },
+            {
+                "text": "main() があれば自動で走るため不要",
+                "correct": false
+            },
+            {
+                "text": "python -m main で常に起動される",
+                "correct": false
+            }
+        ],
+        "note": "スクリプトから直接実行する場合の定型。discover を使う方法もある。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 16,
+        "kind": "single",
+        "stem": "テストディスカバリで tests ディレクトリ配下を探索して実行する正しいコマンドを1つ選べ。",
+        "choices": [
+            {
+                "text": "python -m unittest discover -s tests",
+                "correct": true
+            },
+            {
+                "text": "python -m unittest run tests/*",
+                "correct": false
+            },
+            {
+                "text": "python -m discover tests",
+                "correct": false
+            },
+            {
+                "text": "unittest discover tests",
+                "correct": false
+            }
+        ],
+        "note": "discover サブコマンドで開始ディレクトリ(-s)を指定するのが基本。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 16,
+        "kind": "single",
+        "stem": "unittest.mock の MagicMock に関する説明として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "属性アクセスや呼び出しを動的に偽装できる多機能なモックオブジェクト",
+                "correct": true
+            },
+            {
+                "text": "実オブジェクトの完全なコピーを作るためのクラス",
+                "correct": false
+            },
+            {
+                "text": "戻り値を固定できないため side_effect は使えない",
+                "correct": false
+            },
+            {
+                "text": "spec を指定すると属性アクセスが無制限になる",
+                "correct": false
+            }
+        ],
+        "note": "MagicMock は **call** などのマジックメソッドも扱える。spec 指定で存在しない属性アクセスを抑制できる。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 16,
+        "kind": "single",
+        "stem": "mock.patch を使ってモジュール内の関数 foo を一時的に差し替える正しい例を1つ選べ（対象は mymod.foo）。",
+        "choices": [
+            {
+                "text": "with mock.patch(\"mymod.foo\") as m: ...",
+                "correct": true
+            },
+            {
+                "text": "with mock.patch(foo) as m: ...",
+                "correct": false
+            },
+            {
+                "text": "with mock.patch.object(foo, 'mymod') as m: ...",
+                "correct": false
+            },
+            {
+                "text": "with mock.patch('foo.mymod') as m: ...",
+                "correct": false
+            }
+        ],
+        "note": "patch には '参照される場所' を文字列で与える。import 先に依存する点に注意。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 16,
+        "kind": "single",
+        "stem": "mock.patch の適用範囲に関する説明として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "with ブロックやデコレータのスコープを抜けると自動的に元に戻る",
+                "correct": true
+            },
+            {
+                "text": "一度パッチするとプロセス終了まで維持される",
+                "correct": false
+            },
+            {
+                "text": "明示的に unpatch() を呼ばないと戻らない",
+                "correct": false
+            },
+            {
+                "text": "スレッドを跨ぐと自動的に解除される",
+                "correct": false
+            }
+        ],
+        "note": "コンテキストマネージャ／デコレータのライフサイクルに従う。必要に応じて start()/stop() も使える。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 16,
+        "kind": "single",
+        "stem": "mock.Mock の呼び出し検証として正しいアサーションを1つ選べ。",
+        "choices": [
+            {
+                "text": "mock_obj.assert_called_once_with(1, 2)",
+                "correct": true
+            },
+            {
+                "text": "self.assertCalled(mock_obj, times=1, args=(1,2))",
+                "correct": false
+            },
+            {
+                "text": "assert mock_obj.called_with(1, 2)",
+                "correct": false
+            },
+            {
+                "text": "mock_obj.assert_call(1, 2)",
+                "correct": false
+            }
+        ],
+        "note": "Mock には assert_called_once_with などの専用アサーションが用意されている。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 16,
+        "kind": "single",
+        "stem": "subTest コンテキストの用途として最も適切な説明を1つ選べ。",
+        "choices": [
+            {
+                "text": "同一テストメソッド内で複数ケースを独立して報告するために使う",
+                "correct": true
+            },
+            {
+                "text": "テストを並列実行するためのAPI",
+                "correct": false
+            },
+            {
+                "text": "テストのタイムアウトを設定するためのAPI",
+                "correct": false
+            },
+            {
+                "text": "重いI/OをスキップするためのAPI",
+                "correct": false
+            }
+        ],
+        "note": "for ループで複数パラメータを検証する際に、どの入力で失敗したかを粒度よく示せる。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 16,
+        "kind": "single",
+        "stem": "浮動小数点の比較に適したアサーションを1つ選べ。",
+        "choices": [
+            {
+                "text": "self.assertAlmostEqual(a, b, places=7)",
+                "correct": true
+            },
+            {
+                "text": "self.assertEqual(a, b)",
+                "correct": false
+            },
+            {
+                "text": "self.assertIs(a, b)",
+                "correct": false
+            },
+            {
+                "text": "self.assertRegex(str(a), str(b))",
+                "correct": false
+            }
+        ],
+        "note": "丸め誤差を考慮して Almost 系アサーションを用いるのが定石。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 16,
+        "kind": "single",
+        "stem": "ログ出力を検証するための unittest の機能として適切なものを1つ選べ。",
+        "choices": [
+            {
+                "text": "assertLogs",
+                "correct": true
+            },
+            {
+                "text": "assertLogger",
+                "correct": false
+            },
+            {
+                "text": "captureLogs",
+                "correct": false
+            },
+            {
+                "text": "patchLogs",
+                "correct": false
+            }
+        ],
+        "note": "with self.assertLogs(logger, level): として使用し、出力内容を検証できる。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 16,
+        "kind": "single",
+        "stem": "警告発生をテストで検証するために用いるアサーションを1つ選べ。",
+        "choices": [
+            {
+                "text": "assertWarns",
+                "correct": true
+            },
+            {
+                "text": "assertWarning",
+                "correct": false
+            },
+            {
+                "text": "assertRaises(Warning)",
+                "correct": false
+            },
+            {
+                "text": "assertIssues",
+                "correct": false
+            }
+        ],
+        "note": "with self.assertWarns(WarningType): の形式で使用する。正規表現版として assertWarnsRegex もある。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 16,
+        "kind": "single",
+        "stem": "テスト対象コードが外部APIを呼び出す関数を持つ。副作用を避けつつ戻り値だけを差し替えたい。適切なモックの設定を1つ選べ。",
+        "choices": [
+            {
+                "text": "patch 対象に return_value を設定する",
+                "correct": true
+            },
+            {
+                "text": "spec を外して自由な属性アクセスを許可する",
+                "correct": false
+            },
+            {
+                "text": "autospec=False で厳格にする",
+                "correct": false
+            },
+            {
+                "text": "side_effect に戻り値を代入する",
+                "correct": false
+            }
+        ],
+        "note": "戻り値固定は return_value。side_effect は例外送出や逐次値の供給に使う。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 16,
+        "kind": "single",
+        "stem": "モックの side_effect の正しい用途を1つ選べ。",
+        "choices": [
+            {
+                "text": "呼び出しごとに異なる戻り値や例外を発生させる",
+                "correct": true
+            },
+            {
+                "text": "モックの属性名を制約する",
+                "correct": false
+            },
+            {
+                "text": "ログのキャプチャを有効化する",
+                "correct": false
+            },
+            {
+                "text": "テストの並列実行を制御する",
+                "correct": false
+            }
+        ],
+        "note": "side_effect は反復可能な値や例外、あるいはコールバック関数を指定できる。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 16,
+        "kind": "single",
+        "stem": "ファイルI/Oを含む関数のテストで、実ファイルを作らずに振る舞いを検証したい。最適なアプローチを1つ選べ。",
+        "choices": [
+            {
+                "text": "mock_open を用いて open をパッチする",
+                "correct": true
+            },
+            {
+                "text": "tempfile.TemporaryFile を常に使用する",
+                "correct": false
+            },
+            {
+                "text": "os.devnull へ書き出す",
+                "correct": false
+            },
+            {
+                "text": "標準入力出力に付け替える",
+                "correct": false
+            }
+        ],
+        "note": "unittest.mock.mock_open で open を差し替えると、読み書き動作を安全に検証できる。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 16,
+        "kind": "single",
+        "stem": "テストの独立性を高める一般的な指針として最も適切なものを1つ選べ。",
+        "choices": [
+            {
+                "text": "テスト間で状態を共有しない（フィクスチャで毎回初期化）",
+                "correct": true
+            },
+            {
+                "text": "高速化のため同じオブジェクトをグローバルに再利用する",
+                "correct": false
+            },
+            {
+                "text": "順序依存のテストを書き、実行順を固定する",
+                "correct": false
+            },
+            {
+                "text": "外部サービスへの実通信を許可する",
+                "correct": false
+            }
+        ],
+        "note": "テストは順序非依存・副作用最小・外部依存の切り離しが原則。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 16,
+        "kind": "single",
+        "stem": "**name** == \"__main__\" ガードで unittest.main() を呼ぶメリットとして適切な説明を1つ選べ。",
+        "choices": [
+            {
+                "text": "モジュールを import したときにテストが自動実行されるのを防ぐ",
+                "correct": true
+            },
+            {
+                "text": "discover 実行時にのみ動くよう制限できる",
+                "correct": false
+            },
+            {
+                "text": "テストの並列実行が有効になる",
+                "correct": false
+            },
+            {
+                "text": "テストのタイムアウトが設定される",
+                "correct": false
+            }
+        ],
+        "note": "スクリプト実行時のみエントリポイントを有効にするための慣習的ガード。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 16,
+        "kind": "single",
+        "stem": "assertRaisesRegex の用途として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "例外の型だけでなくメッセージ内容も正規表現で検証する",
+                "correct": true
+            },
+            {
+                "text": "ログのメッセージを正規表現で照合する",
+                "correct": false
+            },
+            {
+                "text": "戻り値の文字列を正規表現で検証する",
+                "correct": false
+            },
+            {
+                "text": "警告メッセージのみを検証する",
+                "correct": false
+            }
+        ],
+        "note": "例外の詳細メッセージに対するより厳密な検証が可能になる。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 16,
+        "kind": "single",
+        "stem": "依存先のクラスをモックする際、元のインターフェースに存在しない属性アクセスを防ぎたい。適切な設定を1つ選べ。",
+        "choices": [
+            {
+                "text": "Mock(spec=OriginalClass)",
+                "correct": true
+            },
+            {
+                "text": "Mock(strict=True)",
+                "correct": false
+            },
+            {
+                "text": "MagicMock(unsafe=True)",
+                "correct": false
+            },
+            {
+                "text": "Mock(auto=True)",
+                "correct": false
+            }
+        ],
+        "note": "spec または autospec を使うと存在しない属性のアクセスでエラーになるため、API 逸脱を検知できる。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 16,
+        "kind": "single",
+        "stem": "テストのスキップに関する説明として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "@unittest.skip(\"理由\") で無条件スキップできる",
+                "correct": true
+            },
+            {
+                "text": "@skipUnless を使うと常に失敗として扱われる",
+                "correct": false
+            },
+            {
+                "text": "スキップはテスト検出対象から完全に除外される",
+                "correct": false
+            },
+            {
+                "text": "スキップはテストメソッドには使えない",
+                "correct": false
+            }
+        ],
+        "note": "skip/skipIf/skipUnless などのデコレータで条件付きスキップが可能。結果は 'skipped' として報告される。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 16,
+        "kind": "single",
+        "stem": "テスト結果の詳細表示（verbose）で実行したい。正しいコマンドを1つ選べ。",
+        "choices": [
+            {
+                "text": "python -m unittest -v",
+                "correct": true
+            },
+            {
+                "text": "python -m unittest --detail",
+                "correct": false
+            },
+            {
+                "text": "python -m unittest verbose",
+                "correct": false
+            },
+            {
+                "text": "python -m unittest -V",
+                "correct": false
+            }
+        ],
+        "note": "-v オプションで各テスト名が表示され、失敗箇所の特定が容易になる。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 16,
+        "kind": "single",
+        "stem": "テストコードで一時ディレクトリを安全に利用する標準的手法として最も適切なものを1つ選べ。",
+        "choices": [
+            {
+                "text": "tempfile.TemporaryDirectory() をコンテキストマネージャで使う",
+                "correct": true
+            },
+            {
+                "text": "/tmp に固定パスを作る",
+                "correct": false
+            },
+            {
+                "text": "ホームディレクトリ直下に生成する",
+                "correct": false
+            },
+            {
+                "text": "現在ディレクトリに .tmp を作る",
+                "correct": false
+            }
+        ],
+        "note": "TemporaryDirectory は自動クリーンアップされ、テスト間の汚染を防げる。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 16,
+        "kind": "single",
+        "stem": "unittest の等価性検証で集合の要素を順序無視で比較したい。適切なアサーションを1つ選べ。",
+        "choices": [
+            {
+                "text": "self.assertCountEqual(a, b)",
+                "correct": true
+            },
+            {
+                "text": "self.assertItemsEqual(a, b)",
+                "correct": false
+            },
+            {
+                "text": "self.assertSameElements(a, b)",
+                "correct": false
+            },
+            {
+                "text": "self.assertSetLikeEqual(a, b)",
+                "correct": false
+            }
+        ],
+        "note": "assertCountEqual は順序を無視し要素と出現回数の一致を検証する。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 16,
+        "kind": "single",
+        "stem": "テストで環境変数を一時的に変更して検証したい。最も適切な方法を1つ選べ。",
+        "choices": [
+            {
+                "text": "mock.patch.dict(os.environ, {\"KEY\": \"VAL\"}, clear=False)",
+                "correct": true
+            },
+            {
+                "text": "os.environ[\"KEY\"] = \"VAL\" を直接書き換え、戻さない",
+                "correct": false
+            },
+            {
+                "text": "subprocess で別プロセスを常に起動する",
+                "correct": false
+            },
+            {
+                "text": "configparser を使って環境変数を変更する",
+                "correct": false
+            }
+        ],
+        "note": "patch.dict で辞書を一時差し替えし、スコープ終了時に原状復帰させるのが安全。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 16,
+        "kind": "single",
+        "stem": "モジュールレベルの setUpModule/tearDownModule の正しい説明を1つ選べ。",
+        "choices": [
+            {
+                "text": "モジュール内のテスト実行前後にそれぞれ1回だけ呼ばれる関数",
+                "correct": true
+            },
+            {
+                "text": "各 TestCase の前後に毎回呼ばれる関数",
+                "correct": false
+            },
+            {
+                "text": "discover では無視される",
+                "correct": false
+            },
+            {
+                "text": "クラスメソッドとして定義する必要がある",
+                "correct": false
+            }
+        ],
+        "note": "関数ベースのフィクスチャ。重い初期化をまとめる際に用いるが乱用は避ける。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 16,
+        "kind": "single",
+        "stem": "テストで時間依存のコードを安定化させたい。適切な方法を1つ選べ。",
+        "choices": [
+            {
+                "text": "datetime.now を patch して固定値を返すようにする",
+                "correct": true
+            },
+            {
+                "text": "sleep を長くして失敗を減らす",
+                "correct": false
+            },
+            {
+                "text": "タイムゾーンを手作業で切り替える",
+                "correct": false
+            },
+            {
+                "text": "乱数シードを増やす",
+                "correct": false
+            }
+        ],
+        "note": "時間源を注入可能にしてモックする。I/Oや乱数も同様に抽象化・差し替え可能にしておくとテスト容易性が上がる。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 16,
+        "kind": "single",
+        "stem": "複数のテストケースをまとめて実行したい。unittest のテストスイート構築として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "suite = unittest.TestLoader().loadTestsFromModule(mod)",
+                "correct": true
+            },
+            {
+                "text": "suite = unittest.collect(mod)",
+                "correct": false
+            },
+            {
+                "text": "suite = TestCase.group(mod)",
+                "correct": false
+            },
+            {
+                "text": "suite = unittest.TestRunner().discover(mod)",
+                "correct": false
+            }
+        ],
+        "note": "TestLoader でモジュールやクラスからテストを読み込み、TextTestRunner などで実行する。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 16,
+        "kind": "single",
+        "stem": "doctest の特徴として正しい説明を1つ選べ。",
+        "choices": [
+            {
+                "text": "docstring 中の対話実行例（>>>）を実行・照合する",
+                "correct": true
+            },
+            {
+                "text": "Type hint を自動生成する",
+                "correct": false
+            },
+            {
+                "text": "HTML ドキュメントを解析してテスト化する",
+                "correct": false
+            },
+            {
+                "text": "PyPI パッケージのみ対象にできる",
+                "correct": false
+            }
+        ],
+        "note": "doctest はドキュメント例の信頼性を担保する軽量テスト。unittest と併用可能。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 16,
+        "kind": "single",
+        "stem": "doctest 実行のためにモジュール **doc** 内の例を走らせる簡単なコマンドとして正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "python -m doctest -v your_module.py",
+                "correct": true
+            },
+            {
+                "text": "python -m unittest doctest your_module.py",
+                "correct": false
+            },
+            {
+                "text": "python your_module.py --doctest",
+                "correct": false
+            },
+            {
+                "text": "python -m docstring test your_module.py",
+                "correct": false
+            }
+        ],
+        "note": "doctest モジュールは -v で詳細表示できる。ファイルパスを指定して実行可能。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 16,
+        "kind": "single",
+        "stem": "テストダブルのうち、呼び出し回数や引数の記録・検証を主目的とするものに最も該当する用語を1つ選べ。",
+        "choices": [
+            {
+                "text": "Mock",
+                "correct": true
+            },
+            {
+                "text": "Dummy",
+                "correct": false
+            },
+            {
+                "text": "Fake",
+                "correct": false
+            },
+            {
+                "text": "Stub（戻り値固定のみ）",
+                "correct": false
+            }
+        ],
+        "note": "Mock は振る舞いの差し替えに加え、呼び出しの履歴検証が可能。Stub は固定応答中心、Fake は簡易実装。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 16,
+        "kind": "single",
+        "stem": "unittest のテスト命名と可読性に関する指針として最も適切なものを1つ選べ。",
+        "choices": [
+            {
+                "text": "入力・操作・期待結果が分かる名前にする（例: test_add_returns_sum）",
+                "correct": true
+            },
+            {
+                "text": "すべてのテスト名を連番にする（test_001 など）",
+                "correct": false
+            },
+            {
+                "text": "短ければ意味がなくてもよい",
+                "correct": false
+            },
+            {
+                "text": "クラス名に全機能名を詰め込む",
+                "correct": false
+            }
+        ],
+        "note": "失敗時に何が壊れたかが名前から即時把握できるのが望ましい。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 16,
+        "kind": "single",
+        "stem": "テストでネットワーク依存を避ける基本方針として最も適切なものを1つ選べ。",
+        "choices": [
+            {
+                "text": "HTTP クライアントやソケット層をモックして応答を固定する",
+                "correct": true
+            },
+            {
+                "text": "テスト前にネットワークを無効化する",
+                "correct": false
+            },
+            {
+                "text": "外部APIの無料枠を利用して実通信する",
+                "correct": false
+            },
+            {
+                "text": "タイムアウトを長くする",
+                "correct": false
+            }
+        ],
+        "note": "外部依存は不安定要因。境界で抽象化し、モックで制御するのが基本。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 16,
+        "kind": "single",
+        "stem": "TextTestRunner の出力ストリームを変更したい。正しい用法を1つ選べ。",
+        "choices": [
+            {
+                "text": "unittest.TextTestRunner(stream=io.StringIO())",
+                "correct": true
+            },
+            {
+                "text": "unittest.main(stream=io.StringIO())",
+                "correct": false
+            },
+            {
+                "text": "unittest.runner(stream=sys.stdout).run()",
+                "correct": false
+            },
+            {
+                "text": "TextTestRunner.output=sys.stdout",
+                "correct": false
+            }
+        ],
+        "note": "TextTestRunner のコンストラクタに stream を渡すと出力先を差し替えられる。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 16,
+        "kind": "single",
+        "stem": "テスト対象が標準出力へ出す文字列を検証したい。最も簡潔なアプローチを1つ選べ。",
+        "choices": [
+            {
+                "text": "contextlib.redirect_stdout を使って StringIO へ捕捉する",
+                "correct": true
+            },
+            {
+                "text": "print を上書きする",
+                "correct": false
+            },
+            {
+                "text": "sys.stdout = None にする",
+                "correct": false
+            },
+            {
+                "text": "logging に置き換える",
+                "correct": false
+            }
+        ],
+        "note": "with redirect_stdout(io.StringIO()) として出力を捕捉し、期待文字列と比較する。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 16,
+        "kind": "single",
+        "stem": "非決定的な乱数依存コードのテストを安定化する最も一般的な方法を1つ選べ。",
+        "choices": [
+            {
+                "text": "乱数生成器を注入し、seed を固定するかモックする",
+                "correct": true
+            },
+            {
+                "text": "テストを複数回走らせ、一度でも通れば合格とする",
+                "correct": false
+            },
+            {
+                "text": "乱数の結果を広く許容する",
+                "correct": false
+            },
+            {
+                "text": "乱数を時間に基づかせる",
+                "correct": false
+            }
+        ],
+        "note": "依存を外部化（DI）して制御可能にするのがテスト容易性の鍵。",
+        "is_excluded": false
+    }
+]

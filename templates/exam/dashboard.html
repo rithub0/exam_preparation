@@ -1,0 +1,99 @@
+{% extends "exam/base.html" %}
+{% block title %}Dashboard — exam_preparation{% endblock %}
+{% block content %}
+<section class="panel">
+  
+  <p>
+    <a class="btn" href="{% url 'mock_start' %}">模擬試験</a>
+  </p>
+
+  <h3>DB登録済み問題数（出題対象のみ）</h3>
+  <p>{{ q_count|default:0 }} 件</p>
+
+  <h3>出題数充足率</h3>
+  <p>{{ total_stock_for_quota|default:0 }} / {{ total_quota|default:0 }}</p>
+
+  {% if has_deficit %}
+  <div class="alert-warn">
+    <strong>注意：</strong> 公式配点（40問）に対し、以下の章で問題が不足しています。
+    <ul class="tight">
+      {% for d in deficits %}
+      <li>Ch{{ d.ch }} {{ d.title }}：在庫 {{ d.stock }} / 出題数 {{ d.quota }}（不足 {{ d.lack }}）</li>
+      {% endfor %}
+    </ul>
+    <p class="small">不足がある状態でも試験は実行できますが、40問未満になる可能性があります。</p>
+  </div>
+  {% endif %}
+
+  <p>※出題対象外（公式除外）は常時フィルタON</p>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Ch</th>
+        <th>タイトル</th>
+        <th>登録数（対象）</th>
+        <th>出題数</th>
+        <th>充足率</th>
+        <th>ゲージ</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for ch in ch_coverage %}
+      <tr class="quota-row" data-stock="{{ ch.n|default:0 }}" data-quota="{{ ch.official_quota|default:0 }}">
+        <td>{{ ch.num }}</td>
+        <td>{{ ch.title }}</td>
+        <td>{{ ch.n|default:0 }}</td>
+        <td>{{ ch.official_quota|default:"-" }}</td>
+        <td class="quota-percent">-</td>
+        <td>
+          <div class="quota-bar">
+            <div class="quota-fill"></div>
+          </div>
+        </td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="6">データがありません。</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+
+<script>
+  // 章出題数：幅= min(stock/quota,1) * 100%、充足率は同じ値を%表示
+  (function () {
+    var rows = document.querySelectorAll('.quota-row');
+    rows.forEach(function (row) {
+      var stock = parseFloat(row.getAttribute('data-stock') || '0');
+      var quota = parseFloat(row.getAttribute('data-quota') || '0');
+      var ratio = (quota > 0) ? Math.min(stock / quota, 1) : 0;
+      var percentText = (quota > 0)
+        ? Math.round((stock / quota) * 100)
+        : 0;
+
+      // パーセント表示
+      var pctCell = row.querySelector('.quota-percent');
+      if (pctCell) {
+        if (quota > 0) {
+          pctCell.textContent = percentText + '%';
+        } else {
+          pctCell.textContent = '-';
+        }
+      }
+
+      // バー幅
+      var fill = row.querySelector('.quota-fill');
+      if (fill) fill.style.width = Math.round(ratio * 100) + '%';
+
+      // 状態クラス
+      var bar = row.querySelector('.quota-bar');
+      if (bar) {
+        if (quota > 0 && stock < quota) bar.classList.add('need');
+        else bar.classList.add('ok');
+      }
+    });
+  })();
+</script>
+{% endblock %}

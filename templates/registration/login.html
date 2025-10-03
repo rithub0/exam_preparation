@@ -1,0 +1,14 @@
+{% extends "exam/base.html" %}
+{% block title %}ログイン — Exam preparation{% endblock %}
+{% block content %}
+<section class="panel">
+  <h2>ログイン</h2>
+  <form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    {% if next %}<input type="hidden" name="next" value="{{ next }}">{% endif %}
+    <button type="submit" class="btn">ログイン</button>
+  </form>
+  <p><a href="{% url 'password_reset' %}">パスワードをお忘れですか？</a></p>
+</section>
+{% endblock %}

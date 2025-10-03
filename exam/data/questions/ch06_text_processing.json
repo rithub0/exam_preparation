@@ -1,0 +1,1002 @@
+[
+    {
+        "chapter": 6,
+        "kind": "single",
+        "stem": "文字列を空白で分割してリストにしたい。正しい方法を1つ選べ。",
+        "choices": [
+            {
+                "text": "'a b c'.split()",
+                "correct": true
+            },
+            {
+                "text": "split('a b c')",
+                "correct": false
+            },
+            {
+                "text": "list.split('a b c')",
+                "correct": false
+            },
+            {
+                "text": "'a b c'.divide()",
+                "correct": false
+            }
+        ],
+        "note": "split() は空白（連続する空白も含む）で区切ってくれる。引数を省略すると空白全般が対象になる。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 6,
+        "kind": "single",
+        "stem": "リストの文字列を「, 」で連結したい。正しいコードを1つ選べ。",
+        "choices": [
+            {
+                "text": "', '.join(['apple', 'banana'])",
+                "correct": true
+            },
+            {
+                "text": "join([', ', 'apple', 'banana'])",
+                "correct": false
+            },
+            {
+                "text": "['apple','banana'].join(', ')",
+                "correct": false
+            },
+            {
+                "text": "concat(', ', ['apple','banana'])",
+                "correct": false
+            }
+        ],
+        "note": "join は“区切り文字”.join(イテラブル) の形で使う。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 6,
+        "kind": "single",
+        "stem": "先頭と末尾の空白だけを取り除きたい。正しいメソッドを1つ選べ。",
+        "choices": [
+            {
+                "text": "strip()",
+                "correct": true
+            },
+            {
+                "text": "trim()",
+                "correct": false
+            },
+            {
+                "text": "cut()",
+                "correct": false
+            },
+            {
+                "text": "remove()",
+                "correct": false
+            }
+        ],
+        "note": "strip() は前後の空白を除去。lstrip()/rstrip() で片側だけ。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 6,
+        "kind": "single",
+        "stem": "文字列が 'http' で始まるかを調べたい。正しい方法を1つ選べ。",
+        "choices": [
+            {
+                "text": "url.startswith('http')",
+                "correct": true
+            },
+            {
+                "text": "'http' in url",
+                "correct": false
+            },
+            {
+                "text": "url.find('http') == 0",
+                "correct": false
+            },
+            {
+                "text": "url.endswith('http')",
+                "correct": false
+            }
+        ],
+        "note": "startswith/endswith は読みやすく高速。find==0 でも可能だが意図が伝わりにくい。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 6,
+        "kind": "single",
+        "stem": "大文字・小文字を無視して比較したい。最も簡単な方法を1つ選べ。",
+        "choices": [
+            {
+                "text": "a.lower() == b.lower()",
+                "correct": true
+            },
+            {
+                "text": "a == b == ignorecase",
+                "correct": false
+            },
+            {
+                "text": "casefold(a) == casefold(b)",
+                "correct": false
+            },
+            {
+                "text": "a.swapcase() == b.swapcase()",
+                "correct": false
+            }
+        ],
+        "note": "初心者向けには lower() 比較が分かりやすい。より厳密には casefold() が有用なこともある。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 6,
+        "kind": "single",
+        "stem": "文字列の中の 'cat' を 'dog' にすべて置換したい。正しい方法を1つ選べ。",
+        "choices": [
+            {
+                "text": "s.replace('cat', 'dog')",
+                "correct": true
+            },
+            {
+                "text": "s.sub('cat', 'dog')",
+                "correct": false
+            },
+            {
+                "text": "replace(s, 'cat', 'dog')",
+                "correct": false
+            },
+            {
+                "text": "s.rename('cat', 'dog')",
+                "correct": false
+            }
+        ],
+        "note": "str.replace(旧, 新)。元の文字列は不変なので新しい文字列を返す。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 6,
+        "kind": "single",
+        "stem": "改行を含む長い文章を、70文字程度で自動的に折り返して表示したい。適切な関数を1つ選べ。",
+        "choices": [
+            {
+                "text": "textwrap.fill(text, width=70)",
+                "correct": true
+            },
+            {
+                "text": "wrap(text, width=70)",
+                "correct": false
+            },
+            {
+                "text": "text.fill(text, 70)",
+                "correct": false
+            },
+            {
+                "text": "textwrap.break(text, 70)",
+                "correct": false
+            }
+        ],
+        "note": "textwrap.fill は一行の文字列に整形して返す。折り返しのみのリストが欲しければ wrap を使う。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 6,
+        "kind": "single",
+        "stem": "インデント付きの複数行文字列から、共通の先頭空白を一括で取り除きたい。適切な関数を1つ選べ。",
+        "choices": [
+            {
+                "text": "textwrap.dedent(s)",
+                "correct": true
+            },
+            {
+                "text": "s.stripindent()",
+                "correct": false
+            },
+            {
+                "text": "textwrap.unindent(s)",
+                "correct": false
+            },
+            {
+                "text": "s.rstripindent()",
+                "correct": false
+            }
+        ],
+        "note": "textwrap.dedent は各行の共通インデントを除去して整形する。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 6,
+        "kind": "single",
+        "stem": "Unicode コードポイントから文字を作りたい。正しい関数を1つ選べ。",
+        "choices": [
+            {
+                "text": "chr(9731)",
+                "correct": true
+            },
+            {
+                "text": "char(9731)",
+                "correct": false
+            },
+            {
+                "text": "tochar(9731)",
+                "correct": false
+            },
+            {
+                "text": "unicode(9731)",
+                "correct": false
+            }
+        ],
+        "note": "chr(n) はコードポイント n の文字を返す。逆は ord(ch)。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 6,
+        "kind": "single",
+        "stem": "パスや正規表現でバックスラッシュを多用する場合、エスケープを避けて読みやすくしたい。適切なリテラルを1つ選べ。",
+        "choices": [
+            {
+                "text": "r'...\\path\\to\\file'",
+                "correct": true
+            },
+            {
+                "text": "'...\\path\\to\\file'",
+                "correct": false
+            },
+            {
+                "text": "R\".../path/to/file\"",
+                "correct": false
+            },
+            {
+                "text": "raw('...')",
+                "correct": false
+            }
+        ],
+        "note": "先頭に r を付ける raw 文字列はバックスラッシュをエスケープしない（末尾に単独の \\ は不可）。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 6,
+        "kind": "single",
+        "stem": "正規表現で 'abc' を文字列の先頭にだけマッチさせたい。適切なパターンを1つ選べ。",
+        "choices": [
+            {
+                "text": "^abc",
+                "correct": true
+            },
+            {
+                "text": "abc$",
+                "correct": false
+            },
+            {
+                "text": ".*abc",
+                "correct": false
+            },
+            {
+                "text": "[abc]^",
+                "correct": false
+            }
+        ],
+        "note": "^ は行頭アンカー、$ は行末アンカーを表す。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 6,
+        "kind": "single",
+        "stem": "正規表現で数字3桁にマッチするパターンとして正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "\\d{3}",
+                "correct": true
+            },
+            {
+                "text": "\\d\\d",
+                "correct": false
+            },
+            {
+                "text": "\\d+?{3}",
+                "correct": false
+            },
+            {
+                "text": "[0-9]{2,}?",
+                "correct": false
+            }
+        ],
+        "note": "\\d は数字。{3} はちょうど3回の繰り返し。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 6,
+        "kind": "single",
+        "stem": "re モジュールで最初の1件だけマッチ結果を取りたい。正しい関数を1つ選べ。",
+        "choices": [
+            {
+                "text": "re.search(pattern, text)",
+                "correct": true
+            },
+            {
+                "text": "re.findall(pattern, text)",
+                "correct": false
+            },
+            {
+                "text": "re.finditer(pattern, text)",
+                "correct": false
+            },
+            {
+                "text": "re.matchall(pattern, text)",
+                "correct": false
+            }
+        ],
+        "note": "search は最初の一致を返す。findall は全マッチのリスト、finditer はイテレータを返す。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 6,
+        "kind": "single",
+        "stem": "文字列全体が正規表現パターンに完全一致するか確認したい。最適な関数を1つ選べ。",
+        "choices": [
+            {
+                "text": "re.fullmatch(p, s)",
+                "correct": true
+            },
+            {
+                "text": "re.match(p, s)",
+                "correct": false
+            },
+            {
+                "text": "re.search(p, s)",
+                "correct": false
+            },
+            {
+                "text": "re.equals(p, s)",
+                "correct": false
+            }
+        ],
+        "note": "fullmatch は文字列全体との一致を確認する。match は先頭一致。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 6,
+        "kind": "single",
+        "stem": "正規表現で大文字小文字を区別せずに検索したい。適切な方法を1つ選べ。",
+        "choices": [
+            {
+                "text": "re.search(p, s, flags=re.IGNORECASE)",
+                "correct": true
+            },
+            {
+                "text": "re.search(p, s, ignore_case=True)",
+                "correct": false
+            },
+            {
+                "text": "re.search(p, s).lower()",
+                "correct": false
+            },
+            {
+                "text": "re.search(p.lower(), s.lower(), re.IGNORECASE)",
+                "correct": false
+            }
+        ],
+        "note": "flags に re.IGNORECASE（別名 re.I）を渡す。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 6,
+        "kind": "single",
+        "stem": "re.sub で括弧で囲んだ“キャプチャ”を使って置換したい。適切な置換文字列を1つ選べ（第1グループを参照）。",
+        "choices": [
+            {
+                "text": "re.sub(r'(foo)(bar)', r'\\1-\\2', s)",
+                "correct": true
+            },
+            {
+                "text": "re.sub('(foo)(bar)', '\\\\[1]-\\\\[2]', s)",
+                "correct": false
+            },
+            {
+                "text": "re.sub('(foo)(bar)', '$1-$2', s)",
+                "correct": false
+            },
+            {
+                "text": "re.sub('(foo)(bar)', '\\g1-\\g2', s)",
+                "correct": false
+            }
+        ],
+        "note": "生文字列 r'\\1' を使うのが安全。\\g<1> 記法でも良い。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 6,
+        "kind": "single",
+        "stem": "日本語を含む文字列 s を UTF-8 のバイト列にしたい。正しい方法を1つ選べ。",
+        "choices": [
+            {
+                "text": "s.encode('utf-8')",
+                "correct": true
+            },
+            {
+                "text": "bytes(s)",
+                "correct": false
+            },
+            {
+                "text": "utf8(s)",
+                "correct": false
+            },
+            {
+                "text": "encode(s, 'utf8')",
+                "correct": false
+            }
+        ],
+        "note": "str はテキスト、bytes はバイト列。エンコードで変換する。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 6,
+        "kind": "single",
+        "stem": "UTF-8 のバイト列 b から Python の文字列に戻したい。適切な方法を1つ選べ。",
+        "choices": [
+            {
+                "text": "b.decode('utf-8')",
+                "correct": true
+            },
+            {
+                "text": "str(b)",
+                "correct": false
+            },
+            {
+                "text": "text(b)",
+                "correct": false
+            },
+            {
+                "text": "b.to_str('utf-8')",
+                "correct": false
+            }
+        ],
+        "note": "bytes.decode('utf-8') でデコードする。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 6,
+        "kind": "single",
+        "stem": "改行コードを統一したい。最も簡単な方法を1つ選べ。",
+        "choices": [
+            {
+                "text": "s.replace('\\r\\n', '\\n').replace('\\r', '\\n')",
+                "correct": true
+            },
+            {
+                "text": "s.normalize_lines()",
+                "correct": false
+            },
+            {
+                "text": "s.replace('\\n', '\\r\\n')",
+                "correct": false
+            },
+            {
+                "text": "s.splitlineskeep()",
+                "correct": false
+            }
+        ],
+        "note": "Windows の CRLF や古い CR を LF にそろえる簡便な例。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 6,
+        "kind": "single",
+        "stem": "複数行文字列を 1 行ずつ処理したい。改行を保持せずに分割する最も簡単な方法を1つ選べ。",
+        "choices": [
+            {
+                "text": "s.splitlines()",
+                "correct": true
+            },
+            {
+                "text": "s.split('\\n', keepends=True)",
+                "correct": false
+            },
+            {
+                "text": "s.lines()",
+                "correct": false
+            },
+            {
+                "text": "s.to_lines()",
+                "correct": false
+            }
+        ],
+        "note": "splitlines() は \\r\\n なども安全に扱う。keepends=True で改行を残すこともできる。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 6,
+        "kind": "single",
+        "stem": "カンマ区切りの文字列 'a,b,,c' を空要素も含めて分割したい。正しい方法を1つ選べ。",
+        "choices": [
+            {
+                "text": "'a,b,,c'.split(',')",
+                "correct": true
+            },
+            {
+                "text": "'a,b,,c'.split()",
+                "correct": false
+            },
+            {
+                "text": "re.split('\\s+', 'a,b,,c')",
+                "correct": false
+            },
+            {
+                "text": "split(',', 'a,b,,c')",
+                "correct": false
+            }
+        ],
+        "note": "区切り文字を明示すると空文字 '' も結果に含まれる。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 6,
+        "kind": "single",
+        "stem": "文字列 'Hello' を中央寄せで幅10に整形したい。正しい方法を1つ選べ。",
+        "choices": [
+            {
+                "text": "'Hello'.center(10)",
+                "correct": true
+            },
+            {
+                "text": "'Hello'.align(10, 'center')",
+                "correct": false
+            },
+            {
+                "text": "center('Hello', 10)",
+                "correct": false
+            },
+            {
+                "text": "'Hello'.pad(10)",
+                "correct": false
+            }
+        ],
+        "note": "str.center(width, fillchar=' ') で中央寄せ。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 6,
+        "kind": "single",
+        "stem": "タブ文字をスペースに展開したい。適切なメソッドを1つ選べ。",
+        "choices": [
+            {
+                "text": "s.expandtabs(4)",
+                "correct": true
+            },
+            {
+                "text": "s.tab2space(4)",
+                "correct": false
+            },
+            {
+                "text": "s.replace('\\t', ' '*4, tabs=True)",
+                "correct": false
+            },
+            {
+                "text": "s.untabify()",
+                "correct": false
+            }
+        ],
+        "note": "expandtabs(n) はタブを n スペース相当に展開する。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 6,
+        "kind": "single",
+        "stem": "文字列の一部だけを置換したい。最初の1回だけ 'a' を 'A' にしたい。正しい呼び出しを1つ選べ。",
+        "choices": [
+            {
+                "text": "s.replace('a', 'A', 1)",
+                "correct": true
+            },
+            {
+                "text": "s.replace('a', 'A', first=True)",
+                "correct": false
+            },
+            {
+                "text": "s.sub('a', 'A', count=1)",
+                "correct": false
+            },
+            {
+                "text": "s.replaceonce('a', 'A')",
+                "correct": false
+            }
+        ],
+        "note": "replace の第3引数に最大回数（count）を渡せる。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 6,
+        "kind": "single",
+        "stem": "文字列から数字だけを取り出して結合したい。最も簡単な例を1つ選べ。",
+        "choices": [
+            {
+                "text": "''.join(ch for ch in s if ch.isdigit())",
+                "correct": true
+            },
+            {
+                "text": "filter(s, isdigit).join('')",
+                "correct": false
+            },
+            {
+                "text": "s.onlydigits()",
+                "correct": false
+            },
+            {
+                "text": "re.findall('\\d', s).join('')",
+                "correct": false
+            }
+        ],
+        "note": "内包表記と str.isdigit() を組み合わせるのが手軽。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 6,
+        "kind": "single",
+        "stem": "ユーザー入力が空文字かどうかを簡単に判定したい。適切な条件を1つ選べ。",
+        "choices": [
+            {
+                "text": "if not s:",
+                "correct": true
+            },
+            {
+                "text": "if len(s) is 0:",
+                "correct": false
+            },
+            {
+                "text": "if s == None:",
+                "correct": false
+            },
+            {
+                "text": "if s equals '':",
+                "correct": false
+            }
+        ],
+        "note": "空文字 '' は False と評価される。len(s) is 0 は誤り。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 6,
+        "kind": "single",
+        "stem": "先頭だけ大文字、他を小文字にしたい。正しいメソッドを1つ選べ。",
+        "choices": [
+            {
+                "text": "s.capitalize()",
+                "correct": true
+            },
+            {
+                "text": "s.title()",
+                "correct": false
+            },
+            {
+                "text": "s.upper()",
+                "correct": false
+            },
+            {
+                "text": "s.swapcase()",
+                "correct": false
+            }
+        ],
+        "note": "capitalize() は先頭1文字のみ大文字、他は小文字にする。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 6,
+        "kind": "single",
+        "stem": "単語ごとに先頭を大文字にしたい。適切なメソッドを1つ選べ。",
+        "choices": [
+            {
+                "text": "s.title()",
+                "correct": true
+            },
+            {
+                "text": "s.capitalize()",
+                "correct": false
+            },
+            {
+                "text": "s.upperfirst()",
+                "correct": false
+            },
+            {
+                "text": "s.startcase()",
+                "correct": false
+            }
+        ],
+        "note": "title() は語の先頭を大文字化する（例外もある）。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 6,
+        "kind": "single",
+        "stem": "文字列が数字だけで構成されるか調べたい。適切なメソッドを1つ選べ。",
+        "choices": [
+            {
+                "text": "s.isdigit()",
+                "correct": true
+            },
+            {
+                "text": "s.isnumeric()",
+                "correct": false
+            },
+            {
+                "text": "s.isdecimal()",
+                "correct": false
+            },
+            {
+                "text": "s.isnumber()",
+                "correct": false
+            }
+        ],
+        "note": "初学者向けには isdigit() が分かりやすい。用途により isnumeric()/isdecimal() も使い分ける。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 6,
+        "kind": "single",
+        "stem": "複数の置換を一度に行いたい。'&' を '&amp;'、'<' を '&lt;' に変換する簡単な方法を1つ選べ。",
+        "choices": [
+            {
+                "text": "s.translate(str.maketrans({'&':'&amp;','<':'&lt;'}))",
+                "correct": true
+            },
+            {
+                "text": "s.replace('&','&amp;').replace('<','&lt;')",
+                "correct": false
+            },
+            {
+                "text": "translate(s, '&->&amp;','<->&lt;')",
+                "correct": false
+            },
+            {
+                "text": "s.maketrans().translate()",
+                "correct": false
+            }
+        ],
+        "note": "str.maketrans で変換表を作り translate に渡すと効率的。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 6,
+        "kind": "single",
+        "stem": "正規表現で“できるだけ短く”マッチさせたい。量指定子の書き方を1つ選べ。",
+        "choices": [
+            {
+                "text": ".+?",
+                "correct": true
+            },
+            {
+                "text": ".*",
+                "correct": false
+            },
+            {
+                "text": ".+",
+                "correct": false
+            },
+            {
+                "text": ".{1,}",
+                "correct": false
+            }
+        ],
+        "note": "末尾の ? を付けると“非貪欲（最短一致）”になる。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 6,
+        "kind": "single",
+        "stem": "re.compile を使う利点として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "パターンを事前にコンパイルして繰り返し検索を速く書ける",
+                "correct": true
+            },
+            {
+                "text": "常に結果が完全一致になる",
+                "correct": false
+            },
+            {
+                "text": "生文字列 r'' を不要にできる",
+                "correct": false
+            },
+            {
+                "text": "メモリ使用量がゼロになる",
+                "correct": false
+            }
+        ],
+        "note": "同じパターンで何度も検索する場合に読みやすく効率的。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 6,
+        "kind": "single",
+        "stem": "re.sub の置換で、関数を使って動的に置換文字列を作りたい。適切な呼び出しを1つ選べ。",
+        "choices": [
+            {
+                "text": "re.sub(p, lambda m: m.group(0).upper(), s)",
+                "correct": true
+            },
+            {
+                "text": "re.sub(p, str.upper, s, use_match=True)",
+                "correct": false
+            },
+            {
+                "text": "re.sub(p, fn(m), s)",
+                "correct": false
+            },
+            {
+                "text": "re.subfn(p, m -> m[0].upper(), s)",
+                "correct": false
+            }
+        ],
+        "note": "置換に関数を渡すと、マッチオブジェクト m から自由に生成できる。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 6,
+        "kind": "single",
+        "stem": "句読点や記号だけを簡単に取り除きたい。最も手軽な例を1つ選べ。",
+        "choices": [
+            {
+                "text": "''.join(ch for ch in s if ch.isalnum() or ch.isspace())",
+                "correct": true
+            },
+            {
+                "text": "s.remove_punct()",
+                "correct": false
+            },
+            {
+                "text": "re.drop('[\\p{P}]', s)",
+                "correct": false
+            },
+            {
+                "text": "s.filter(alpha=True)",
+                "correct": false
+            }
+        ],
+        "note": "isalpha だけだと数字や空白も消える。目的に応じて条件を調整する。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 6,
+        "kind": "single",
+        "stem": "空文字を区切りに join するとどうなるか。正しい説明を1つ選べ。",
+        "choices": [
+            {
+                "text": "リストの要素がそのまま隙間なく連結される",
+                "correct": true
+            },
+            {
+                "text": "カンマ区切りになる",
+                "correct": false
+            },
+            {
+                "text": "TypeError が発生する",
+                "correct": false
+            },
+            {
+                "text": "自動的に空白が入る",
+                "correct": false
+            }
+        ],
+        "note": "'' .join([...]) は純粋に連結する。要素は文字列でなければならない。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 6,
+        "kind": "single",
+        "stem": "find と index の違いとして正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "find は見つからないと -1、index は ValueError を送出する",
+                "correct": true
+            },
+            {
+                "text": "どちらも見つからないと None を返す",
+                "correct": false
+            },
+            {
+                "text": "find は正規表現対応、index は非対応",
+                "correct": false
+            },
+            {
+                "text": "index は速度が常に2倍",
+                "correct": false
+            }
+        ],
+        "note": "エラー処理の方針に合わせて使い分ける。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 6,
+        "kind": "single",
+        "stem": "文字列の末尾だけを安全に削りたい。適切なメソッドを1つ選べ。",
+        "choices": [
+            {
+                "text": "removesuffix('.txt')",
+                "correct": true
+            },
+            {
+                "text": "rstrip('.txt')",
+                "correct": false
+            },
+            {
+                "text": "chop('.txt')",
+                "correct": false
+            },
+            {
+                "text": "trimend('.txt')",
+                "correct": false
+            }
+        ],
+        "note": "Python 3.9+ の removesuffix は接尾辞に一致したときだけ取り除く。rstrip は“集合”として扱うので注意。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 6,
+        "kind": "single",
+        "stem": "先頭の接頭辞 'pre_' を安全に削りたい。適切なメソッドを1つ選べ。",
+        "choices": [
+            {
+                "text": "removeprefix('pre_')",
+                "correct": true
+            },
+            {
+                "text": "lstrip('pre_')",
+                "correct": false
+            },
+            {
+                "text": "strip('pre_')",
+                "correct": false
+            },
+            {
+                "text": "cutprefix('pre_')",
+                "correct": false
+            }
+        ],
+        "note": "removeprefix は一致したときのみ除去。lstrip は文字集合扱い。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 6,
+        "kind": "single",
+        "stem": "英字と数字だけを小文字化したい。適切なコード例を1つ選べ。",
+        "choices": [
+            {
+                "text": "''.join(ch.lower() if ch.isalpha() else ch for ch in s)",
+                "correct": true
+            },
+            {
+                "text": "s.lowercase_alpha()",
+                "correct": false
+            },
+            {
+                "text": "re.lower('[A-Za-z]', s)",
+                "correct": false
+            },
+            {
+                "text": "s.lower(alpha_only=True)",
+                "correct": false
+            }
+        ],
+        "note": "条件演算子と isalpha() の組み合わせがシンプル。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 6,
+        "kind": "single",
+        "stem": "多言語のテキストを比較する前に、全角と半角を統一したい。標準ライブラリで近い処理を行う関数を1つ選べ。",
+        "choices": [
+            {
+                "text": "unicodedata.normalize('NFKC', s)",
+                "correct": true
+            },
+            {
+                "text": "textwrap.normalize(s)",
+                "correct": false
+            },
+            {
+                "text": "re.normalize('NFKC', s)",
+                "correct": false
+            },
+            {
+                "text": "normalize.unicode(s)",
+                "correct": false
+            }
+        ],
+        "note": "unicodedata.normalize は文字の互換分解・合成を行う。NFKC は幅や表記の違いをならして比較しやすくする。",
+        "is_excluded": false
+    }
+]

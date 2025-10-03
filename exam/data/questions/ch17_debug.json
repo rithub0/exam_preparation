@@ -1,0 +1,527 @@
+[
+    {
+        "chapter": 17,
+        "kind": "single",
+        "stem": "実行中に対話的デバッガへ入るための組み込み関数として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "breakpoint()",
+                "correct": true
+            },
+            {
+                "text": "debug()",
+                "correct": false
+            },
+            {
+                "text": "inspect()",
+                "correct": false
+            },
+            {
+                "text": "trap()",
+                "correct": false
+            }
+        ],
+        "note": "Python 3.7以降は組み込みの breakpoint() が推奨。デフォルトは pdb.set_trace 相当。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 17,
+        "kind": "single",
+        "stem": "breakpoint() の動作を環境変数で無効化したい。正しい設定を1つ選べ。",
+        "choices": [
+            {
+                "text": "PYTHONBREAKPOINT=0",
+                "correct": true
+            },
+            {
+                "text": "PYTHONDEBUG=off",
+                "correct": false
+            },
+            {
+                "text": "PYTHONINSPECT=0",
+                "correct": false
+            },
+            {
+                "text": "PYTHONDONTWRITEBYTECODE=1",
+                "correct": false
+            }
+        ],
+        "note": "PYTHONBREAKPOINT に 0 を指定すると breakpoint() は無効化され、何もしなくなる。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 17,
+        "kind": "single",
+        "stem": "pdb で“現在行を実行して次の行へ進む（関数呼び出しには入らない）”操作に対応するコマンドを1つ選べ。",
+        "choices": [
+            {
+                "text": "n",
+                "correct": true
+            },
+            {
+                "text": "s",
+                "correct": false
+            },
+            {
+                "text": "c",
+                "correct": false
+            },
+            {
+                "text": "r",
+                "correct": false
+            }
+        ],
+        "note": "n は next、s は step（関数に入る）、c は continue、r は return（現在の関数を抜ける）。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 17,
+        "kind": "single",
+        "stem": "対象スクリプトを対話デバッガ付きで起動する一般的な方法を1つ選べ。",
+        "choices": [
+            {
+                "text": "python -m pdb your_script.py",
+                "correct": true
+            },
+            {
+                "text": "python --debug your_script.py",
+                "correct": false
+            },
+            {
+                "text": "python -m inspect your_script.py",
+                "correct": false
+            },
+            {
+                "text": "python -X debug your_script.py",
+                "correct": false
+            }
+        ],
+        "note": "pdb は標準の対話デバッガ。-m でモジュールとして起動する。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 17,
+        "kind": "single",
+        "stem": "pdb セッションで式の値を表示する基本コマンドとして正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "p expr",
+                "correct": true
+            },
+            {
+                "text": "echo expr",
+                "correct": false
+            },
+            {
+                "text": "show expr",
+                "correct": false
+            },
+            {
+                "text": "val expr",
+                "correct": false
+            }
+        ],
+        "note": "p は print、pp は pretty print。! を先頭に付けると任意の Python 文を実行できる。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 17,
+        "kind": "single",
+        "stem": "pdb で現在の関数から“戻り”まで実行を進めるコマンドを1つ選べ。",
+        "choices": [
+            {
+                "text": "r",
+                "correct": true
+            },
+            {
+                "text": "b",
+                "correct": false
+            },
+            {
+                "text": "u",
+                "correct": false
+            },
+            {
+                "text": "w",
+                "correct": false
+            }
+        ],
+        "note": "r は return。b は break（ブレークポイント設定）、u/w はスタック移動表示系。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 17,
+        "kind": "single",
+        "stem": "pdb で現在ファイルの特定行にブレークポイントを置く正しい操作を1つ選べ。",
+        "choices": [
+            {
+                "text": "b 120",
+                "correct": true
+            },
+            {
+                "text": "breakline 120",
+                "correct": false
+            },
+            {
+                "text": "bp:120",
+                "correct": false
+            },
+            {
+                "text": "stop 120",
+                "correct": false
+            }
+        ],
+        "note": "別ファイルなら b path/to/file.py:120 の形式を使う。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 17,
+        "kind": "single",
+        "stem": "pdb で登録済みのブレークポイント #2 を削除する正しいコマンドを1つ選べ。",
+        "choices": [
+            {
+                "text": "clear 2",
+                "correct": true
+            },
+            {
+                "text": "delete 2",
+                "correct": false
+            },
+            {
+                "text": "unbreak 2",
+                "correct": false
+            },
+            {
+                "text": "remove 2",
+                "correct": false
+            }
+        ],
+        "note": "b で一覧、clear <番号> で削除できる。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 17,
+        "kind": "single",
+        "stem": "例外発生後の“ポストモーテム”デバッグとして適切な呼び出しを1つ選べ。",
+        "choices": [
+            {
+                "text": "pdb.post_mortem()",
+                "correct": true
+            },
+            {
+                "text": "pdb.after_exception()",
+                "correct": false
+            },
+            {
+                "text": "pdb.resume()",
+                "correct": false
+            },
+            {
+                "text": "pdb.rollback()",
+                "correct": false
+            }
+        ],
+        "note": "except 節で traceback 情報（例外コンテキスト）を元に対話デバッガへ入る用途。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 17,
+        "kind": "single",
+        "stem": "breakpoint() のバックエンドを独自関数に差し替える正しい指定を1つ選べ。",
+        "choices": [
+            {
+                "text": "PYTHONBREAKPOINT='pkg.module:func'",
+                "correct": true
+            },
+            {
+                "text": "PYTHONBREAKPOINT='pkg.module.func()'",
+                "correct": false
+            },
+            {
+                "text": "PYTHONBREAKPOINT='[func@pkg.module](mailto:func@pkg.module)'",
+                "correct": false
+            },
+            {
+                "text": "PYTHONBREAKPOINT='pkg:module.func()'",
+                "correct": false
+            }
+        ],
+        "note": "「モジュール:呼び出し可能オブジェクト」の文字列を指定する。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 17,
+        "kind": "single",
+        "stem": "ログでデバッグ情報を出したい。適切な初期設定を1つ選べ。",
+        "choices": [
+            {
+                "text": "logging.basicConfig(level=logging.DEBUG)",
+                "correct": true
+            },
+            {
+                "text": "logging.setLevel(logging.DEBUG)",
+                "correct": false
+            },
+            {
+                "text": "logging.enable(DEBUG=True)",
+                "correct": false
+            },
+            {
+                "text": "logging.start(level='DEBUG')",
+                "correct": false
+            }
+        ],
+        "note": "basicConfig で最低限のハンドラとレベルを設定できる。getLogger(**name**) と併用するのが定石。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 17,
+        "kind": "single",
+        "stem": "モジュール専用のロガーを取得する慣習的なコードとして正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "logger = logging.getLogger(**name**)",
+                "correct": true
+            },
+            {
+                "text": "logger = logging.Logger()",
+                "correct": false
+            },
+            {
+                "text": "logger = logging.root",
+                "correct": false
+            },
+            {
+                "text": "logger = logging.getLogger()",
+                "correct": false
+            }
+        ],
+        "note": "**name** で階層ロガーを得ると設定の継承と粒度制御が容易になる。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 17,
+        "kind": "single",
+        "stem": "非推奨APIの利用を素早く検知したい。warnings で適切な設定を1つ選べ。",
+        "choices": [
+            {
+                "text": "warnings.simplefilter('error', DeprecationWarning)",
+                "correct": true
+            },
+            {
+                "text": "warnings.setlevel('DEBUG')",
+                "correct": false
+            },
+            {
+                "text": "warnings.raise_on(DeprecationWarning)",
+                "correct": false
+            },
+            {
+                "text": "warnings.filter('fatal')",
+                "correct": false
+            }
+        ],
+        "note": "DeprecationWarning を例外化すると早期に気付ける。テスト時にも有効。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 17,
+        "kind": "single",
+        "stem": "プロセス全体でクラッシュ時にスタック情報を自動表示したい。実行時に有効化する標準手段を1つ選べ。",
+        "choices": [
+            {
+                "text": "import faulthandler; faulthandler.enable()",
+                "correct": true
+            },
+            {
+                "text": "import sys; sys.enable_faults()",
+                "correct": false
+            },
+            {
+                "text": "import inspect; inspect.enable()",
+                "correct": false
+            },
+            {
+                "text": "import signal; signal.enable()",
+                "correct": false
+            }
+        ],
+        "note": "faulthandler は致命的エラー時のスタック出力を容易にする。起動オプションや環境変数でも有効化できる。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 17,
+        "kind": "single",
+        "stem": "メモリ割り当ての発生源を調べたい。開始時に呼ぶべき関数を1つ選べ。",
+        "choices": [
+            {
+                "text": "tracemalloc.start()",
+                "correct": true
+            },
+            {
+                "text": "gc.track()",
+                "correct": false
+            },
+            {
+                "text": "resource.enable()",
+                "correct": false
+            },
+            {
+                "text": "memoryview.start()",
+                "correct": false
+            }
+        ],
+        "note": "tracemalloc.start() の後にスナップショット取得や統計が可能になる。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 17,
+        "kind": "single",
+        "stem": "pdb で“現在の関数の引数値”を確認するコマンドを1つ選べ。",
+        "choices": [
+            {
+                "text": "args",
+                "correct": true
+            },
+            {
+                "text": "params",
+                "correct": false
+            },
+            {
+                "text": "argv",
+                "correct": false
+            },
+            {
+                "text": "showargs",
+                "correct": false
+            }
+        ],
+        "note": "args は現在のフレームの仮引数と値を表示する。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 17,
+        "kind": "single",
+        "stem": "マルチプロセスコードをデバッグ可能にする基本的なガードとして正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "if **name** == '**main**':",
+                "correct": true
+            },
+            {
+                "text": "if **debug**:",
+                "correct": false
+            },
+            {
+                "text": "if **package** is None:",
+                "correct": false
+            },
+            {
+                "text": "if **loader** is None:",
+                "correct": false
+            }
+        ],
+        "note": "spawn モード等で子プロセス側の無限再帰や意図しない実行を防ぐため必須。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 17,
+        "kind": "single",
+        "stem": "関数オブジェクトから元ソースコードを取得したい。適切な関数を1つ選べ。",
+        "choices": [
+            {
+                "text": "inspect.getsource(func)",
+                "correct": true
+            },
+            {
+                "text": "sys.getsource(func)",
+                "correct": false
+            },
+            {
+                "text": "ast.source(func)",
+                "correct": false
+            },
+            {
+                "text": "codecs.getsource(func)",
+                "correct": false
+            }
+        ],
+        "note": "inspect モジュールはオブジェクトのメタ情報取得に有用。ソースが存在しない場合は例外となることがある。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 17,
+        "kind": "single",
+        "stem": "print デバッグと比べた logging の利点として最も適切な説明を1つ選べ。",
+        "choices": [
+            {
+                "text": "出力のレベル・フォーマット・出力先を設定で切り替えられる",
+                "correct": true
+            },
+            {
+                "text": "実行速度が常に速い",
+                "correct": false
+            },
+            {
+                "text": "例外を自動修復する",
+                "correct": false
+            },
+            {
+                "text": "最適化オプションで自動的に削除される",
+                "correct": false
+            }
+        ],
+        "note": "logging は運用時の制御性が高く、デバッグから本番まで一貫した仕組みを提供する。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 17,
+        "kind": "single",
+        "stem": "標準出力へ出された内容をテストやデバッグで一時的に捕捉する最も簡潔な手段を1つ選べ。",
+        "choices": [
+            {
+                "text": "contextlib.redirect_stdout(io.StringIO()) を使う",
+                "correct": true
+            },
+            {
+                "text": "sys.stdout を常時 None にする",
+                "correct": false
+            },
+            {
+                "text": "print をモンキーパッチして戻さない",
+                "correct": false
+            },
+            {
+                "text": "subprocess 経由で再実行する",
+                "correct": false
+            }
+        ],
+        "note": "redirect_stdout/redirect_stderr により安全に一時差し替えができる。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 17,
+        "kind": "single",
+        "stem": "実行時のみ有効で最適化(-O)で無効化される“動作検証用の記述”として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "assert 条件式",
+                "correct": true
+            },
+            {
+                "text": "print('debug')",
+                "correct": false
+            },
+            {
+                "text": "raise SystemExit()",
+                "correct": false
+            },
+            {
+                "text": "warnings.warn('debug')",
+                "correct": false
+            }
+        ],
+        "note": "assert は -O 実行で無効化されるため、入力検証ではなく開発時の不変条件チェックに用いる。",
+        "is_excluded": false
+    }
+]

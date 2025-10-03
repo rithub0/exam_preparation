@@ -1,0 +1,552 @@
+[
+    {
+        "chapter": 2,
+        "kind": "single",
+        "stem": "PEP 8で推奨されるインデント幅として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "スペース4個",
+                "correct": true
+            },
+            {
+                "text": "タブ1個",
+                "correct": false
+            },
+            {
+                "text": "スペース2個",
+                "correct": false
+            },
+            {
+                "text": "プロジェクトごとにバラバラでよい",
+                "correct": false
+            }
+        ],
+        "note": "PEP 8はタブよりスペース優先、幅は4スペースを推奨。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 2,
+        "kind": "single",
+        "stem": "インデントのスタイルとしてPEP 8で推奨されるものを1つ選べ。",
+        "choices": [
+            {
+                "text": "タブではなくスペースを使う",
+                "correct": true
+            },
+            {
+                "text": "タブとスペースを混在させてもよい",
+                "correct": false
+            },
+            {
+                "text": "古いコードに合わせて常にタブを使う",
+                "correct": false
+            },
+            {
+                "text": "可読性より入力の速さを優先する",
+                "correct": false
+            }
+        ],
+        "note": "インデントはスペース4個、タブ混在は避けるのが基本。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 2,
+        "kind": "single",
+        "stem": "行の最大長としてPEP 8で推奨される値に最も近いものを1つ選べ。",
+        "choices": [
+            {
+                "text": "79文字（コメントやdocstringは72文字）",
+                "correct": true
+            },
+            {
+                "text": "60文字で必ず改行する",
+                "correct": false
+            },
+            {
+                "text": "100文字を超えなければよい",
+                "correct": false
+            },
+            {
+                "text": "制限は一切ない",
+                "correct": false
+            }
+        ],
+        "note": "コード79、コメント/ドキュメント72を目安にして折り返すのが伝統的推奨。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 2,
+        "kind": "single",
+        "stem": "インポートの並べ方として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "標準ライブラリ→サードパーティ→ローカルの順でグループ化し、各グループ内はアルファベット順",
+                "correct": true
+            },
+            {
+                "text": "使用頻度の高い順で並べる",
+                "correct": false
+            },
+            {
+                "text": "どの順でもよいが1行にすべて書く",
+                "correct": false
+            },
+            {
+                "text": "ローカル→サードパーティ→標準ライブラリの順が望ましい",
+                "correct": false
+            }
+        ],
+        "note": "インポートは3グループに分け、空行で区切るのが定石。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 2,
+        "kind": "single",
+        "stem": "インポートの書き方としてPEP 8で推奨されるものを1つ選べ。",
+        "choices": [
+            {
+                "text": "ワイルドカード（from module import *）は避ける",
+                "correct": true
+            },
+            {
+                "text": "別モジュールから同名を上書きするために積極的にワイルドカードを使う",
+                "correct": false
+            },
+            {
+                "text": "1行に複数のモジュールをカンマ区切りでまとめる",
+                "correct": false
+            },
+            {
+                "text": "循環参照を避けるため常に遅延インポートにする",
+                "correct": false
+            }
+        ],
+        "note": "ワイルドカードは名前空間を不明瞭にするため避ける。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 2,
+        "kind": "single",
+        "stem": "絶対インポートと相対インポートについてPEP 8の推奨に合致するものを1つ選べ。",
+        "choices": [
+            {
+                "text": "絶対インポートを基本とし、必要時のみ明示的相対インポートを使う",
+                "correct": true
+            },
+            {
+                "text": "常に相対インポートを使う",
+                "correct": false
+            },
+            {
+                "text": "どちらでもよいが暗黙的相対インポートを使う",
+                "correct": false
+            },
+            {
+                "text": "パスをsys.pathに追加して回避する",
+                "correct": false
+            }
+        ],
+        "note": "可読性とツール互換性の面で絶対インポートが優先。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 2,
+        "kind": "single",
+        "stem": "二項演算子の前後の空白に関して正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "二項演算子の前後には1つずつ空白を入れる（例: a + b）",
+                "correct": true
+            },
+            {
+                "text": "演算子の前後に空白は入れない（例: a+b）",
+                "correct": false
+            },
+            {
+                "text": "左右どちらか片側だけ空白にする",
+                "correct": false
+            },
+            {
+                "text": "可読性のため演算子の前後に2つ空白を入れる",
+                "correct": false
+            }
+        ],
+        "note": "ただし優先順位の明確化など例外もあり得る（PEP 8参照）。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 2,
+        "kind": "single",
+        "stem": "キーワード引数の=の前後の空白に関して正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "キーワード引数では=の前後に空白を入れない（func(a=1, b=2)）",
+                "correct": true
+            },
+            {
+                "text": "=の前後に必ず空白を入れる（func(a = 1)）",
+                "correct": false
+            },
+            {
+                "text": "引数が2つ以上のときのみ空白を入れる",
+                "correct": false
+            },
+            {
+                "text": "デフォルト引数のときだけ空白を入れる",
+                "correct": false
+            }
+        ],
+        "note": "代入文と区別するため、キーワード引数や注釈では空白なしが推奨。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 2,
+        "kind": "single",
+        "stem": "トップレベルの関数やクラス定義の間隔として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "トップレベルの定義同士は空行2行で区切る",
+                "correct": true
+            },
+            {
+                "text": "空行は不要",
+                "correct": false
+            },
+            {
+                "text": "空行は1行",
+                "correct": false
+            },
+            {
+                "text": "3行以上空けるのが望ましい",
+                "correct": false
+            }
+        ],
+        "note": "クラス内メソッドは1行、トップレベルは2行が目安。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 2,
+        "kind": "single",
+        "stem": "命名規約として正しい対応を1つ選べ。",
+        "choices": [
+            {
+                "text": "クラス: CapWords、関数/変数: lower_case_with_underscores、定数: UPPER_CASE",
+                "correct": true
+            },
+            {
+                "text": "クラス: snake_case、関数/変数: CamelCase、定数: lower",
+                "correct": false
+            },
+            {
+                "text": "すべてCamelCaseで統一する",
+                "correct": false
+            },
+            {
+                "text": "すべてsnake_caseで統一する",
+                "correct": false
+            }
+        ],
+        "note": "PEP 8の基本的な命名規則に従う。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 2,
+        "kind": "single",
+        "stem": "**all** の役割として最も適切な説明を1つ選べ。",
+        "choices": [
+            {
+                "text": "モジュールの公開API（from module import * で公開される名前）を制御する",
+                "correct": true
+            },
+            {
+                "text": "ガベージコレクションの対象外にする",
+                "correct": false
+            },
+            {
+                "text": "型チェックを無効化する",
+                "correct": false
+            },
+            {
+                "text": "循環インポートを防止する",
+                "correct": false
+            }
+        ],
+        "note": "__all__は名前の露出を明示するためのリスト。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 2,
+        "kind": "single",
+        "stem": "Noneとの比較として推奨される書き方を1つ選べ。",
+        "choices": [
+            {
+                "text": "if value is None:",
+                "correct": true
+            },
+            {
+                "text": "if value == None:",
+                "correct": false
+            },
+            {
+                "text": "if None in value:",
+                "correct": false
+            },
+            {
+                "text": "if value equals None:",
+                "correct": false
+            }
+        ],
+        "note": "同一性比較にis/is notを用いる（==ではない）。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 2,
+        "kind": "single",
+        "stem": "真偽値の比較としてPEP 8に沿う書き方を1つ選べ。",
+        "choices": [
+            {
+                "text": "if flag:",
+                "correct": true
+            },
+            {
+                "text": "if flag == True:",
+                "correct": false
+            },
+            {
+                "text": "if flag is True:",
+                "correct": false
+            },
+            {
+                "text": "if flag != False:",
+                "correct": false
+            }
+        ],
+        "note": "真偽値の直接比較は避け、真偽値そのものを評価する。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 2,
+        "kind": "single",
+        "stem": "例外処理に関して推奨される方針を1つ選べ。",
+        "choices": [
+            {
+                "text": "bare exceptを避け、捕捉する例外を具体的に指定する",
+                "correct": true
+            },
+            {
+                "text": "どの例外も漏らさないため bare except を使う",
+                "correct": false
+            },
+            {
+                "text": "例外はすべて無視して続行する",
+                "correct": false
+            },
+            {
+                "text": "KeyboardInterruptのみ常に捕捉する",
+                "correct": false
+            }
+        ],
+        "note": "必要以上に広い捕捉はバグの隠蔽につながるため避ける。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 2,
+        "kind": "single",
+        "stem": "ファイルなどのリソース解放に関する推奨を1つ選べ。",
+        "choices": [
+            {
+                "text": "with文（コンテキストマネージャ）を使う",
+                "correct": true
+            },
+            {
+                "text": "openしたら放置しても自動で閉じられるので気にしない",
+                "correct": false
+            },
+            {
+                "text": "try/finallyは不要",
+                "correct": false
+            },
+            {
+                "text": "リソースはグローバル変数に保持する",
+                "correct": false
+            }
+        ],
+        "note": "with文は例外時も確実にクリーンアップが行われるため推奨。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 2,
+        "kind": "single",
+        "stem": "デフォルト引数に関して正しい方針を1つ選べ。",
+        "choices": [
+            {
+                "text": "可変オブジェクト（例: list, dict）をデフォルトに使わず、Noneを使って内部で初期化する",
+                "correct": true
+            },
+            {
+                "text": "性能のために常に空のリストをデフォルトにする",
+                "correct": false
+            },
+            {
+                "text": "辞書だけはデフォルトにしてよい",
+                "correct": false
+            },
+            {
+                "text": "クラス属性をデフォルトに流用する",
+                "correct": false
+            }
+        ],
+        "note": "可変デフォルトは関数間で共有され予期しない副作用を生む。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 2,
+        "kind": "single",
+        "stem": "ログ出力に関する推奨を1つ選べ。",
+        "choices": [
+            {
+                "text": "本番コードではprintではなくloggingモジュールを使う",
+                "correct": true
+            },
+            {
+                "text": "printで十分。レベル管理は不要",
+                "correct": false
+            },
+            {
+                "text": "例外はすべて標準出力にprintする",
+                "correct": false
+            },
+            {
+                "text": "loggingはテストでのみ使用する",
+                "correct": false
+            }
+        ],
+        "note": "loggingはレベル・ハンドラ・フォーマットの統制が可能で運用向き。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 2,
+        "kind": "single",
+        "stem": "文字列のクォートに関する推奨に最も近いものを1つ選べ。",
+        "choices": [
+            {
+                "text": "シングルかダブルのどちらかに統一し一貫性を保つ",
+                "correct": true
+            },
+            {
+                "text": "行ごとに気分で切り替える",
+                "correct": false
+            },
+            {
+                "text": "必ずダブルクォートのみを使う",
+                "correct": false
+            },
+            {
+                "text": "必ずシングルクォートのみを使う",
+                "correct": false
+            }
+        ],
+        "note": "どちらでも良いがプロジェクト内の一貫性を重視する。docstringは三重引用符。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 2,
+        "kind": "single",
+        "stem": "比較演算の書き方としてPEP 8に沿うものを1つ選べ。",
+        "choices": [
+            {
+                "text": "連鎖比較を用いる（例: 0 < x < 10）",
+                "correct": true
+            },
+            {
+                "text": "x > 0 and x < 10 と常に分割して書く",
+                "correct": false
+            },
+            {
+                "text": "可読性のため比較は1行に1つだけにする",
+                "correct": false
+            },
+            {
+                "text": "等価比較は常にisを使う",
+                "correct": false
+            }
+        ],
+        "note": "Pythonの連鎖比較は可読性が高く評価される。等価比較にisは原則使わない（Noneなどは除く）。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 2,
+        "kind": "single",
+        "stem": "モジュールのエントリポイントに関する慣習として正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "if __name__ == \"__main__\": ブロックを用意する",
+                "correct": true
+            },
+            {
+                "text": "モジュール読み込み時に自動実行する処理をトップレベルに書く",
+                "correct": false
+            },
+            {
+                "text": "グローバル変数の初期化のためmainは不要",
+                "correct": false
+            },
+            {
+                "text": "パッケージではこの慣習は使えない",
+                "correct": false
+            }
+        ],
+        "note": "スクリプト実行時とインポート時の振る舞いを分けるための定番パターン。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 2,
+        "kind": "single",
+        "stem": "コメント・docstringの書き方として適切なものを1つ選べ。",
+        "choices": [
+            {
+                "text": "docstringは三重引用符で記述し、1行目に要約を簡潔に書く（PEP 257）",
+                "correct": true
+            },
+            {
+                "text": "docstringは不要。コードを読めば分かる",
+                "correct": false
+            },
+            {
+                "text": "日本語・英語を1行ごとに交互に書く",
+                "correct": false
+            },
+            {
+                "text": "長文はすべて行末コメントで説明する",
+                "correct": false
+            }
+        ],
+        "note": "1行目に要約、空行、以降に詳細という構成が一般的。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 2,
+        "kind": "single",
+        "stem": "型ヒントの取り扱いとして妥当な方針を1つ選べ。",
+        "choices": [
+            {
+                "text": "公開APIを中心に関数シグネチャへ型ヒントを付け、Anyの濫用を避ける",
+                "correct": true
+            },
+            {
+                "text": "型ヒントは実行時に遅くなるため一切付けない",
+                "correct": false
+            },
+            {
+                "text": "docstringと型ヒントを重複して二重に書くのが望ましい",
+                "correct": false
+            },
+            {
+                "text": "変数には常にAnyを付ける",
+                "correct": false
+            }
+        ],
+        "note": "型ヒントは可読性・静的解析の助けになるが、Anyの使い過ぎは避ける。",
+        "is_excluded": false
+    }
+]

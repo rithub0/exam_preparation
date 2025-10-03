@@ -1,0 +1,502 @@
+[
+    {
+        "chapter": 11,
+        "kind": "single",
+        "stem": "テキストファイルをUTF-8で一括読み込みする最も簡潔な方法を1つ選べ。",
+        "choices": [
+            {
+                "text": "pathlib.Path('notes.txt').read_text(encoding='utf-8')",
+                "correct": true
+            },
+            {
+                "text": "open('notes.txt').read()",
+                "correct": false
+            },
+            {
+                "text": "io.TextIOWrapper('notes.txt', encoding='utf-8').read()",
+                "correct": false
+            },
+            {
+                "text": "os.read('notes.txt', 'utf-8')",
+                "correct": false
+            }
+        ],
+        "note": "Path.read_text(encoding=...) は簡潔。open(...) でもよいが明示的なエンコーディング指定が推奨。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 11,
+        "kind": "single",
+        "stem": "バイト列をファイルに書き込む最も簡潔な方法を1つ選べ。",
+        "choices": [
+            {
+                "text": "pathlib.Path('out.bin').write_bytes(b'\\x00\\x01')",
+                "correct": true
+            },
+            {
+                "text": "open('out.bin', 'w').write(b'\\x00\\x01')",
+                "correct": false
+            },
+            {
+                "text": "os.write('out.bin', b'\\x00\\x01')",
+                "correct": false
+            },
+            {
+                "text": "io.BytesIO('out.bin').write(b'\\x00\\x01')",
+                "correct": false
+            }
+        ],
+        "note": "Path.write_bytes はバイナリ書き込みのユーティリティ。openで書く場合は 'wb' が必要。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 11,
+        "kind": "single",
+        "stem": "存在しない中間ディレクトリも含めてディレクトリを作成する適切な方法を1つ選べ。",
+        "choices": [
+            {
+                "text": "pathlib.Path('a/b/c').mkdir(parents=True, exist_ok=True)",
+                "correct": true
+            },
+            {
+                "text": "os.mkdir('a/b/c', parents=True)",
+                "correct": false
+            },
+            {
+                "text": "shutil.makedirs('a/b/c')",
+                "correct": false
+            },
+            {
+                "text": "pathlib.Path('a/b/c').touch()",
+                "correct": false
+            }
+        ],
+        "note": "mkdir(parents=True) で再帰作成。exist_ok=True で既存でも例外にしない。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 11,
+        "kind": "single",
+        "stem": "カレントディレクトリ直下の“ファイルのみ”を列挙するコードとして正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "[p for p in pathlib.Path('.').iterdir() if p.is_file()]",
+                "correct": true
+            },
+            {
+                "text": "list(pathlib.Path('.').glob('**'))",
+                "correct": false
+            },
+            {
+                "text": "os.listdir('.', files_only=True)",
+                "correct": false
+            },
+            {
+                "text": "glob.glob('**/*', recursive=True)",
+                "correct": false
+            }
+        ],
+        "note": "iterdir() は直下のみ。is_file() でファイルに限定。glob('**/*') は再帰になる。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 11,
+        "kind": "single",
+        "stem": "ディレクトリ配下から拡張子 .py のファイルを再帰的に探す最も簡潔な方法を1つ選べ。",
+        "choices": [
+            {
+                "text": "pathlib.Path('src').rglob('*.py')",
+                "correct": true
+            },
+            {
+                "text": "glob.glob('src/*.py')",
+                "correct": false
+            },
+            {
+                "text": "os.walk('src', pattern='*.py')",
+                "correct": false
+            },
+            {
+                "text": "pathlib.Path('src').glob('*.py')",
+                "correct": false
+            }
+        ],
+        "note": "rglob は再帰検索。glob('*.py') は非再帰、os.walk は自前のフィルタが必要。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 11,
+        "kind": "single",
+        "stem": "通常ファイルを削除する適切なAPIを1つ選べ。",
+        "choices": [
+            {
+                "text": "pathlib.Path('file.txt').unlink()",
+                "correct": true
+            },
+            {
+                "text": "pathlib.Path('file.txt').rmdir()",
+                "correct": false
+            },
+            {
+                "text": "shutil.rmtree('file.txt')",
+                "correct": false
+            },
+            {
+                "text": "os.removedirs('file.txt')",
+                "correct": false
+            }
+        ],
+        "note": "unlink はファイル・シンボリックリンクの削除。rmdir は空ディレクトリ用。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 11,
+        "kind": "single",
+        "stem": "中身のあるディレクトリを再帰的に削除するAPIとして正しいものを1つ選べ。",
+        "choices": [
+            {
+                "text": "shutil.rmtree('build')",
+                "correct": true
+            },
+            {
+                "text": "os.rmdir('build')",
+                "correct": false
+            },
+            {
+                "text": "pathlib.Path('build').unlink()",
+                "correct": false
+            },
+            {
+                "text": "os.remove('build', recursive=True)",
+                "correct": false
+            }
+        ],
+        "note": "rmtree は非空ディレクトリを再帰削除。rmdir は空でないと失敗する。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 11,
+        "kind": "single",
+        "stem": "既存ファイルがあっても上書きしてリネーム（移動）したい。適切なAPIを1つ選べ。",
+        "choices": [
+            {
+                "text": "pathlib.Path('a.tmp').replace('a.txt')",
+                "correct": true
+            },
+            {
+                "text": "os.rename('a.tmp', 'a.txt')",
+                "correct": false
+            },
+            {
+                "text": "pathlib.Path('a.tmp').rename('a.txt')",
+                "correct": false
+            },
+            {
+                "text": "shutil.move('a.tmp', 'a.txt', overwrite=True)",
+                "correct": false
+            }
+        ],
+        "note": "Path.replace は宛先が存在しても置換。rename は環境により上書き失敗の可能性がある。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 11,
+        "kind": "single",
+        "stem": "コピー時にメタデータ（mtime 等）もできるだけ保持したい。適切な関数を1つ選べ。",
+        "choices": [
+            {
+                "text": "shutil.copy2(src, dst)",
+                "correct": true
+            },
+            {
+                "text": "shutil.copy(src, dst)",
+                "correct": false
+            },
+            {
+                "text": "shutil.copyfile(src, dst)",
+                "correct": false
+            },
+            {
+                "text": "pathlib.Path(src).write_bytes(pathlib.Path(dst).read_bytes())",
+                "correct": false
+            }
+        ],
+        "note": "copy2 はメタデータも可能な限りコピー。copy/copyfile は主に内容のみ。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 11,
+        "kind": "single",
+        "stem": "絶対パスを得たい。シンボリックリンク解決も行う方法を1つ選べ。",
+        "choices": [
+            {
+                "text": "pathlib.Path('relative').resolve()",
+                "correct": true
+            },
+            {
+                "text": "os.path.basename('relative')",
+                "correct": false
+            },
+            {
+                "text": "os.path.join(os.getcwd(), 'relative', followlinks=True)",
+                "correct": false
+            },
+            {
+                "text": "pathlib.Path('relative').absolute(resolve_symlink=True)",
+                "correct": false
+            }
+        ],
+        "note": "Path.resolve は絶対化し、可能ならリンク解決も行う。basename は末尾名の取得。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 11,
+        "kind": "single",
+        "stem": "ファイルを開く前に親ディレクトリを必ず作成したい。適切なコードを1つ選べ。",
+        "choices": [
+            {
+                "text": "p = pathlib.Path('logs/app/out.txt'); p.parent.mkdir(parents=True, exist_ok=True); p.write_text('ok')",
+                "correct": true
+            },
+            {
+                "text": "open('logs/app/out.txt', 'w', parents=True).write('ok')",
+                "correct": false
+            },
+            {
+                "text": "os.makedirs('logs/app/out.txt', exist_ok=True); open(...)",
+                "correct": false
+            },
+            {
+                "text": "pathlib.Path('logs/app/out.txt').mkdir(parents=True); open(...)",
+                "correct": false
+            }
+        ],
+        "note": "mkdir はディレクトリに対して行う。親パスは p.parent で取得して作成する。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 11,
+        "kind": "single",
+        "stem": "ファイルパーミッションを 0644 に変更する適切な方法を1つ選べ。",
+        "choices": [
+            {
+                "text": "pathlib.Path('a.txt').chmod(0o644)",
+                "correct": true
+            },
+            {
+                "text": "os.chmod('a.txt', '0644')",
+                "correct": false
+            },
+            {
+                "text": "shutil.chmod('a.txt', 644)",
+                "correct": false
+            },
+            {
+                "text": "pathlib.Path('a.txt').chmod('rw-r--r--')",
+                "correct": false
+            }
+        ],
+        "note": "chmod は数値（8進）で指定する。文字列ではない点に注意（0o644）。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 11,
+        "kind": "single",
+        "stem": "壊れたシンボリックリンクも“存在あり”として判定したい。適切な関数を1つ選べ。",
+        "choices": [
+            {
+                "text": "os.path.lexists(path)",
+                "correct": true
+            },
+            {
+                "text": "pathlib.Path(path).exists()",
+                "correct": false
+            },
+            {
+                "text": "os.path.exists(path)",
+                "correct": false
+            },
+            {
+                "text": "pathlib.Path(path).is_file()",
+                "correct": false
+            }
+        ],
+        "note": "lexists は壊れたリンクでも True。exists はリンク先が無いと False になる。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 11,
+        "kind": "single",
+        "stem": "標準入力や複数ファイルを透過的に順に読むユーティリティを1つ選べ。",
+        "choices": [
+            {
+                "text": "fileinput.input()",
+                "correct": true
+            },
+            {
+                "text": "io.openstack()",
+                "correct": false
+            },
+            {
+                "text": "shutil.fileiter()",
+                "correct": false
+            },
+            {
+                "text": "glob.input()",
+                "correct": false
+            }
+        ],
+        "note": "fileinput は複数ファイル／標準入力の一括処理に便利。for line in fileinput.input(): ...",
+        "is_excluded": false
+    },
+    {
+        "chapter": 11,
+        "kind": "single",
+        "stem": "大きな読み取り専用ファイルをメモリマップして効率よくアクセスしたい。適切なコードを1つ選べ。",
+        "choices": [
+            {
+                "text": "with open('data.bin', 'rb') as f: mm = mmap.mmap(f.fileno(), 0, access=mmap.ACCESS_READ)",
+                "correct": true
+            },
+            {
+                "text": "mm = mmap.mmap('data.bin', 0, mode='r')",
+                "correct": false
+            },
+            {
+                "text": "with open('data.bin') as f: mmap.map(f, readonly=True)",
+                "correct": false
+            },
+            {
+                "text": "mmap.open('data.bin', 'r')",
+                "correct": false
+            }
+        ],
+        "note": "mmap はファイル記述子とサイズ（0は全体）を指定。access=mmap.ACCESS_READ で読取専用。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 11,
+        "kind": "single",
+        "stem": "一時ファイルに書いてから原子的に置き換える“安全な保存”の基本手順として最も適切なものを1つ選べ。",
+        "choices": [
+            {
+                "text": "tmp = tempfile.NamedTemporaryFile('w', delete=False); ...; tmp.close(); os.replace(tmp.name, 'conf.ini')",
+                "correct": true
+            },
+            {
+                "text": "open('conf.ini', 'w').write(data); os.sync()",
+                "correct": false
+            },
+            {
+                "text": "shutil.copy('conf.ini', 'conf.bak'); open('conf.ini', 'w').write(data)",
+                "correct": false
+            },
+            {
+                "text": "pathlib.Path('conf.ini').write_text(data); os.rename('conf.ini', 'conf.ini')",
+                "correct": false
+            }
+        ],
+        "note": "書き込み→fsync→os.replace が基本。replace は同一ファイルシステム内で原子的に置換する。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 11,
+        "kind": "single",
+        "stem": "ディレクトリツリーを走査してファイル・ディレクトリを取得する代表的APIを1つ選べ。",
+        "choices": [
+            {
+                "text": "os.walk(top)",
+                "correct": true
+            },
+            {
+                "text": "os.listdir(top, recursive=True)",
+                "correct": false
+            },
+            {
+                "text": "pathlib.Path(top).rmdir()",
+                "correct": false
+            },
+            {
+                "text": "shutil.listdir(top)",
+                "correct": false
+            }
+        ],
+        "note": "os.walk はトップから再帰的に (dirpath, dirnames, filenames) を生成するイテレータ。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 11,
+        "kind": "single",
+        "stem": "2つのファイルの内容が同一かどうかを正確に（メタデータではなく内容で）判定したい。適切な関数を1つ選べ。",
+        "choices": [
+            {
+                "text": "filecmp.cmp('a.bin', 'b.bin', shallow=False)",
+                "correct": true
+            },
+            {
+                "text": "hash('a.bin') == hash('b.bin')",
+                "correct": false
+            },
+            {
+                "text": "os.stat('a.bin') == os.stat('b.bin')",
+                "correct": false
+            },
+            {
+                "text": "shutil.compare('a.bin', 'b.bin')",
+                "correct": false
+            }
+        ],
+        "note": "filecmp.cmp(shallow=False) は実データを比較。stat 比較は内容一致を保証しない。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 11,
+        "kind": "single",
+        "stem": "ホームディレクトリを含むパス表記 ~/config を展開する適切な方法を1つ選べ。",
+        "choices": [
+            {
+                "text": "pathlib.Path('~/config').expanduser()",
+                "correct": true
+            },
+            {
+                "text": "os.path.expandvars('~/config')",
+                "correct": false
+            },
+            {
+                "text": "os.environ['HOME'] + '/config'",
+                "correct": false
+            },
+            {
+                "text": "pathlib.Path('~/config').resolve()",
+                "correct": false
+            }
+        ],
+        "note": "expanduser は ~ をユーザのホームに展開。expandvars は環境変数の展開。",
+        "is_excluded": false
+    },
+    {
+        "chapter": 11,
+        "kind": "single",
+        "stem": "ワイルドカードで現在のディレクトリにある拡張子 .txt のみを“非再帰”で取得する方法として最も適切なものを1つ選べ。",
+        "choices": [
+            {
+                "text": "list(pathlib.Path('.').glob('*.txt'))",
+                "correct": true
+            },
+            {
+                "text": "glob.glob('**/*.txt', recursive=True)",
+                "correct": false
+            },
+            {
+                "text": "pathlib.Path('.').rglob('*.txt')",
+                "correct": false
+            },
+            {
+                "text": "os.listdir('*.txt')",
+                "correct": false
+            }
+        ],
+        "note": "Path.glob('*.txt') は直下のみ。rglob や '**/*.txt' は再帰検索になる。",
+        "is_excluded": false
+    }
+]

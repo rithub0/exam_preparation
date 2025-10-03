@@ -1,0 +1,198 @@
+/* 最小・可読性重視 */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 1em;
+}
+
+body {
+  font-family: "HackGen Console NF", "HackGen", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 14px;
+  background: #000;
+  color: #fff;
+}
+
+.site-header,
+.site-footer {
+  /* background: #111; */
+  padding: 1em;
+}
+
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.site-nav {
+  display: flex;
+  gap: 8px;
+}
+
+.logout-form {
+  margin: 0;
+}
+
+.btn-logout {
+  background: #232323;
+  border: 1px solid #333;
+}
+
+.btn-logout:hover {
+  background: #2a2a2a;
+}
+
+.site-title {
+  margin: 0;
+  font-size: 18px;
+}
+
+.site-main {
+  padding: 1em;
+}
+
+.panel {
+  max-width: 960px;
+  margin: 0 auto;
+  /* background: #121212; */
+  padding: 1em;
+  /* border: 1px solid #fff; */
+  /* border-radius: 999px; */
+}
+
+h2,
+h3 {
+  margin-top: 1em;
+}
+
+a {
+  color: #8ab4ff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* .flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1em;
+  padding: 1rem;
+} */
+
+.btn {
+  display: inline-block;
+  padding: 1em;
+  /* border: 1px solid #fff; */
+  background: #fff;
+  color: #000;
+  border-radius: 999px;
+}
+
+.btn:hover {
+  background: #2f6fed;
+  color: #fff;
+}
+
+.choice {
+  display: inline-block;
+  margin: 1em;
+}
+
+.judge.ok {
+  color: #7ad17a;
+  font-weight: 700;
+}
+
+.judge.ng {
+  color: #ff7a7a;
+  font-weight: 700;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+}
+
+.table th,
+.table td {
+  border: 1px solid #ffffff80;
+  padding: 6px 8px;
+  text-align: left;
+}
+
+/* 進捗バー */
+.progress {
+  position: relative;
+  flex: 1 1 auto;
+  height: 10px;
+  background: #fff;
+  border: 1px solid #ffffff80;
+  border-radius: 999px;
+  margin: 0 12px;
+  overflow: hidden;
+}
+
+.progress .bar {
+  height: 100%;
+  background: #2f6fed;
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+/* タイマー */
+.timer {
+  font-variant-numeric: tabular-nums;
+}
+
+/* 章クォータ・ゲージ */
+.quota-bar {
+  position: relative;
+  width: 180px;
+  height: 12px;
+  background: #fff;
+  border: 1px solid #ffffff80;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.quota-bar .quota-fill {
+  height: 100%;
+  width: 0%;
+  background: #2f6fed;
+  transition: width 0.4s ease;
+}
+
+.quota-bar.need {
+  background: #1b0f0f;
+}
+
+.quota-bar.ok {
+  background: #0f1b10;
+}
+
+.alert-warn {
+  background: #21160f;
+  border: 1px solid #5a2e12;
+  padding: 10px 12px;
+  border-radius: 999px;
+  margin: 12px 0;
+  color: #ffd9b3;
+}
+
+.alert-warn .small {
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+ul.tight {
+  margin: 6px 0 0 18px;
+  padding: 0;
+}
