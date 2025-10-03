@@ -10,7 +10,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
-import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -48,7 +47,7 @@ SESSION_COOKIE_SECURE = True
 
 # 静的ファイル
 STATIC_URL = "/static/"
-STATIC_ROOT = BASE_DIR / "staticfiles"  # collectstatic の出力先
+STATIC_ROOT = BASE_DIR / "static"  # collectstatic の出力先
 
 # 認証フロー
 LOGIN_URL = "/accounts/login/"
