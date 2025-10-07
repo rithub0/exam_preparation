@@ -1,3 +1,5 @@
+# exam_preparation/exam_preparation/settings.py
+
 """
 Django settings for practicum project.
 

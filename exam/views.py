@@ -1,43 +1,41 @@
-from __future__ import annotations
+# exam_preparation/exam/views.py
 
-import random
+from __future__ import annotations  # 未来の型注釈仕様を使うためのimport（Python 3.7+で利用可能）
 
-from django.contrib.auth.forms import UserCreationForm
+import random  # ランダム操作用モジュール
 
-# from django.contrib.auth import login as auth_login
-from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.decorators import login_required
-from django.contrib import messages
-from django.utils import timezone
-from django.db.models import Count, Q
-from django.views.decorators.csrf import csrf_protect
+from django.contrib.auth.forms import UserCreationForm  # ユーザー登録用フォーム
+from django.shortcuts import render, redirect, get_object_or_404  # ビューでのレンダリング・リダイレクト・存在チェック
+from django.contrib.auth.decorators import login_required  # ログイン必須デコレーター
+from django.contrib import messages  # ユーザへのメッセージ送信機能
+from django.utils import timezone  # タイムゾーン対応の現在時刻取得
+from django.db.models import Count, Q  # 集約関数Countと条件付きクエリ用Qオブジェクト
+from django.views.decorators.csrf import csrf_protect  # CSRF保護デコレーター
 
-# from django.http import JsonResponse
+from .models import Question, Choice, Attempt, Chapter  # 自作モデルのインポート
 
-from .models import Question, Choice, Attempt, Chapter
+from .logic.selector import build_mock_set_ids  # 出題セットIDを作成するロジック関数
+from .logic.quality import quota_deficits, total_quota  # クォータ不足検知や合計クォータ計算関数
 
-from .logic.selector import build_mock_set_ids
-from .logic.quality import quota_deficits, total_quota
-
-EXAM_DURATION_SEC = 75 * 60  # 75分
+EXAM_DURATION_SEC = 75 * 60  # 試験時間は75分（秒数に換算）
 
 
 # 進捗パーセントを 0–100 の整数に正規化（%記号なし）
 def _progress_percent(now: int, total: int) -> int:
     try:
-        now_i = max(int(now), 0)
+        now_i = max(int(now), 0)  # nowを整数化し0未満なら0にする
     except Exception:
-        now_i = 0
+        now_i = 0  # 整数変換失敗時は0
     try:
-        total_i = max(int(total or 0), 0)
+        total_i = max(int(total or 0), 0)  # totalを整数化し0未満なら0にする
     except Exception:
-        total_i = 0
+        total_i = 0  # 整数変換失敗時は0
 
     if total_i > 0:
-        pct = int(round(now_i * 100.0 / total_i))
+        pct = int(round(now_i * 100.0 / total_i))  # 進捗率をパーセントで計算
     else:
-        pct = 0
-    return max(0, min(100, pct))
+        pct = 0  # totalが0なら0％
+    return max(0, min(100, pct))  # 0〜100の範囲に収めて返す
 
 
 def _get_shuffled_choices_for_question(request, question):
@@ -45,33 +43,38 @@ def _get_shuffled_choices_for_question(request, question):
     表示順を毎回ランダム化。ただし同一設問内では固定したいので、
     セッションに順序(choicesのid列)を保存して再利用する。
     """
-    key = f"choice_order_{question.id}"
-    order = request.session.get(key)
-    if not order:
-        order = list(question.choices.values_list("id", flat=True))
-        random.shuffle(order)
-        request.session[key] = order
+    key = f"choice_order_{question.id}"  # セッションキーを問題IDに基づいて作成
+    order = request.session.get(key)  # セッションから順序を取得
+    if not order:  # セッションに順序がなければ
+        order = list(question.choices.values_list("id", flat=True))  # 選択肢IDリストを取得
+        random.shuffle(order)  # ランダムに並べ替え
+        request.session[key] = order  # セッションに保存
 
     # order に従って並べ替えた Choice インスタンスのリストを返す
-    choices = list(question.choices.all())
-    pos = {cid: i for i, cid in enumerate(order)}
-    choices.sort(key=lambda c: pos.get(c.id, 10**9))
+    choices = list(question.choices.all())  # 全選択肢を取得
+    pos = {cid: i for i, cid in enumerate(order)}  # id→順序の辞書作成
+    choices.sort(key=lambda c: pos.get(c.id, 10**9))  # orderに従って並び替え。なければ最後尾扱い
     return choices
 
 
-@login_required
+@login_required  # ログイン必須
 def dashboard(request):
     q_count = Question.objects.filter(is_excluded=False).count()
+    # 除外されていない問題の総数を取得
 
     ch_coverage = Chapter.objects.annotate(
         n=Count("question", filter=Q(question__is_excluded=False))
     ).order_by("num")
+    # 章ごとに出題可能な問題数(n)を集計し、章番号順に並べる
 
     total_quota_val = sum(ch.official_quota for ch in ch_coverage)
-    total_stock_for_quota = sum(min(ch.n, ch.official_quota) for ch in ch_coverage)
+    # 全章の公式クォータ合計を計算
 
-    deficits = quota_deficits()  # ★ 追加
-    has_deficit = len(deficits) > 0
+    total_stock_for_quota = sum(min(ch.n, ch.official_quota) for ch in ch_coverage)
+    # クォータと問題数の少ない方を足し合わせた実際の出題可能数合計
+
+    deficits = quota_deficits()  # クォータ不足の章のリストを取得（カスタム関数）
+    has_deficit = len(deficits) > 0  # 不足があるかどうか真偽値判定
 
     return render(
         request,
@@ -81,147 +84,149 @@ def dashboard(request):
             "ch_coverage": ch_coverage,
             "total_quota": total_quota_val,
             "total_stock_for_quota": total_stock_for_quota,
-            "deficits": deficits,  # ★ 追加
-            "has_deficit": has_deficit,  # ★ 追加
+            "deficits": deficits,  # クォータ不足章情報
+            "has_deficit": has_deficit,  # 不足有無フラグ
         },
     )
 
 
-@csrf_protect
+@csrf_protect  # CSRF攻撃防止を有効にする
 def signup(request):
-    if request.method == "POST":
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()  # ← ユーザーを作成（自動ログインはしない）
+    if request.method == "POST":  # フォーム送信時
+        form = UserCreationForm(request.POST)  # 送信データでフォームを生成
+        if form.is_valid():  # 入力チェックが通れば
+            form.save()  # ユーザー登録を実施（自動ログインなし）
             messages.success(
                 request, "ユーザー登録が完了しました。ログインしてください。"
-            )
-            return redirect("login")  # ← ここをダッシュボードではなく login に
+            )  # 登録成功メッセージ表示
+            return redirect("login")  # ログイン画面へリダイレクト
     else:
-        form = UserCreationForm()
-    return render(request, "registration/signup.html", {"form": form})
+        form = UserCreationForm()  # 空の登録フォームを作成
+    return render(request, "registration/signup.html", {"form": form})  # 登録ページ表示
 
 
 @login_required
 def mock_start(request):
     # ★ 追加：開始前チェック
-    deficits = quota_deficits()
+    deficits = quota_deficits()  # クォータ不足章を確認
     if deficits:
         msg = "クォータ不足の章があります：" + ", ".join(
             [f"Ch{d['ch']}不足{d['lack']}" for d in deficits]
-        )
-        messages.warning(request, msg)
+        )  # 不足章のメッセージ作成
+        messages.warning(request, msg)  # 警告メッセージ表示
 
-    ids = build_mock_set_ids()
+    ids = build_mock_set_ids()  # 出題問題IDリストを作成
     if not ids:
         messages.error(
             request, "出題可能な問題がありません。管理画面から問題を追加してください。"
-        )
-        return redirect("dashboard")
+        )  # 問題なしエラーメッセージ
+        return redirect("dashboard")  # ダッシュボードに戻る
 
     # ★ 追加：40問に満たない場合の注意
-    intended = total_quota()  # 通常40
+    intended = total_quota()  # 想定問題数（通常40問）
     if len(ids) < intended:
         messages.warning(
             request,
             f"今回は {len(ids)}問です（想定 {intended}問）。不足章のため減少しています。",
-        )
+        )  # 不足のため問題数が減っている警告
 
-    request.session["mock_ids"] = ids
-    request.session["mock_index"] = 0
-    request.session["mock_correct"] = 0
-    request.session["mock_started_at"] = timezone.now().timestamp()
-    return redirect("mock_session")
+    request.session["mock_ids"] = ids  # 問題IDリストをセッションに保存
+    request.session["mock_index"] = 0  # 現在の問題番号を0に初期化
+    request.session["mock_correct"] = 0  # 正解数を0に初期化
+    request.session["mock_started_at"] = timezone.now().timestamp()  # 開始時刻を保存
+    return redirect("mock_session")  # 問題回答画面へリダイレクト
 
 
 @login_required
 def mock_session(request):
-    ids = request.session.get("mock_ids")
-    idx = request.session.get("mock_index", 0)
-    correct_total = request.session.get("mock_correct", 0)
-    started_at_ts = request.session.get("mock_started_at")
+    ids = request.session.get("mock_ids")  # 出題問題IDリストをセッションから取得
+    idx = request.session.get("mock_index", 0)  # 現在の問題番号（デフォルト0）
+    correct_total = request.session.get("mock_correct", 0)  # 現時点の正解数
+    started_at_ts = request.session.get("mock_started_at")  # 試験開始タイムスタンプ
 
     if not ids:
-        messages.info(request, "モックを開始してください。")
-        return redirect("dashboard")
+        messages.info(request, "モックを開始してください。")  # 出題セットなしなら案内
+        return redirect("dashboard")  # ダッシュボードへ
 
     # 残り時間の計算（サーバ側で毎回チェック）
     if started_at_ts is None:
-        request.session["mock_started_at"] = timezone.now().timestamp()
+        request.session["mock_started_at"] = timezone.now().timestamp()  # 開始時刻をセット
         started_at_ts = request.session["mock_started_at"]
 
     try:
         elapsed = max(0, int(timezone.now().timestamp() - float(started_at_ts)))
+        # 経過秒数を計算。マイナス防止のためmaxで0以上
     except Exception:
-        elapsed = 0
-    remaining = max(0, EXAM_DURATION_SEC - elapsed)
+        elapsed = 0  # 失敗時は0秒経過とみなす
+
+    remaining = max(0, EXAM_DURATION_SEC - elapsed)  # 残り秒数計算（0未満にならない）
     if remaining <= 0:
-        return redirect("mock_result")
+        return redirect("mock_result")  # 時間切れなら結果画面へ
 
     # 全問完了
     if idx >= len(ids):
-        return redirect("mock_result")
+        return redirect("mock_result")  # 問題全回答済なら結果画面へ
 
-    q = get_object_or_404(Question, pk=ids[idx])
+    q = get_object_or_404(Question, pk=ids[idx])  # 現在の問題を取得（存在しなければ404）
 
-    judged = False
-    was_correct = False
-    chosen_id = None
+    judged = False  # 採点済みフラグ初期化
+    was_correct = False  # 正誤フラグ初期化
+    chosen_id = None  # 選択された選択肢ID初期化
 
-    if request.method == "POST":
-        chosen_id = request.POST.get("choice")
+    if request.method == "POST":  # POST送信時（回答送信時）
+        chosen_id = request.POST.get("choice")  # 選択肢の選択IDを取得
         if chosen_id is None and "next" not in request.POST:
-            messages.warning(request, "選択肢を選んでください。")
+            messages.warning(request, "選択肢を選んでください。")  # 選択肢未選択なら警告
         else:
             chosen = None
             if chosen_id:
                 try:
                     chosen = Choice.objects.get(pk=chosen_id, question=q)
+                    # 選択肢が現在の問題に属するかチェック
                 except Choice.DoesNotExist:
-                    chosen = None
+                    chosen = None  # 不正な選択肢IDならNone
 
-            was_correct = bool(chosen and chosen.is_correct)
-            judged = True
+            was_correct = bool(chosen and chosen.is_correct)  # 正誤判定
+            judged = True  # 採点済みフラグを立てる
 
             Attempt.objects.create(
-                user=request.user,
-                question=q,
-                is_correct=was_correct,
-                mode=Attempt.MODE_MOCK,
-                box=0,
-                answered_at=timezone.now(),
+                user=request.user,  # 回答者ユーザー
+                question=q,  # 回答問題
+                is_correct=was_correct,  # 正誤
+                mode=Attempt.MODE_MOCK,  # 回答モード（模擬試験）
+                box=0,  # Leitner箱は初期値0
+                answered_at=timezone.now(),  # 回答日時
             )
 
             if was_correct:
-                correct_total += 1
-                request.session["mock_correct"] = correct_total
+                correct_total += 1  # 正解数を増やす
+                request.session["mock_correct"] = correct_total  # セッションに保存
 
             # 「次へ」クリック後に次の設問へ
             if "next" in request.POST:
-                request.session["mock_index"] = idx + 1
-                return redirect("mock_session")
+                request.session["mock_index"] = idx + 1  # インデックスを次に進める
+                return redirect("mock_session")  # 再度このviewへリダイレクト
 
     # 進捗（%はサーバ側で算出してテンプレへ）
     progress = {
-        "now": idx + 1,
-        "total": len(ids),
-        "score": correct_total,
-        "percent": _progress_percent(idx, len(ids)),  # 現在の問題に入る前の達成率
+        "now": idx + 1,  # 現在の問題番号（1始まり表示）
+        "total": len(ids),  # 問題総数
+        "score": correct_total,  # 現時点の正解数
+        "percent": _progress_percent(idx, len(ids)),  # 現在問題に入る前の達成率（0〜100）
     }
 
     return render(
         request,
-        "exam/session.html",
+        "exam/session.html",  # 問題回答テンプレート
         {
-            "question": q,
-            "choices": _get_shuffled_choices_for_question(request, q),
-            "judged": judged,
-            "was_correct": was_correct,
-            "chosen_id": int(chosen_id) if chosen_id else None,
-            "progress": progress,
-            # 残り秒数をテンプレに渡す（クライアントでカウントダウン表示）
-            "remaining_sec": remaining,
-            "duration_sec": EXAM_DURATION_SEC,
+            "question": q,  # 現在問題オブジェクト
+            "choices": _get_shuffled_choices_for_question(request, q),  # 選択肢（シャッフル済み）
+            "judged": judged,  # 採点済みかどうか
+            "was_correct": was_correct,  # 正誤判定結果
+            "chosen_id": int(chosen_id) if chosen_id else None,  # 選択肢ID（数値化）
+            "progress": progress,  # 進捗情報
+            "remaining_sec": remaining,  # 残り秒数（クライアントでカウントダウン表示用）
+            "duration_sec": EXAM_DURATION_SEC,  # 試験時間（秒）
         },
     )
 
@@ -231,35 +236,35 @@ def mock_result(request):
     """
     結果画面：スコアと簡単な章別内訳（正規化せず、直近セッションの Attempt から概算）
     """
-    ids = request.session.get("mock_ids") or []
-    total = len(ids)
-    score = request.session.get("mock_correct", 0)
+    ids = request.session.get("mock_ids") or []  # 問題IDリストを取得、なければ空リスト
+    total = len(ids)  # 問題数
+    score = request.session.get("mock_correct", 0)  # 正解数
 
     # 章別内訳（今回の mock のみを対象に粗集計）
     attempts = Attempt.objects.filter(
         user=request.user, mode=Attempt.MODE_MOCK
     ).order_by("-answered_at")[
         :total
-    ]  # 直近 total 件を仮定
+    ]  # 直近 total 件の回答履歴を取得
 
-    ch_stat: dict[int, dict[str, int]] = {}
+    ch_stat: dict[int, dict[str, int]] = {}  # 章ごとの正解数・回答数を格納する辞書
     for at in attempts:
-        ch = at.question.chapter.num
+        ch = at.question.chapter.num  # 回答問題の章番号
         if ch not in ch_stat:
-            ch_stat[ch] = {"c": 0, "n": 0}
-        ch_stat[ch]["n"] += 1
-        ch_stat[ch]["c"] += int(at.is_correct)
+            ch_stat[ch] = {"c": 0, "n": 0}  # 初期化
+        ch_stat[ch]["n"] += 1  # 回答数を加算
+        ch_stat[ch]["c"] += int(at.is_correct)  # 正解数を加算（Trueは1、Falseは0）
 
     # セッションをクリア（任意）
     for k in ("mock_ids", "mock_index", "mock_correct"):
-        request.session.pop(k, None)
+        request.session.pop(k, None)  # セッションから出題情報を削除
 
     return render(
         request,
-        "exam/result.html",
+        "exam/result.html",  # 結果画面テンプレート
         {
-            "total": total,
-            "score": score,
-            "ch_stat": ch_stat,
+            "total": total,  # 問題総数
+            "score": score,  # 正解数
+            "ch_stat": ch_stat,  # 章別統計
         },
     )
