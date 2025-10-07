@@ -3,7 +3,8 @@ from __future__ import annotations
 import random
 
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import login as auth_login
+
+# from django.contrib.auth import login as auth_login
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -91,9 +92,11 @@ def signup(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            user = form.save()  # ← DBにユーザー作成（ORM経由）
-            auth_login(request, user)  # すぐログインさせる場合
-            return redirect("dashboard")  # 適宜あなたのトップ/ダッシュボード名へ
+            form.save()  # ← ユーザーを作成（自動ログインはしない）
+            messages.success(
+                request, "ユーザー登録が完了しました。ログインしてください。"
+            )
+            return redirect("login")  # ← ここをダッシュボードではなく login に
     else:
         form = UserCreationForm()
     return render(request, "registration/signup.html", {"form": form})

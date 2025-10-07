@@ -11,9 +11,17 @@
 
 <body>
   <header class="site-header">
-    <h1 class="site-title"><a class="btn" href="{% url 'dashboard' %}">Python3実践試験対策</a></h1>
+    <h1 class="site-title"><a class="btn" href="{% url 'dashboard' %}">Python3実践試験対策TOP</a></h1>
   </header>
   <main class="site-main">
+    {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+          <li class="message">{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
     {% block content %}{% endblock %}
   </main>
   <footer class="site-footer">
