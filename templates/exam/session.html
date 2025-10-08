@@ -47,11 +47,21 @@
           {% endfor %}
         </ul>
       </section>
+      {% if not was_correct %}
+      <section class="smart-explain">
+        <h4>スマート解説</h4>
+        <p class="diff">{{ smart_diff_html|safe }}</p>
+        {% if smart_hints %}
+          <ul class="hints">
+            {% for h in smart_hints %}<li>{{ h }}</li>{% endfor %}
+          </ul>
+        {% endif %}
+      </section>
+      {% endif %}
       <section class="explain">
         <h4>解説</h4>
         <pre>{{ question.note }}</pre>
       </section>
-      
       {% endif %}
     </form>
   </article>

@@ -25,3 +25,7 @@ urlpatterns = [  # URLパターンのリストを定義開始
     path("accounts/", include("django.contrib.auth.urls")),  # Djangoの標準認証機能（ログイン・ログアウト等）のURL設定を読み込む
     path("", include("exam.urls")),  # ルートURL以下のパスはexamアプリのurls.pyで処理させる
 ]  # urlpatternsリストの終了
+
+# エラーハンドラーの登録
+handler404 = 'exam_preparation.handlers.handler404'
+handler500 = 'exam_preparation.handlers.handler500'

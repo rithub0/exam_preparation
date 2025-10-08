@@ -196,3 +196,10 @@ ul.tight {
   margin: 6px 0 0 18px;
   padding: 0;
 }
+/* スマート解説（差分とヒント） */
+.smart-explain { margin-top: 10px; padding-top: 8px; border-top: 1px solid #222; }
+.smart-explain .diff { padding: 6px 8px; background: #111; border: 1px solid #222; border-radius: 4px; }
+.smart-explain .diff del { background: #3a1b1b; text-decoration: line-through; }
+.smart-explain .diff ins { background: #1b3a1b; text-decoration: none; }
+.smart-explain .hints { margin: 8px 0 0 18px; }
+.smart-explain .hints li { margin: 2px 0; }

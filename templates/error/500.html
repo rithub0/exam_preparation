@@ -1,0 +1,13 @@
+{% extends "exam/base.html" %}
+
+{% block title %}サーバーエラー{% endblock %}
+
+{% block content %}
+<div class="error-container">
+    <h1>500 - サーバーエラー</h1>
+    <p>申し訳ありません。サーバーで問題が発生しました。</p>
+    <p>システム管理者に通知されましたので、しばらくお待ちください。</p>
+    <p>以下のリンクからダッシュボードに戻ることができます：</p>
+    <p><a href="{% url 'dashboard' %}" class="btn btn-primary">ダッシュボードへ戻る</a></p>
+</div>
+{% endblock %}

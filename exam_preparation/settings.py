@@ -13,6 +13,11 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,10 +27,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-u$kw@8e6al#with@a6qt=pqp4d&t%ota!2r&05hyccocd(bplx"
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
+if not SECRET_KEY:
+    raise ValueError("No SECRET_KEY set in environment variables")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DJANGO_DEBUG', 'False').lower() == 'true'
 
 ALLOWED_HOSTS = [
     "127.0.0.1",
@@ -67,6 +74,17 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "exam",
 ]
+
+# セッションセキュリティ設定
+SESSION_COOKIE_AGE = int(os.getenv('SESSION_COOKIE_AGE', 3600))  # デフォルト1時間
+SESSION_COOKIE_SECURE = os.getenv('SESSION_COOKIE_SECURE', 'True').lower() == 'true'
+SESSION_COOKIE_HTTPONLY = os.getenv('SESSION_COOKIE_HTTPONLY', 'True').lower() == 'true'
+CSRF_COOKIE_SECURE = os.getenv('CSRF_COOKIE_SECURE', 'True').lower() == 'true'
+SESSION_EXPIRE_AT_BROWSER_CLOSE = os.getenv('SESSION_EXPIRE_AT_BROWSER_CLOSE', 'True').lower() == 'true'
+
+# セッションのセキュリティ強化
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # データベースバックエンド使用
+SESSION_COOKIE_SAMESITE = 'Strict'  # SameSite制限を強化
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -132,13 +150,20 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = os.getenv('LANGUAGE_CODE', 'ja')
 
-TIME_ZONE = "UTC"
+TIME_ZONE = os.getenv('TIME_ZONE', 'Asia/Tokyo')
 
-USE_I18N = True
+USE_I18N = os.getenv('USE_I18N', 'True').lower() == 'true'
 
-USE_TZ = True
+USE_L10N = os.getenv('USE_L10N', 'True').lower() == 'true'
+
+USE_TZ = os.getenv('USE_TZ', 'True').lower() == 'true'
+
+# 日本語対応用の設定
+LOCALE_PATHS = [
+    BASE_DIR / 'locale',
+]
 
 
 # Static files (CSS, JavaScript, Images)
@@ -151,3 +176,44 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# ロギング設定
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+            'style': '{',
+        },
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'WARNING',
+            'class': 'logging.FileHandler',
+            'filename': BASE_DIR / 'logs/django.log',
+            'formatter': 'verbose',
+        },
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file', 'console'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'exam': {
+            'handlers': ['file', 'console'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+    },
+}
