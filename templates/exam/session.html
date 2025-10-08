@@ -49,7 +49,7 @@
       </section>
       {% if not was_correct %}
       <section class="smart-explain">
-        <h4>スマート解説</h4>
+        <h4>誤答差分</h4>
         <p class="diff">{{ smart_diff_html|safe }}</p>
         {% if smart_hints %}
           <ul class="hints">

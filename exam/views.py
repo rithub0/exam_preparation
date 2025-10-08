@@ -19,7 +19,7 @@ from django.views.decorators.csrf import csrf_protect  # CSRF保護デコレー�
 from .models import Question, Choice, Attempt, Chapter  # 自作モデルのインポート
 
 from .logic.selector import build_mock_set_ids  # 出題セットIDを作成するロジック関数
-from .logic.quality import quota_deficits, total_quota  # クォータ不足検知や合計クォータ計算関数
+from .logic.quality import quota_deficits, total_quota  # 問題数不足検知や合計問題数計算関数
 from .logic.smart_explain import build_diff_html, extract_hints  # ★追加
 
 
@@ -74,12 +74,12 @@ def dashboard(request):
     # 章ごとに出題可能な問題数(n)を集計し、章番号順に並べる
 
     total_quota_val = sum(ch.official_quota for ch in ch_coverage)
-    # 全章の公式クォータ合計を計算
+    # 全章の公式問題数合計を計算
 
     total_stock_for_quota = sum(min(ch.n, ch.official_quota) for ch in ch_coverage)
-    # クォータと問題数の少ない方を足し合わせた実際の出題可能数合計
+    # 問題数と問題数の少ない方を足し合わせた実際の出題可能数合計
 
-    deficits = quota_deficits()  # クォータ不足の章のリストを取得（カスタム関数）
+    deficits = quota_deficits()  # 問題数不足の章のリストを取得（カスタム関数）
     has_deficit = len(deficits) > 0  # 不足があるかどうか真偽値判定
 
     return render(
@@ -90,7 +90,7 @@ def dashboard(request):
             "ch_coverage": ch_coverage,
             "total_quota": total_quota_val,
             "total_stock_for_quota": total_stock_for_quota,
-            "deficits": deficits,  # クォータ不足章情報
+            "deficits": deficits,  # 問題数不足章情報
             "has_deficit": has_deficit,  # 不足有無フラグ
         },
     )
@@ -114,9 +114,9 @@ def signup(request):
 @login_required
 def mock_start(request):
     # ★ 追加：開始前チェック
-    deficits = quota_deficits()  # クォータ不足章を確認
+    deficits = quota_deficits()  # 問題数不足章を確認
     if deficits:
-        msg = "クォータ不足の章があります：" + ", ".join(
+        msg = "問題数不足の章があります：" + ", ".join(
             [f"Ch{d['ch']}不足{d['lack']}" for d in deficits]
         )  # 不足章のメッセージ作成
         messages.warning(request, msg)  # 警告メッセージ表示

@@ -69,6 +69,10 @@ h3 {
   margin-top: 1em;
 }
 
+ul {
+  list-style-type: none; /* マーカーを消す */
+}
+
 a {
   color: #8ab4ff;
   text-decoration: none;
@@ -101,8 +105,17 @@ a:hover {
 }
 
 .choice {
-  display: inline-block;
-  margin: 1em;
+  display: block;
+  margin: 1em 0;
+  padding-left: 2em;
+  line-height: 1.6;
+  position: relative;
+}
+
+.choice input[type="radio"] {
+  position: absolute;
+  left: 0.5em;
+  top: 0.3em;
 }
 
 .judge.ok {
@@ -197,9 +210,8 @@ ul.tight {
   padding: 0;
 }
 /* スマート解説（差分とヒント） */
-.smart-explain { margin-top: 10px; padding-top: 8px; border-top: 1px solid #222; }
-.smart-explain .diff { padding: 6px 8px; background: #111; border: 1px solid #222; border-radius: 4px; }
-.smart-explain .diff del { background: #3a1b1b; text-decoration: line-through; }
-.smart-explain .diff ins { background: #1b3a1b; text-decoration: none; }
+.smart-explain { margin-top: 10px; padding-top: 8px;}
+.smart-explain .diff { padding: 6px 8px;}
+.smart-explain .wrong-answer { margin-bottom: 8px; padding: 8px;}
 .smart-explain .hints { margin: 8px 0 0 18px; }
 .smart-explain .hints li { margin: 2px 0; }
