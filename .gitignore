@@ -21,3 +21,5 @@ staticfiles/
 # IDE
 .vscode/
 .idea/
+
+*.json
