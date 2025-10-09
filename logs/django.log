@@ -1,2 +1,8 @@
 WARNING 2025-10-08 09:48:07,575 log 5400 3772 Not Found: /favicon.ico
 WARNING 2025-10-08 09:48:07,575 basehttp 5400 3772 "GET /favicon.ico HTTP/1.1" 404 3109
+WARNING 2025-10-09 10:30:53,992 log 7844 4852 Not Found: /static/exam/style.css
+WARNING 2025-10-09 10:30:53,993 basehttp 7844 4852 "GET /static/exam/style.css HTTP/1.1" 404 935
+WARNING 2025-10-09 10:30:54,049 log 7844 4852 Not Found: /favicon.ico
+WARNING 2025-10-09 10:30:54,051 basehttp 7844 4852 "GET /favicon.ico HTTP/1.1" 404 935
+WARNING 2025-10-09 10:31:54,514 log 7844 4852 Not Found: /static/exam/style.css
+WARNING 2025-10-09 10:31:54,515 basehttp 7844 4852 "GET /static/exam/style.css HTTP/1.1" 404 935
